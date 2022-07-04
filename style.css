@@ -36,7 +36,7 @@ body
 	background:black;
 	align:center;
 }
-#h1 {text-align: center;}
+h1 {text-align: center;}
 a:link{color:white;text-decoration:none;}
 a:visited{color:white;text-decoration:none;}
 a:hover{color:purple;text-decoration:underline;}
