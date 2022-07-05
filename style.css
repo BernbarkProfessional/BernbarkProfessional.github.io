@@ -335,7 +335,11 @@ body
 	Hover animation 
 	
 */
-
+.view{
+	width: 200px;
+	height: 400px;
+	align: center;
+}
 .view img { 
 	transform: scaleY(1);
 	transition: all 0.7s ease-in-out;
