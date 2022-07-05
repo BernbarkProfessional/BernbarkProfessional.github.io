@@ -341,7 +341,7 @@ body
 	align: center;
 }
 .view img { 
-	transform: scaleY(1);
+	transform: scaleY(.1);
 	transition: all 0.7s ease-in-out;
 }
 .view .mask { 
