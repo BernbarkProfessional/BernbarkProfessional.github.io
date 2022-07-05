@@ -152,6 +152,22 @@ body
 	overflow: hidden;
 } 
 
+#st-control-1:checked ~ .st-scroll {
+	transform: translateY(0%);
+}
+#st-control-2:checked ~ .st-scroll {
+	transform: translateY(-100%);
+}
+#st-control-3:checked ~ .st-scroll {
+	transform: translateY(-200%);
+}
+#st-control-4:checked ~ .st-scroll {
+	transform: translateY(-300%);
+}
+#st-control-5:checked ~ .st-scroll {
+	transform: translateY(-400%);
+}
+
 .st-deco{
 	width: 200px;
 	height: 200px;
