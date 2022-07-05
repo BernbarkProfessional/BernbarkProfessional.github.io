@@ -370,7 +370,7 @@ body
     transition: all 0.5s linear;
 }
 .view:hover img { 
-	transform: scale(10);
+	transform: scale(1);
     opacity: 0;
 }
 .view:hover .mask { 
