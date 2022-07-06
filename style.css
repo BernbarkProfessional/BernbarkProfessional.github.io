@@ -427,6 +427,10 @@ span {
     background: #000;
 }
 
+.animated_button{
+	position:fixed;
+}
+
 .glow-on-hover {
     width: 220px;
     height: 50px;
