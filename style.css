@@ -116,7 +116,7 @@ body
 .st-container > input:checked + a:after,
 .st-container > input:checked:hover + a:after{
 	bottom: 100%;
-	/*border: solid transparent;*/
+	border: solid transparent;
 	content: '';
 	height: 0;
 	width: 0;
