@@ -25,19 +25,18 @@
 			<a href="#st-panel-5">Passion</a>
 			
 			<script>
-				var item = document.getElementById("st-container");
-				item.bind('mousewheel',function(event) {
-					var scroll_up   = event.originalEvent.deltaY > 120;
-
-
-					if(scroll_up) {
-						console.log('you scrolled up!');
-						
-					}
-					else{
-						console.log('you scrolled down!');
-						
-					}
+				window.addEventListener('wheel', function(event)
+				{
+				 if (event.deltaY < 0)
+				 {
+				  console.log('scrolling up');
+				  //document.getElementById('status').textContent= 'scrolling up';
+				 }
+				 else if (event.deltaY > 0)
+				 {
+				  console.log('scrolling down');
+				  //document.getElementById('status').textContent= 'scrolling down';
+				 }
 				});
 
 				
