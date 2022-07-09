@@ -7,7 +7,7 @@
 	<body class="animated_body">
 	
 		<div class="sidebar"></div>
-		<div class="st-container">
+		<div class="st-container" id="st-container">
 			
 			<input type="radio" name="radio-set" checked="checked" id="st-control-1"/>
 			<a href="#st-panel-1">About Me</a>
@@ -25,7 +25,8 @@
 			<a href="#st-panel-5">Passion</a>
 			
 			<script>
-				$('st-container').bind('mousewheel',function(event) {
+				var item = document.getElementById("st-container");
+				$(item).bind('mousewheel',function(event) {
 					var scroll_up   = event.originalEvent.deltaY > 120;
 
 
