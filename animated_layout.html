@@ -40,6 +40,7 @@
 								else{
 									radios[i+1].checked = true;
 								}
+								break;
 							}
 						}
 				  
@@ -49,11 +50,12 @@
 						for (var i = 0; i <  radios.length; i++) {
 							if (radios[i].checked) {
 								if(i-1 < 0){
-									radios[radios.length].checked = true;
+									radios[radios.length-1].checked = true;
 								}
 								else{
 									radios[i-1].checked = true;
 								}
+								break;
 							}
 						}
 					}
