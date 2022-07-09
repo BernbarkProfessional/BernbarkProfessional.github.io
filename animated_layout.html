@@ -5,6 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 	<body class="animated_body">
+	
 		<div class="sidebar"></div>
 		<div class="st-container">
 			
@@ -22,6 +23,24 @@
 			
 			<input type="radio" name="radio-set" id="st-control-5"/>
 			<a href="#st-panel-5">Passion</a>
+			
+			<script>
+				$('#content').bind('mousewheel',function(event) {
+					var scroll_up   = event.originalEvent.deltaY > 120;
+
+
+					if(scroll_up) {
+						console.log('you scrolled up!');
+						
+					}
+					else{
+						console.log('you scrolled down!');
+						
+					}
+				});
+
+				
+			</script>
 			
 			<div class="st-scroll">
 
@@ -64,13 +83,3 @@
 	</body>
 </html>
 
-<?php
-	$(window).bind('mousewheel', function(event) {
-				if (event.originalEvent.wheelDelta >= 0) {
-					console.log('Scroll up');
-				}
-				else {
-					console.log('Scroll down');
-				}
-			});
-?>
