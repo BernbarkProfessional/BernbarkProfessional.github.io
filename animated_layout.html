@@ -7,9 +7,10 @@
 	<body class="animated_body">
 		<div id="wrapper">
 			<div id="sidebar">
-				<a class="glow-on-hover" href="./dreams.html">About Me</a>
-				<a href="./goals.html">Goals</a>
-				<a href="./animated_layout.html">Home</a>
+				<a class="glow-on-hover" href="./index.html">Home</a>
+				<a class="glow-on-hover" href="./dreams.html">Dreams</a>
+				<a class="glow-on-hover" href="./goals.html">Goals</a>
+				<a class="glow-on-hover" href="./animated_layout.html">Tour</a>
 			
 			</div>
 			<div class="st-container" id="st-container">
@@ -93,9 +94,9 @@
 						if (swipedir =='top')
 							alert('You just swiped top!');
 						if (swipedir =='down')
-							alert('You just swiped down!');
+							scrollThroughLayout(-1,radios);
 						if (swipedir =='none')
-							alert('You just swiped none!');
+							scrollThroughLayout(1,radios);
 							
 					})
 					
