@@ -7,10 +7,12 @@ body
 
 #wrapper
 {
-	width:960px;
-	height:600px;
+	width:auto;
+	min-width:100%;
+	height:auto;
+	min-height:100%;
 	background:#999;
-	margin: auto;
+	/*margin: auto;*/
 }
 #sidebar
 {
