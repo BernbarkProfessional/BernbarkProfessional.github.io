@@ -260,7 +260,7 @@ body
 	}
 }
 
-.st-panel p {
+/*.st-panel p {
 	position: absolute;
 	text-align: center;
 	font-size: 16px;
@@ -273,7 +273,7 @@ body
 	top: 50%;
 	margin: 10px 0 0 0;
 	-webkit-backface-visibility: hidden;
-}
+}*/
 
 #st-control-1:checked ~ .st-scroll #st-panel-1 p,
 #st-control-2:checked ~ .st-scroll #st-panel-2 p,
