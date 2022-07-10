@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html class="animated_html">
 	<head>
-		<title>Practgice Page</title>
+		<title>The Tour!</title>
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
+	
 	<body class="animated_body">
 		<div id="wrapper">
 			<div id="sidebar">
-				<a class="glow-on-hover" href="./index.html">Home</a>
-				<a class="glow-on-hover" href="./dreams.html">Dreams</a>
-				<a class="glow-on-hover" href="./goals.html">Goals</a>
-				<a class="glow-on-hover" href="./animated_layout.html">Tour</a>
+				<div class="sidebar-container">
+					<a class="glow-on-hover" href="./index.html">Home</a>
+					<a class="glow-on-hover" href="./dreams.html">Dreams</a>
+					<a class="glow-on-hover" href="./goals.html">Goals</a>
+					<a class="glow-on-hover" href="./animated_layout.html">Tour</a>
+				</div>
+				
 			
 			</div>
 			<div class="st-container" id="st-container">
@@ -30,140 +34,7 @@
 				<input type="radio" name="radio-set" id="st-control-5" value ="4"/>
 				<a href="#st-panel-5">Placeholder</a>
 				
-				<!-- 
-					Script to handle swiping on mobile
-				-->
 				
-				<script>
-					function swipedetect(el, callback){
-  
-						var touchsurface = el,
-						swipedir,
-						startX,
-						startY,
-						distX,
-						distY,
-						threshold = 150, //required min distance traveled to be considered swipe
-						restraint = 100, // maximum distance allowed at the same time in perpendicular direction
-						allowedTime = 300, // maximum time allowed to travel that distance
-						elapsedTime,
-						startTime,
-						handleswipe = callback || function(swipedir){}
-					  
-						touchsurface.addEventListener('touchstart', function(e){
-							var touchobj = e.changedTouches[0]
-							swipedir = 'none'
-							dist = 0
-							startX = touchobj.pageX
-							startY = touchobj.pageY
-							startTime = new Date().getTime() // record time when finger first makes contact with surface
-							e.preventDefault()
-						}, false)
-					  
-						touchsurface.addEventListener('touchmove', function(e){
-							e.preventDefault() // prevent scrolling when inside DIV
-						}, false)
-					  
-						touchsurface.addEventListener('touchend', function(e){
-							var touchobj = e.changedTouches[0]
-							distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
-							distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
-							elapsedTime = new Date().getTime() - startTime // get time elapsed
-							if (elapsedTime <= allowedTime){ // first condition for awipe met
-								if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
-									swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
-								}
-								else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
-									swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
-								}
-							}
-							handleswipe(swipedir)
-							e.preventDefault()
-						}, false)
-					}
-					  
-					//USAGE:
-					
-					var el = document.getElementById('st-container')
-					swipedetect(el, function(swipedir){
-						//swipedir contains either "none", "left", "right", "up", or "down";
-						if (swipedir =='left')
-							scrollThroughLayout(1,radios);
-							//alert('You just swiped left!');
-						if (swipedir =='right')
-							
-							scrollThroughLayout(-1,radios);
-							//alert('You just swiped right!');
-						if (swipedir =='up')
-							scrollThroughLayout(1,radios);
-						if (swipedir =='down')
-							scrollThroughLayout(-1,radios);
-							
-							
-						
-							
-							
-					})
-					
-				</script>
-
-				<!-- 
-					Script to handle mousewheel scroll on computer
-				-->
-				<script>
-					function scrollThroughLayout(deltaY, radios){
-						if (deltaY < 0)
-						{
-							for (var i = 0; i <  radios.length; i++) {
-								if (radios[i].checked) {
-									if(i-1 < 0){
-										radios[0].checked = true;
-									}
-									else{
-										radios[i-1].checked = true;
-									}
-									break;
-								}
-							}
-							
-					  
-						}
-						else if (deltaY > 0)
-						{
-							
-							for (var i = 0; i <  radios.length; i++) {
-								if (radios[i].checked) {
-									if(i+1 >= radios.length){
-										radios[radios.length-1].checked = true;
-									}
-									else{
-										radios[i+1].checked = true;
-									}
-									break;
-								}
-							}
-						}
-					}
-				</script>
-				
-				<script>
-					const radios = document.getElementsByName('radio-set');
-					window.addEventListener('wheel', function(event)
-					{
-						if (event.deltaY < 0)
-						{
-							console.log('scrolling up');
-							scrollThroughLayout(event.deltaY, radios);
-						}
-						else if (event.deltaY > 0)
-						{
-							console.log('scrolling down');
-							scrollThroughLayout(event.deltaY, radios);
-						}
-					});
-
-					
-				</script>
 				
 				<div class="st-scroll">
 
@@ -228,5 +99,139 @@
 		</div>
 		
 	</body>
+	<!-- 
+		Script to handle swiping on mobile
+	-->
+	
+	<script>
+		function swipedetect(el, callback){
+
+			var touchsurface = el,
+			swipedir,
+			startX,
+			startY,
+			distX,
+			distY,
+			threshold = 150, //required min distance traveled to be considered swipe
+			restraint = 100, // maximum distance allowed at the same time in perpendicular direction
+			allowedTime = 300, // maximum time allowed to travel that distance
+			elapsedTime,
+			startTime,
+			handleswipe = callback || function(swipedir){}
+		  
+			touchsurface.addEventListener('touchstart', function(e){
+				var touchobj = e.changedTouches[0]
+				swipedir = 'none'
+				dist = 0
+				startX = touchobj.pageX
+				startY = touchobj.pageY
+				startTime = new Date().getTime() // record time when finger first makes contact with surface
+				e.preventDefault()
+			}, false)
+		  
+			touchsurface.addEventListener('touchmove', function(e){
+				e.preventDefault() // prevent scrolling when inside DIV
+			}, false)
+		  
+			touchsurface.addEventListener('touchend', function(e){
+				var touchobj = e.changedTouches[0]
+				distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
+				distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
+				elapsedTime = new Date().getTime() - startTime // get time elapsed
+				if (elapsedTime <= allowedTime){ // first condition for awipe met
+					if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
+						swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
+					}
+					else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+						swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+					}
+				}
+				handleswipe(swipedir)
+				e.preventDefault()
+			}, false)
+		}
+		  
+		//USAGE:
+		
+		var el = document.getElementById('st-container')
+		swipedetect(el, function(swipedir){
+			//swipedir contains either "none", "left", "right", "up", or "down";
+			if (swipedir =='left')
+				scrollThroughLayout(1,radios);
+				//alert('You just swiped left!');
+			if (swipedir =='right')
+				
+				scrollThroughLayout(-1,radios);
+				//alert('You just swiped right!');
+			if (swipedir =='up')
+				scrollThroughLayout(1,radios);
+			if (swipedir =='down')
+				scrollThroughLayout(-1,radios);
+				
+				
+			
+				
+				
+		})
+		
+	</script>
+
+	<!-- 
+		Script to handle mousewheel scroll on computer
+	-->
+	<script>
+		function scrollThroughLayout(deltaY, radios){
+			if (deltaY < 0)
+			{
+				for (var i = 0; i <  radios.length; i++) {
+					if (radios[i].checked) {
+						if(i-1 < 0){
+							radios[0].checked = true;
+						}
+						else{
+							radios[i-1].checked = true;
+						}
+						break;
+					}
+				}
+				
+		  
+			}
+			else if (deltaY > 0)
+			{
+				
+				for (var i = 0; i <  radios.length; i++) {
+					if (radios[i].checked) {
+						if(i+1 >= radios.length){
+							radios[radios.length-1].checked = true;
+						}
+						else{
+							radios[i+1].checked = true;
+						}
+						break;
+					}
+				}
+			}
+		}
+	</script>
+	
+	<script>
+		const radios = document.getElementsByName('radio-set');
+		window.addEventListener('wheel', function(event)
+		{
+			if (event.deltaY < 0)
+			{
+				console.log('scrolling up');
+				scrollThroughLayout(event.deltaY, radios);
+			}
+			else if (event.deltaY > 0)
+			{
+				console.log('scrolling down');
+				scrollThroughLayout(event.deltaY, radios);
+			}
+		});
+
+		
+	</script>
 </html>
 
