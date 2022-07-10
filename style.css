@@ -59,11 +59,13 @@ img {
 	font-family: 'Josefin Slab', 'Myriad Pro', Arial, sans-serif;
 }
 .sidebar-container{
-	border:solid;
-	border-color:white;
-	width:90%;
-	height:auto;
-	min-height:30%;
+	margin: auto;
+    margin-top: 5%;
+    border: solid;
+    border-color: white;
+    width: 90%;
+    height: auto;
+    min-height: 30%;
 }
 .st-container > input,
 .st-container > a {
