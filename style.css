@@ -444,6 +444,8 @@ span {
 
 .glow-on-hover {
     width: 80%;
+	padding-bottom: 5px;
+	padding-top: 5px;
     height: 15%;
     border: white;
 	margin: auto;

@@ -19,16 +19,16 @@
 				<a href="#st-panel-1">About Me</a>
 				
 				<input type="radio" name="radio-set" id="st-control-2" value ="1"/>
-				<a href="#st-panel-2">Commitment</a>
+				<a href="#st-panel-2">Placeholder</a>
 				
 				<input type="radio" name="radio-set" id="st-control-3" value ="2"/>
-				<a href="#st-panel-3">Tranquillity</a>
+				<a href="#st-panel-3">Placeholder</a>
 				
 				<input type="radio" name="radio-set" id="st-control-4" value ="3"/>
-				<a href="#st-panel-4">Positivity</a>
+				<a href="#st-panel-4">Placeholder</a>
 				
 				<input type="radio" name="radio-set" id="st-control-5" value ="4"/>
-				<a href="#st-panel-5">Passion</a>
+				<a href="#st-panel-5">Placeholder</a>
 				
 				<!-- 
 					Script to handle swiping on mobile
@@ -117,7 +117,7 @@
 							for (var i = 0; i <  radios.length; i++) {
 								if (radios[i].checked) {
 									if(i-1 < 0){
-										radios[radios.length-1].checked = true;
+										radios[0].checked = true;
 									}
 									else{
 										radios[i-1].checked = true;
@@ -134,7 +134,7 @@
 							for (var i = 0; i <  radios.length; i++) {
 								if (radios[i].checked) {
 									if(i+1 >= radios.length){
-										radios[0].checked = true;
+										radios[radios.length-1].checked = true;
 									}
 									else{
 										radios[i+1].checked = true;
