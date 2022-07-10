@@ -20,7 +20,7 @@ body
 	width:15%;
 	height:auto;
 	min-height:95%;
-	background:#333;
+	background:#067791;
 	z-index: 2;
 	float:left;
 	position:fixed;
@@ -464,8 +464,8 @@ span {
     height: 15%;
     border: white;
 	margin: auto;
-	margin-bottom: 5px;
-	margin-top: 5px;
+	margin-bottom: 11%;
+    margin-top: 10%;
     outline: solid;
     color: #fff;
     background: #111;
