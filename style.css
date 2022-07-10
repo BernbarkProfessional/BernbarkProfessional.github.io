@@ -17,8 +17,9 @@ body
 }
 #sidebar
 {
-	width:25%;
-	height:85%;
+	width:15%;
+	height:auto;
+	min-height:90%;
 	background:#333;
 	z-index: 9999;
 	float:left;
