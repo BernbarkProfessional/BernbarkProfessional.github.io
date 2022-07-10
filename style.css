@@ -20,6 +20,7 @@ body
 	width:25%;
 	height:100%;
 	background:#333;
+	z-index: 9999;
 	float:left;
 	position:fixed;
 }
