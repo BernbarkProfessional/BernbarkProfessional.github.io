@@ -5,10 +5,10 @@ body
 	overflow: hidden;
 }
 img {
- max-width: 15%;
- max-height: 15%;
- float:right;
- float:top;
+	max-width: 30%;
+    margin: 10px;
+    max-height: 30%;
+    float: right;
 }
 #wrapper
 {
