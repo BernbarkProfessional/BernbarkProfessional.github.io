@@ -88,13 +88,16 @@
 					swipedetect(el, function(swipedir){
 						//swipedir contains either "none", "left", "right", "up", or "down";
 						if (swipedir =='left')
+							scrollThroughLayout(-1,radios);
 							//alert('You just swiped left!');
 						if (swipedir =='right')
+							scrollThroughLayout(1,radios);
 							//alert('You just swiped right!');
 						if (swipedir =='up')
-							scrollThroughLayout(1,radios);
-						if (swipedir =='down')
 							scrollThroughLayout(-1,radios);
+						if (swipedir =='down')
+							scrollThroughLayout(1,radios);
+							
 						
 							
 							
