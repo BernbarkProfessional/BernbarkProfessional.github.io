@@ -449,6 +449,8 @@ span {
     height: 15%;
     border: white;
 	margin: auto;
+	margin-bottom: 5px;
+	margin-top: 5px;
     outline: solid;
     color: #fff;
     background: #111;
