@@ -12,6 +12,7 @@ body
 	height:auto;
 	min-height:100%;
 	background:#999;
+	overflow: hidden;
 	/*margin: auto;*/
 }
 #sidebar
