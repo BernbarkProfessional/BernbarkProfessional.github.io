@@ -222,12 +222,7 @@ body
 	font-weight: 900;
 	width: 60%;
     right: 20%;
-    text-align: center;
     
-    margin: -70px 0 0 0;
-    padding: 0;
-    top: 25%;
-	-webkit-backface-visibility: hidden;
 }
 
 .st-panel h2 {
