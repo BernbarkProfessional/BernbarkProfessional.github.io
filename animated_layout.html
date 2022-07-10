@@ -86,17 +86,17 @@
 					
 					var el = document.getElementById('st-container')
 					swipedetect(el, function(swipedir){
-						//swipedir contains either "none", "left", "right", "top", or "down";
+						//swipedir contains either "none", "left", "right", "up", or "down";
 						if (swipedir =='left')
-							alert('You just swiped left!');
+							//alert('You just swiped left!');
 						if (swipedir =='right')
-							alert('You just swiped right!');
-						if (swipedir =='top')
-							alert('You just swiped top!');
+							//alert('You just swiped right!');
+						if (swipedir =='up')
+							scrollThroughLayout(1,radios);
 						if (swipedir =='down')
 							scrollThroughLayout(-1,radios);
-						if (swipedir =='none')
-							scrollThroughLayout(1,radios);
+						
+							
 							
 					})
 					
