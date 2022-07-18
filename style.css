@@ -4,6 +4,11 @@ body
 	font-family:Helvetica;
 	overflow: hidden;
 }
+ul
+{
+	background-color: #dddb77;
+	margin: auto;
+}
 img {
 	max-width: 30%;
     margin: 10px;
