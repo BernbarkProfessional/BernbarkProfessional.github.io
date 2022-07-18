@@ -4,11 +4,6 @@ body
 	font-family:Helvetica;
 	overflow: hidden;
 }
-ul
-{
-	background-color: #dddb77;
-	margin: auto;
-}
 img {
 	max-width: 30%;
     margin: 10px;
@@ -239,6 +234,20 @@ img {
 	left: 50%;
 	margin: -100px 0 0 -100px;
 	transform: rotate(-45deg) translateY(25%);
+}
+
+.st-panel ul {
+	color: lightsteelblue;
+    text-shadow: 1px 1px 1px rgb(151 24 64 / 20%);
+    position: absolute;
+    font-size: 16px;
+    font-weight: 900;
+    width: 60%;
+    text-align: center;
+    line-height: 22px;
+    top: 25%;
+    right: 20%;
+    
 }
 
 .st-panel p {
