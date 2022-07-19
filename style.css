@@ -575,9 +575,27 @@ span {
 	background-color: #AD244F;
 	width: 50%;
 	height: 50%;
-	transition: transform 1s;
+	
 }
 
 .parent:hover .child {
-	transform: translateX(100%);
+	
+	animation: left-to-right 1s ease-in forwards;
+}
+
+/* Animating the child hover in a topleft-bottomleft-bottomright-topright movement*/
+
+@keyframes left-to-right{
+	0%{
+		transform: translateX(0);
+	}
+	33%{
+		transform: translateY(100%);
+	}
+	66%{
+		transform: translateX(100%) translateY(100%);
+	}
+	100%{
+		transform: translateX(100%)
+	}
 }
