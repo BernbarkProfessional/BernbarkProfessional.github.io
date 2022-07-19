@@ -575,4 +575,9 @@ span {
 	background-color: #AD244F;
 	width: 50%;
 	height: 50%;
+	transition: transform 1s;
+}
+
+.parent:hover .child {
+	transform: translateX(100%);
 }
