@@ -557,3 +557,22 @@ span {
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
 }
+
+/*		This css file is getting pretty big, look into proper ways to split it up if there are any		*/
+
+/*		Practicing with transition animations		*/
+
+.parent{
+	background-color: #999;
+	width: 50%;
+	height: 50%;
+	position: absolute;
+	top: 25%;
+	left: 25%
+}
+
+.child{
+	background-color: #AD244F;
+	width: 50%;
+	height: 50%;
+}
