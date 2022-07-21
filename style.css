@@ -558,6 +558,32 @@ span {
     100% { background-position: 0 0; }
 }
 
+/*		Clickable Dropdown Menus		*/
+
+.menu-btn {
+	background-color: #7e32d4;
+	color: white;
+	padding: 16px;
+	font-size: 20px;
+	font-weight: bolder;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	border: none;
+ }
+ .dropdown-menu {
+	position: relative;
+	display: inline-block;
+ }
+ .menu-content {
+	display: none;
+	position: absolute;
+	background-color: #017575;
+	min-width: 160px;
+	z-index: 1;
+ }
+ .dropdown-menu:hover .menu-btn {
+	background-color: #3e8e41;
+ }
+
 /*		This css file is getting pretty big, look into proper ways to split it up if there are any		*/
 
 /*		Practicing with transition animations		*/
