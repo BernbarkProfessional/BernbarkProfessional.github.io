@@ -6,19 +6,20 @@ window.onload=function(){
     .then(data=>{
         sidebar.innerHTML = data
     })
-    let dropdownBtn = document.querySelector('.menu-btn');
-    let menuContent = document.querySelector('.menu-content');
-    dropdownBtn.addEventListener('click',()=>{
-        if(menuContent.style.display===""){
-            menuContent.style.display="block";
-        } else {
-            menuContent.style.display="";
-        }
-    })
-    dropdownBtn.addEventListener('mouseout',()=>{
-        
-        menuContent.style.display="";
-        
-    })
-
+    
 }
+
+let dropdownBtn = document.querySelector('.menu-btn');
+let menuContent = document.querySelector('.menu-content');
+dropdownBtn.addEventListener('click',()=>{
+    if(menuContent.style.display===""){
+        menuContent.style.display="block";
+    } else {
+        menuContent.style.display="";
+    }
+})
+dropdownBtn.addEventListener('mouseout',()=>{
+    
+    menuContent.style.display="";
+    
+})
