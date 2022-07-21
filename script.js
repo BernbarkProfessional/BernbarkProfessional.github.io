@@ -1,10 +1,11 @@
-const sidebar = document.querySelector('#sidebar')
-fetch('/sidebar.html')
-.then(res=>res.text())
-.then(data=>{
-    sidebar.innerHTML = data
-})
+
 window.onload=function(){
+    const sidebar = document.querySelector('#sidebar')
+    fetch('/sidebar.html')
+    .then(res=>res.text())
+    .then(data=>{
+        sidebar.innerHTML = data
+    })
     let dropdownBtn = document.querySelector('.menu-btn');
     let menuContent = document.querySelector('.menu-content');
     dropdownBtn.addEventListener('click',()=>{
