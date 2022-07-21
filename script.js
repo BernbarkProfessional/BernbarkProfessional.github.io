@@ -1,0 +1,21 @@
+const sidebar = document.querySelector('sidebar')
+fetch('/sidebar.html')
+.then(res=>res.text())
+.then(data=>{
+    sidebar.innerHTML = data
+})
+
+let dropdownBtn = document.querySelector('.menu-btn');
+let menuContent = document.querySelector('.menu-content');
+dropdownBtn.addEventListener('click',()=>{
+    if(menuContent.style.display===""){
+        menuContent.style.display="block";
+    } else {
+        menuContent.style.display="";
+    }
+})
+dropdownBtn.addEventListener('mouseleave',()=>{
+    
+    menuContent.style.display="";
+    
+})
