@@ -14,7 +14,7 @@ dropdownBtn.addEventListener('click',()=>{
         menuContent.style.display="";
     }
 })
-dropdownBtn.addEventListener('mouseleave',()=>{
+dropdownBtn.addEventListener('mouseout',()=>{
     
     menuContent.style.display="";
     
