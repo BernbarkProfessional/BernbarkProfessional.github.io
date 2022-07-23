@@ -569,7 +569,7 @@ span {
 	font-size: 20px;
 	font-weight: bolder;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	border: none;
+	border: 4px, solid, black;
  }
  .dropdown-menu {
 	position: relative;
@@ -645,11 +645,11 @@ span {
 	}
 	50%{
 		transform: scale(1.1);
-		transform: translateX(20%);
+		
 	}
 	100%{
 		transform: scale(1);
-		transform: translateX(0%)
+		
 	}
 }
 

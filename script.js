@@ -32,11 +32,7 @@ setTimeout(function(){
             menuContent.style.display="";
         }
     })
-    dropdownBtn.addEventListener('mouseout',()=>{
-        
-        menuContent.style.display="";
-        
-    })
+    
 },250);
 
 
