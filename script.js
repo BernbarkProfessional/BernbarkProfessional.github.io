@@ -4,13 +4,19 @@ const sidebar = document.querySelector('#sidebar')
 fetch('/sidebar.html')
 .then(res=>res.text())
 .then(data=>{
-    sidebar.innerHTML = data
+    if(data){
+        sidebar.innerHTML = data
+    }
+    
 })
 const bottombar = document.querySelector('#bottombar')
 fetch('/bottombar.html')
 .then(res=>res.text())
 .then(data=>{
-    bottombar.innerHTML = data
+    if(data){
+        bottombar.innerHTML = data
+    }
+    
 })
 
 /*      End Loading of Common HTML Elements     */
