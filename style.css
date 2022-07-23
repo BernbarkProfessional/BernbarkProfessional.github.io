@@ -491,6 +491,7 @@ span {
     justify-content: center;
     align-items: center;
     background: #000;
+	overflow: hidden;
 }
 
 .animated_button{
