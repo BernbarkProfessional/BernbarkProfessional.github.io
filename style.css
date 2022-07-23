@@ -201,16 +201,16 @@ img {
 	transform: translateY(0%);
 }
 #st-control-2:checked ~ .st-scroll {
-	transform: translateY(-85%);
+	transform: translateY(-100%);
 }
 #st-control-3:checked ~ .st-scroll {
-	transform: translateY(-170%);
+	transform: translateY(-200%);
 }
 #st-control-4:checked ~ .st-scroll {
-	transform: translateY(-255%);
+	transform: translateY(-300%);
 }
 #st-control-5:checked ~ .st-scroll {
-	transform: translateY(-340%);
+	transform: translateY(-400%);
 }
 
 .st-deco{
