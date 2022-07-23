@@ -2,7 +2,7 @@ body
 {
 	color:white;
 	font-family:Helvetica;
-	overflow-y: hidden;
+	
 	
 }
 img {
@@ -61,9 +61,13 @@ img {
 	align:center;
 }
 .scrollable-body{
-	overflow-y: scroll;
+	
 	height:85%;
+	/* Trying to make content not hide behind the footer */
+    padding-bottom: 42px;
+    box-sizing: border-box;
 }
+
 .st-container {
 	position: absolute;
 	width: 100%;
