@@ -541,10 +541,10 @@ span {
 		transform: translateX(0);
 	}
 	33%{
-		transform: translateX(1%);
+		transform: translateX(3%);
 	}
 	66%{
-		transform: translateX(-1)
+		transform: translateX(-3%)
 	}
 	100%{
 		transform: translateX(0%)
