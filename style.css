@@ -634,7 +634,8 @@ span {
 }
 
 .sidebar-button-animate:hover {
-	animation: left-to-right-button-bounce 1s ease-in 0s infinite, scale-up-and-down 1s ease infinite;
+	animation: left-to-right-button-bounce 1s ease-in 0s infinite, 
+	scale-up-and-down 1s ease infinite;
 }
 
 @keyframes left-to-right-button-bounce {
@@ -642,10 +643,10 @@ span {
 		transform: translateX(0);
 	}
 	33%{
-		transform: translateX(3%);
+		transform: translateX(20%);
 	}
 	66%{
-		transform: translateX(-3%)
+		transform: translateX(-20%)
 	}
 	100%{
 		transform: translateX(0%)
