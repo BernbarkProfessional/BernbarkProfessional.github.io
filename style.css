@@ -62,6 +62,7 @@ img {
 }
 .scrollable-body{
 	overflow-y: scroll;
+	height:85%;
 }
 .st-container {
 	position: absolute;
