@@ -295,8 +295,8 @@ img {
 
 @keyframes moveDown{
 	0% { 
-		transform: translateY(-40px); 
-		opacity: 0;
+		/*transform: translateY(-40px); 
+		opacity: 0;*/
 	}
 	100% { 
 		transform: translateY(0px);  
@@ -329,8 +329,8 @@ img {
 
 @keyframes moveUp{
 	0% { 
-		transform: translateY(40px); 
-		opacity: 0;
+		/*transform: translateY(40px); 
+		opacity: 0;*/
 	}
 	100% { 
 		transform: translateY(0px);  
