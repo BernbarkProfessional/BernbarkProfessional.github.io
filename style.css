@@ -645,24 +645,26 @@ span {
 	}
 	50%{
 		transform: scale(1.1);
+		transform: translateX(20%);
 	}
 	100%{
 		transform: scale(1);
+		transform: translateX(0%)
 	}
 }
 
-@keyframes left-to-right-button-bounce {
+/*@keyframes left-to-right-button-bounce {
 	0%{
 		transform: translateX(0);
 	}
 	33%{
-		transform: translateX(20%);
+		
 	}
 	66%{
 		transform: translateX(-20%)
 	}
 	100%{
-		transform: translateX(0%)
-	}
+		
+	}*/
 }
 
