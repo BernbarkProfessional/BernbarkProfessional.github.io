@@ -638,6 +638,19 @@ span {
 	scale-up-and-down 1s ease infinite;
 }
 
+@keyframes scale-up-and-down {
+
+	0%{
+		transform: scale(1);
+	}
+	50%{
+		transform: scale(1.1);
+	}
+	100%{
+		transform: scale(1);
+	}
+}
+
 @keyframes left-to-right-button-bounce {
 	0%{
 		transform: translateX(0);
@@ -653,15 +666,3 @@ span {
 	}
 }
 
-@keyframes scale-up-and-down {
-
-	0%{
-		transform: scale(1);
-	}
-	50%{
-		transform: scale(1.1);
-	}
-	100%{
-		transform: scale(1);
-	}
-}
