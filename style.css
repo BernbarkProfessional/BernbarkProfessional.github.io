@@ -2,7 +2,7 @@ body
 {
 	color:white;
 	font-family:Helvetica;
-	/*overflow: hidden;*/
+	overflow-y: hidden;
 	
 }
 img {
