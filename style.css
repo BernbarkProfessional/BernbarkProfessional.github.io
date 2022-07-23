@@ -3,7 +3,7 @@ body
 	color:white;
 	font-family:Helvetica;
 	overflow: hidden;
-	overflow-y: scroll;
+	
 }
 img {
 	max-width: 30%;
@@ -59,6 +59,9 @@ img {
 {
 	background:black;
 	align:center;
+}
+.scrollable-body{
+	overflow-y: scroll;
 }
 .st-container {
 	position: absolute;
