@@ -454,7 +454,7 @@ img {
 a:link{color:white;text-decoration:none;}
 a:visited{color:white;text-decoration:none;}
 a:hover{color:white;text-decoration:none;}
-a:active{color:red;text-decoration:underline;}
+a:active{color:red;text-decoration:none;}
 
 a
 {
@@ -532,24 +532,7 @@ span {
     color: #000
 }
 
-.glow-on-hover:hover {
-	animation: left-to-right-button-bounce 1s ease-in 0s infinite;
-}
 
-@keyframes left-to-right-button-bounce {
-	0%{
-		transform: translateX(0);
-	}
-	33%{
-		transform: translateX(3%);
-	}
-	66%{
-		transform: translateX(-3%)
-	}
-	100%{
-		transform: translateX(0%)
-	}
-}
 
 .glow-on-hover:active:after {
     background: transparent;
@@ -646,8 +629,27 @@ span {
 	}
 }
 
-.scale-animate:hover {
-	animation: scale-up-and-down 1s ease infinite;
+.sidebar-button-animate{
+	background-color: #ff00e7;
+}
+
+.sidebar-button-animate:hover {
+	animation: left-to-right-button-bounce 1s ease-in 0s infinite, scale-up-and-down 1s ease infinite;
+}
+
+@keyframes left-to-right-button-bounce {
+	0%{
+		transform: translateX(0);
+	}
+	33%{
+		transform: translateX(3%);
+	}
+	66%{
+		transform: translateX(-3%)
+	}
+	100%{
+		transform: translateX(0%)
+	}
 }
 
 @keyframes scale-up-and-down {
