@@ -268,7 +268,7 @@ img {
 	color: #e23a6e;
 	text-shadow: 1px 1px 1px rgba(151,24,64,0.2);
 	position: absolute;
-	font-size: 54px;
+	font-size: 40px;
 	font-weight: 900;
 	width: 60%;
     right: 20%;
@@ -646,3 +646,19 @@ span {
 	}
 }
 
+.scale-animate:hover {
+	animation: scale-up-and-down 1s ease infinite;
+}
+
+@keyframes scale-up-and-down {
+
+	0%{
+		transform: scale(1);
+	}
+	50%{
+		transform: scale(1.1);
+	}
+	100%{
+		transform: scale(1);
+	}
+}
