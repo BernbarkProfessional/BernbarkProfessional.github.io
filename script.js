@@ -15,8 +15,7 @@ fetch('/bottombar.html')
 
 /*      End Loading of Common HTML Elements     */
 
-
-window.onload = function(e){
+setTimeout(function(){
     let dropdownBtn = document.querySelector('.menu-btn');
     let menuContent = document.querySelector('.menu-content');
     
@@ -32,8 +31,8 @@ window.onload = function(e){
         menuContent.style.display="";
         
     })
-    
-}
+},250);
+
 
 
 
