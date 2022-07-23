@@ -532,6 +532,25 @@ span {
     color: #000
 }
 
+.glow-on-hover:hover {
+	animation: left-to-right-button-bounce 1s ease-in;
+}
+
+@keyframes left-to-right-button-bounce {
+	0%{
+		transform: translateX(0);
+	}
+	33%{
+		transform: translateX(100%);
+	}
+	66%{
+		transform: translateX(0)
+	}
+	100%{
+		transform: translateX(100%)
+	}
+}
+
 .glow-on-hover:active:after {
     background: transparent;
 }
@@ -626,3 +645,4 @@ span {
 		transform: translateX(100%)
 	}
 }
+
