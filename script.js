@@ -1,10 +1,16 @@
 
 
-const sidebar = document.querySelector('#sidebar')
+const sidebar = document.querySelector('sidebar')
 fetch('/sidebar.html')
 .then(res=>res.text())
 .then(data=>{
     sidebar.innerHTML = data
+})
+const bottombar = document.querySelector('bottombar')
+fetch('/bottombar.html')
+.then(res=>res.text())
+.then(data=>{
+    bottombar.innerHTML = data
 })
 window.onload = function(e){
     let dropdownBtn = document.querySelector('.menu-btn');
