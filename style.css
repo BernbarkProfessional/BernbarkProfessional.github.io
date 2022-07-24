@@ -605,11 +605,15 @@ span {
 	display: none;
 	position: absolute;
 	background-color: #017575;
-	min-width: 160px;
+	min-width: 100%;
 	z-index: 1;
  }
  .menu-content > a {
-    border: 1px solid white;
+	border: 1px solid white;
+    min-height: 12px;
+    text-align: center;
+    font-size: 1.3vw;
+    padding: 20px 0;
  }
  .menu-content >a:hover{
 	 background: rgb(102, 2, 128);
