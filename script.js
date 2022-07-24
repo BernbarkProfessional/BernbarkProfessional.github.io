@@ -28,10 +28,10 @@ setTimeout(function(){
     dropdownBtn.addEventListener('click',()=>{
         if(menuContent.style.display===""){
             menuContent.style.display="block";
-            menuContent.classList.add("dropdown-animate");
+            
         } else {
             menuContent.style.display="";
-            menuContent.classList.remove("dropdown-animate");
+            
         }
     })
 
