@@ -465,11 +465,19 @@ img {
 	
 */
 
+/*
+
+	Links Section
+
+*/
+
 a:link{color:white;text-decoration:none;}
 a:visited{color:white;text-decoration:none;}
 a:hover{color:white;text-decoration:none;}
 a:active{color:red;text-decoration:none;}
-
+a.links {
+    background: #000650;
+}
 a
 {
 	display:block;
@@ -596,6 +604,9 @@ span {
 	background-color: #017575;
 	min-width: 160px;
 	z-index: 1;
+ }
+ .menu-content > a {
+    border: 1px solid white;
  }
  .dropdown-menu:hover .menu-btn {
 	background-color: #3e8e41;
