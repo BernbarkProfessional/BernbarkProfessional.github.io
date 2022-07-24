@@ -615,7 +615,7 @@ span {
     font-size: 1.3vw;
     padding: 20px 0;
  }
- .menu-content:active{
+ .dropdown-animate{
 	 animation: glowing-drop-down 1s ease-in infinite;
  }
  @keyframes glowing-drop-down {
