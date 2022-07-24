@@ -597,9 +597,9 @@ span {
  }
  .dropdown-menu {
 	position: relative;
-	display: inline-block;
-	width: 90%;
-    margin: 10px;
+    display: inline-block;
+    width: 95%;
+    margin: 5px;
  }
  .menu-content {
 	display: none;
@@ -614,6 +614,17 @@ span {
     text-align: center;
     font-size: 1.3vw;
     padding: 20px 0;
+ }
+ .menu-content:active{
+	 animation: glowing-drop-down 1s ease-in infinite;
+ }
+ @keyframes glowing-drop-down {
+	 0%{
+		
+	 }
+	 100%{
+		border: red;
+	 }
  }
  .menu-content >a:hover{
 	 background: rgb(102, 2, 128);
