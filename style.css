@@ -588,6 +588,7 @@ span {
 .menu-btn {
 	background-color: #7e32d4;
 	color: white;
+	width: 100%;
 	padding: 16px;
 	font-size: 20px;
 	font-weight: bolder;
