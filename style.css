@@ -597,6 +597,8 @@ span {
  .dropdown-menu {
 	position: relative;
 	display: inline-block;
+	width: 90%;
+    margin: 10px;
  }
  .menu-content {
 	display: none;
@@ -607,6 +609,9 @@ span {
  }
  .menu-content > a {
     border: 1px solid white;
+ }
+ .menu-content >a:hover{
+	 background: rgb(102, 2, 128);
  }
  .dropdown-menu:hover .menu-btn {
 	background-color: #3e8e41;
