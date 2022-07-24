@@ -20,6 +20,10 @@ img {
 	z-index: 3;
 	background-color: #00ffd5;
 }
+#bottombar > p{
+	font-size: 1vw;
+	font:italic small-caps bold 12px/30px Georgia, serif;
+}
 #wrapper
 {
 	width:auto;
