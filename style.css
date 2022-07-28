@@ -132,22 +132,68 @@ img {
 
 #st-control-1, #st-control-1 + a {
 	left: 0;
+	
 }
 
 #st-control-2, #st-control-2 + a {
 	left: 20%;
+	
 }
 
 #st-control-3, #st-control-3 + a {
 	left: 40%;
+	
 }
 
 #st-control-4, #st-control-4 + a {
 	left: 60%;
+	
 }
 
 #st-control-5, #st-control-5 + a {
 	left: 80%;
+	
+}
+
+#st-control-1, #st-control-2, #st-control-3, #st-control-4, #st-control-5{
+	animation: tour-button-glow 3s ease-in infinite;
+	border: solid 3px black;
+}
+
+@keyframes tour-button-glow {
+	0%{
+		border: solid 3px black;
+	}
+	10%{
+		border: solid 3px rgb(59, 0, 45);
+	}
+	20%{
+		border: solid 3px rgb(97, 1, 73);
+	}
+	30%{
+		border: solid 3px rgb(145, 0, 108);
+	}
+	40%{
+		border: solid 3px rgb(179, 1, 134);
+	}
+	50%{
+		border: solid 3px rgb(243, 0, 182);
+	}
+	60%{
+		border: solid 3px rgb(179, 1, 134);
+	}
+	70%{
+		border: solid 3px rgb(145, 0, 108);
+	}
+	80%{
+		border: solid 3px rgb(97, 1, 73);
+	}
+	90%{
+		border: solid 3px rgb(59, 0, 45);
+	}
+	100%{
+		border: solid 3px black;
+	}
 }
 
 .st-container > input:checked + a,
@@ -766,3 +812,7 @@ span {
 	  background-attachment: scroll;
 	}
   }
+
+  /*		End Parallax section		*/
+
+  
