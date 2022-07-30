@@ -815,4 +815,14 @@ span {
 
   /*		End Parallax section		*/
 
-  
+  /*		Archive page style		*/
+
+  .archive {
+	  right:60%;
+	  height:60%;
+	  width:60%;
+  }
+
+  .archive > h2{
+	font: 1.2em "Verdana", sans-serif;
+  }
