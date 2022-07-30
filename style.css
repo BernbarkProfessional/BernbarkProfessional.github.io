@@ -2,7 +2,7 @@ body
 {
 	color:white;
 	font-family:Helvetica;
-	
+	margin: 0px;
 	
 }
 img {
@@ -818,9 +818,10 @@ span {
   /*		Archive page style		*/
 
   .archive {
-	  right:60%;
-	  height:60%;
-	  width:60%;
+	left: 26%;
+    height: 60%;
+    width: 60%;
+    position: relative;
   }
 
   .archive > h2{
@@ -832,6 +833,7 @@ span {
 	  height: 100%;
 	  width: 100%;
 	  overflow: hidden;
+	  margin: 0px;
   }
 
   .archive-wrapper{
@@ -841,4 +843,11 @@ span {
     min-height: 100%;
     background: #999;
     overflow: hidden;
+  }
+
+  .archive-why-button{
+	  background: url(./Resources/Images/question_mark.png);
+	  position: absolute;
+	  top:25%;
+	  left:25%;
   }
