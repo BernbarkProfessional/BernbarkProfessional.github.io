@@ -39,8 +39,8 @@ setTimeout(function(){
     
 },250);
 
-document.getElementById().onmouseover = function() {animateQuestionMark()};
-document.getElementById().onmouseout = function() {animateQuestionMark()};
+document.getElementById("WhyButton").onmouseover = function() {animateQuestionMark()};
+document.getElementById("WhyButton").onmouseout = function() {animateQuestionMark()};
 
 function animateQuestionMark(){
     let questionMarkBtn = document.querySelector('.archive-why-button');
