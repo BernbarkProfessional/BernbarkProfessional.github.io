@@ -854,7 +854,7 @@ span {
   }
 
   .archive-why-button:hover{
-	animation: question-mark 3s infinite;
+	animation: question-mark 2s ease-in-out infinite;
 	
   }
 
