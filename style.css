@@ -826,3 +826,9 @@ span {
   .archive > h2{
 	font: 1.2em "Verdana", sans-serif;
   }
+
+  .archive-body{
+	  position: absolute;
+	  height: 80%;
+	  width: 80%;
+  }
