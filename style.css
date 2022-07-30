@@ -846,10 +846,14 @@ span {
   }
 
   .archive-why-button{
-	  animation: question-mark 1s ease-in infinite;
+	  
 	  position: absolute;
 	  top:25%;
 	  left:25%;
+  }
+
+  .archive-why-button:hover{
+	animation: question-mark 1s ease-in infinite;
   }
 
   @keyframes question-mark {
