@@ -854,7 +854,7 @@ span {
 
   .archive-why-button:hover{
 	animation: question-mark 1s ease-in infinite;
-	opacity: 0;
+	
   }
 
   @keyframes question-mark {
