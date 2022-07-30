@@ -39,6 +39,22 @@ setTimeout(function(){
     
 },250);
 
+document.getElementById().onmouseover = function() {animateQuestionMark()};
+document.getElementById().onmouseout = function() {animateQuestionMark()};
+
+function animateQuestionMark(){
+    let questionMarkBtn = document.querySelector('.archive-why-button');
+    if(questionMarkBtn != null){
+        
+        if(questionMarkBtn.style.visibility =="hidden"){
+            questionMarkBtn.style.visibility =="visible";
+        }
+        else{
+            questionMarkBtn.style.visibility =="hidden";
+        }
+    }
+}
+
 
 
 
