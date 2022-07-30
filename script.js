@@ -46,11 +46,11 @@ function animateQuestionMark(){
     let questionMarkBtn = document.querySelector('.archive-why-button');
     if(questionMarkBtn != null){
         
-        if(questionMarkBtn.style.visibility =="hidden"){
-            questionMarkBtn.style.visibility =="visible";
+        if(questionMarkBtn.getAttribute("src") == ""){
+            questionMarkBtn.setAttribute('src','./Resources/Images/question_mark.png');
         }
         else{
-            questionMarkBtn.style.visibility =="hidden";
+            questionMarkBtn.setAttribute('src','');
         }
     }
 }
