@@ -846,8 +846,35 @@ span {
   }
 
   .archive-why-button{
-	  
+	  animation: question-mark 1s ease-in infinite;
 	  position: absolute;
 	  top:25%;
 	  left:25%;
+  }
+
+  @keyframes question-mark {
+	  0%{
+		background-image: url(./Resources/Images/question_mark.png);		
+	  }
+	  13%{
+		  background-image: url(./Resources/Images/question_mark_1.png);
+	  }
+	  26%{
+		  background-image: url(./Resources/Images/question_mark_2.png);
+	  }
+	  39%{
+		  background-image: url(./Resources/Images/question_mark_3.png);
+	  }
+	  52%{
+		  background-image: url(./Resources/Images/question_mark_4.png);
+	  }
+	  65%{
+		  background-image: url(./Resources/Images/question_mark_5.png);
+	  }
+	  78%{
+		background-image: url(./Resources/Images/question_mark_6.png);
+	  }
+	  91%{
+		  background-image: url(./Resources/Images/question_mark_7.png);
+	  }
   }
