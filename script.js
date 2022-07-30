@@ -42,6 +42,14 @@ setTimeout(function(){
 document.getElementById("WhyButton").onmouseover = function() {animateQuestionMark()};
 document.getElementById("WhyButton").onmouseout = function() {animateQuestionMark()};
 
+/* This function animates the question mark image on any pages which use it (mostly archives for now) 
+    I had some trouble getting this to work properly, originally was setting the src image to nothing which was changing the size of the button.
+    This was then making the button immediately fire the mouseout event and then mousein would start in a constant loop.
+
+    To fix that I made an empty image of the same pixel size and instead of making src == "" I made it equal to that image.
+
+    All of this trouble was because the animation was being covered up by the initial image of the question mark.
+*/
 function animateQuestionMark(){
     let questionMarkBtn = document.querySelector('.archive-why-button');
     if(questionMarkBtn != null){
