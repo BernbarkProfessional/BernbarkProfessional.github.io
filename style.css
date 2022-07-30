@@ -850,6 +850,7 @@ span {
 	  position: absolute;
 	  top:25%;
 	  left:25%;
+	  transform: scale(.1);
   }
 
   .archive-why-button:hover{
