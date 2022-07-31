@@ -50,7 +50,7 @@
 		<script>
             var rotateOn = document.querySelector("input");
             function updateDebugState() {
-                let archiveWrapper = document.querySelector("archive-wrapper");
+                let archiveWrapper = document.querySelector("archive");
                 archiveWrapper.classList.toggle('rotate-on', rotateOn.checked);
             }
             rotateOn.addEventListener("click", updateDebugState);
