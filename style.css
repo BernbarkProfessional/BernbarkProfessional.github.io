@@ -825,11 +825,7 @@ span {
 	height: 100vh;
 	transform-style: preserve-3d;
   }
-  .rotate-on .parallax__group {
-    -webkit-transform: translate3d(800px, 0, -800px) rotateY(30deg);
-    transform: translate3d(700px, 0, -800px) rotateY(30deg);
-
-}
+  
 .rotate-button {
     position: fixed;
     top: 0;
@@ -883,6 +879,12 @@ span {
 	  overflow: hidden;
 	  margin: 0px;
   }
+
+  .rotate-on .archive-body {
+    -webkit-transform: translate3d(800px, 0, -800px) rotateY(30deg);
+    transform: translate3d(700px, 0, -800px) rotateY(30deg);
+
+}
 
   .archive-wrapper{
 	width: auto;
