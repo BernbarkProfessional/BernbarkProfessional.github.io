@@ -49,12 +49,12 @@
         </div>
 		
 	</body>
-    <script>
+    <script async defer="defer">
         var rotateOn = document.querySelector("input");
-        setTimeout(function updateDebugState() {
+        function updateDebugState() {
             let archiveWrapper = document.querySelector("archive-wrapper");
             archiveWrapper.classList.toggle('rotate-on', rotateOn.checked);
-        }-250);
+        };
         rotateOn.addEventListener("click", updateDebugState);
         updateDebugState();
     </script>
