@@ -51,7 +51,7 @@
             var rotateOn = document.querySelector("input");
             function updateDebugState() {
                 let parallaxWrapper = document.querySelector("parallax");
-                parallaxWrapper.classList.toggle('rotate-on', rotateOn.checked);
+                parallaxWrapper.classList.toggle('rotate-button', rotateOn.checked);
             }
             rotateOn.addEventListener("click", updateDebugState);
             updateDebugState();
