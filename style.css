@@ -793,6 +793,9 @@ span {
   /*		Create parallax effect for certain tour elements		*/
 
   .parallax {
+	position: relative;
+    right: 40%;
+    width: 160%;
 	perspective: 227px;
 	height: 100vh;
 	overflow-x: hidden;
@@ -833,22 +836,22 @@ span {
 	z-index: 4;
   }
   .parallax__layer--back {
-	transform: translateZ(-3px) scale(2);
+	transform: translateZ(-400px) scale(2);
     z-index: 3;
   }
   .parallax__layer--deep {
-    -webkit-transform: translateZ(-600px) scale(3);
+    -webkit-transform: translateZ(-500px) scale(3);
     transform: translateZ(-3px) scale(3);
     z-index: 2;
 }
 .parallax__layer--deeper {
     -webkit-transform: translateZ(-700px) scale(3);
-    transform: translateZ(-4px) scale(3);
+    transform: translateZ(-650px) scale(3);
     z-index: 6;
 }
 .parallax__layer--fore {
     -webkit-transform: translateZ(90px) scale(.7);
-    transform: translateZ(-0px) scale(.7);
+    transform: translateZ(26px) translateX(-1000px) translateY(104px) scale(.7);
     z-index: 1;
 	
 }
@@ -857,17 +860,7 @@ span {
 	height: 100vh;
 	transform-style: preserve-3d;
   }
-  
-.rotate-button {
-    position: fixed;
-    top: 0;
-    left: 0.5em;
-    z-index: 999;
-    background: rgba(0,0,0,.85);
-    color: #fff;
-    padding: 0.5em;
-    border-radius: 0 0 5px 5px;
-}
+
 
 #group1 {
 	transform: translate3d(807px, 0, -328px) rotateY(6deg) rotateX(1deg) rotateZ(-5deg);
