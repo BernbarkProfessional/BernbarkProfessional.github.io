@@ -806,7 +806,7 @@ span {
   .rotate__parallax{
 	-webkit-transform: translate3d(800px, 0, -800px) rotateY(30deg);
     transform: translate3d(700px, 0, -800px) rotateY(30deg);
-	transform: translate3d(54px, 0, 0px) rotateY(30deg) scaleX(1.5);
+	transform: translate3d(54px, 0, 0px);
   }
   /* Hide scrollbar for Chrome, Safari and Opera */
 .parallax::-webkit-scrollbar {
@@ -832,23 +832,24 @@ span {
 	z-index: 4;
   }
   .parallax__layer--back {
-	transform: translateZ(-300px) scale(2);
+	transform: translateZ(-3px) scale(2);
     z-index: 3;
   }
   .parallax__layer--deep {
     -webkit-transform: translateZ(-600px) scale(3);
-    transform: translateZ(-600px) scale(3);
+    transform: translateZ(-3px) scale(3);
     z-index: 2;
 }
 .parallax__layer--deeper {
-    -webkit-transform: translateZ(-600px) scale(3);
-    transform: translateZ(-700px) scale(3);
-    z-index: 2;
+    -webkit-transform: translateZ(-700px) scale(3);
+    transform: translateZ(-4px) scale(3);
+    z-index: 6;
 }
 .parallax__layer--fore {
     -webkit-transform: translateZ(90px) scale(.7);
-    transform: translateZ(90px) scale(.7);
+    transform: translateZ(-0px) scale(.7);
     z-index: 1;
+	
 }
   .parallax__group {
 	position: relative;
@@ -868,6 +869,7 @@ span {
 }
 
 #group1 {
+	transform: translateZ(-0px) rotateY(30deg) scale(.7);
     z-index: 5;
 }
 #group1 .parallax__layer--base {
