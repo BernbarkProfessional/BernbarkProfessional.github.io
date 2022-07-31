@@ -856,6 +856,11 @@ span {
 	height: 100vh;
 	transform-style: preserve-3d;
   }
+
+  .rotate__parallax .parallax__group{
+	-webkit-transform: translate3d(800px, 0, -800px) rotateY(30deg);
+    transform: translate3d(700px, 0, -800px) rotateY(30deg);
+  }
   
 .rotate-button {
     position: fixed;
@@ -869,7 +874,7 @@ span {
 }
 
 #group1 {
-	transform: translateZ(-0px) rotateY(30deg) scale(.7);
+	
     z-index: 5;
 }
 #group1 .parallax__layer--base {
