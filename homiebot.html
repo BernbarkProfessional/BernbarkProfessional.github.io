@@ -50,8 +50,8 @@
 		<script>
             var rotateOn = document.querySelector("input");
             function updateDebugState() {
-                let parallaxWrapper = document.querySelector("parallax");
-                parallaxWrapper.classList.toggle('rotate-button', rotateOn.checked);
+                let archiveWrapper = document.querySelector("archive-wrapper");
+                archiveWrapper.classList.toggle('rotate-button', rotateOn.checked);
             }
             rotateOn.addEventListener("click", updateDebugState);
             updateDebugState();
