@@ -850,7 +850,15 @@ span {
 #group1 .parallax__layer--back {
     background: rgb(1, 109, 136);
 }
-
+#group2{
+	z-index: 3;
+}
+#group1 .parallax__layer--base {
+    background: rgb(167, 6, 158);
+}
+#group1 .parallax__layer--back {
+    background: rgb(155, 5, 42);
+}
 
 
   /*		End Parallax section		*/
