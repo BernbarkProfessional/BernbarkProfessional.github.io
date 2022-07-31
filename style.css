@@ -797,6 +797,12 @@ span {
 	height: 100vh;
 	overflow-x: hidden;
 	overflow-y: auto;
+	-ms-overflow-style: none;  /* IE and Edge */
+  	scrollbar-width: none;  /* Firefox */
+  }
+  /* Hide scrollbar for Chrome, Safari and Opera */
+.parallax::-webkit-scrollbar {
+	display: none;
   }
   .parallax__layer {
 	position: absolute;
@@ -804,13 +810,48 @@ span {
 	right: 0;
 	bottom: 0;
 	left: 0;
+	padding: 100vh 0; /*This is needed to make the scroll effect work*/
   }
   .parallax__layer--base {
 	transform: translateZ(0);
+	z-index: 4;
   }
   .parallax__layer--back {
-	transform: translateZ(-1px);
+	transform: translateZ(-300px) scale(2);
+    z-index: 3;
   }
+  .parallax__group {
+	position: relative;
+	height: 100vh;
+	transform-style: preserve-3d;
+  }
+  .rotate-on .parallax__group {
+    -webkit-transform: translate3d(800px, 0, -800px) rotateY(30deg);
+    transform: translate3d(700px, 0, -800px) rotateY(30deg);
+
+}
+.rotate-button {
+    position: fixed;
+    top: 0;
+    left: 0.5em;
+    z-index: 999;
+    background: rgba(0,0,0,.85);
+    color: #fff;
+    padding: 0.5em;
+    border-radius: 0 0 5px 5px;
+}
+
+#group1 {
+    z-index: 5;
+}
+#group1 .parallax__layer--base {
+    background: rgb(102,204,102);
+}
+#group1 .parallax__layer--back {
+    background: rgb(1, 109, 136);
+}
+
+
 
   /*		End Parallax section		*/
 

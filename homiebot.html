@@ -8,7 +8,9 @@
         <div class="archive-wrapper">
             <div id="sidebar">
                 <!-- Loaded by sidebar.html in script.js -->
-                
+                <div class="rotate-button">
+                    <label><input type="checkbox"> Rotate view</label>
+                </div>
             </div>
             <div class="archive">
                 <h2>Archive: Homiebot</h2>
@@ -17,13 +19,16 @@
                     
                 </p>
                 <div class="parallax">
-                    <div class="parallax__layer parallax__layer--back">
-                        <p>Back</p>
+                    <div id="group1" class="parallax__group">
+                        <div class="parallax__layer parallax__layer--back">
+                            <p>Back Group 1</p>
+                        </div>
+                        <div class="parallax__layer parallax__layer--base">
+                            <p>Base Group 1</p>
+                        </div>
                     </div>
-                    <div class="parallax__layer parallax__layer--base">
-                        <p>Base</p>
-                    </div>
-                  </div>
+                    
+                </div>
                 <form>
                     <input id="WhyButton" class="archive-why-button" type="Image" src="./Resources/Images/question_mark.png" >
                     
@@ -34,7 +39,15 @@
                 <!-- Loaded by bottombar.html in script.js -->
             </div>
         </div>
-		
+		<script>
+            var rotateOn = document.querySelector("input");
+            function updateDebugState() {
+                let parallaxWrapper = document.querySelector("parallax");
+                parallaxWrapper.classList.toggle('rotate-on', rotateOn.checked);
+            }
+            rotateOn.addEventListener("click", updateDebugState);
+            updateDebugState();
+        </script>
 	</body>
     <script async src="script.js" defer="defer"></script>
 </html>
