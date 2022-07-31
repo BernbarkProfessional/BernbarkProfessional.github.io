@@ -51,7 +51,7 @@
 	</body>
     <script>
         var rotateOn = document.querySelector("input");
-        setTimeOut(function updateDebugState() {
+        setTimeout(function updateDebugState() {
             let archiveWrapper = document.querySelector("archive-wrapper");
             archiveWrapper.classList.toggle('rotate-on', rotateOn.checked);
         }-250);
