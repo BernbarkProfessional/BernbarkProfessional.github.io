@@ -5,7 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 	<body class="archive-body">
-        <div class="archive-wrapper rotate-on">
+        <div class="archive-wrapper">
             <div id="sidebar">
                 <!-- Loaded by sidebar.html in script.js -->
                 
@@ -47,15 +47,16 @@
                 <!-- Loaded by bottombar.html in script.js -->
             </div>
         </div>
-		<script>
-            var rotateOn = document.querySelector("input");
-            function updateDebugState() {
-                let archiveWrapper = document.querySelector("archive-wrapper");
-                archiveWrapper.classList.toggle('rotate-on', rotateOn.checked);
-            }
-            rotateOn.addEventListener("click", updateDebugState);
-            updateDebugState();
-        </script>
+		
 	</body>
+    <script>
+        var rotateOn = document.querySelector("input");
+        function updateDebugState() {
+            let archiveWrapper = document.querySelector("archive-wrapper");
+            archiveWrapper.classList.toggle('rotate-on', rotateOn.checked);
+        }
+        rotateOn.addEventListener("click", updateDebugState);
+        updateDebugState();
+    </script>
     <script async src="script.js" defer="defer"></script>
 </html>
