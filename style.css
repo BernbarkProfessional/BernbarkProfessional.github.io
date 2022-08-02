@@ -828,8 +828,9 @@ span {
 	font: 3.2em "Verdana", sans-serif;
   }
   .rotate__parallax .parallax__layer{
-	box-shadow: 0 0 0 2px #000;
+	box-shadow: -7px 1px 0px 6px #000;
     opacity: 0.9;
+	
   }
   .parallax__layer--base {
 	transform: translateZ(0);
