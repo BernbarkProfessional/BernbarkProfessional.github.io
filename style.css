@@ -834,26 +834,26 @@ span {
   }
   .parallax__layer--base {
 	transform: translateZ(0);
-	z-index: 4;
+	
   }
   .parallax__layer--back {
-	transform: translateZ(-400px) scale(2);
-    z-index: 3;
+	transform: translateZ(-400px) scale(3);
+    
   }
   .parallax__layer--deep {
-    -webkit-transform: translateZ(-500px) scale(3);
-    transform: translateZ(-3px) scale(3);
-    z-index: 2;
+    -webkit-transform: translateZ(-600px) scale(3);
+    transform: translateZ(-600px) scale(3);
+    
 }
 .parallax__layer--deeper {
     -webkit-transform: translateZ(-700px) scale(3);
     transform: translateZ(-650px) scale(3);
-    z-index: 6;
+    
 }
 .parallax__layer--fore {
     -webkit-transform: translateZ(90px) scale(.7);
     transform: translateZ(26px) translateX(-1000px) translateY(104px) scale(.7);
-    z-index: 1;
+    
 	
 }
   .parallax__group {
@@ -864,34 +864,52 @@ span {
 
 
 #group1 {
-	transform: translate3d(807px, 0, -328px) rotateY(6deg) rotateX(1deg) rotateZ(-5deg);
-    z-index: 5;
+	
+    z-index: 9;
 }
 #group1 .parallax__layer--base {
+	transform: translate3d(3.5vh, 0, -52vh) translateZ(0) rotateY(6deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(102,204,102);
 }
 #group1 .parallax__layer--back {
+	transform: translate3d(807px, 0, -478px) translateZ(-400px) scale(3) rotateY(6deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(1, 109, 136);
 }
 #group2{
-	transform: translate3d(807px, 0, -328px) rotateY(6deg) rotateX(1deg) rotateZ(-5deg);
+	
 	z-index: 3;
 }
 #group2 .parallax__layer--base {
+	transform: translate3d(807px, 0, -328px) translateZ(0) rotateY(6deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(167, 6, 158);
 }
 #group2 .parallax__layer--back {
-    background: rgb(155, 5, 42);
+	transform: translate3d(50vh, 0, -328px)  translateZ(-300px) scale(3) rotateY(6deg) rotateX(1deg) rotateZ(-5deg);
+    background: rgb(192, 9, 55);
 }
 #group3{
-	transform: translate3d(807px, 0, -328px) rotateY(6deg) rotateX(1deg) rotateZ(-5deg);
-	z-index: 4;
+	
+	z-index: 10;
 }
 #group3 .parallax__layer--base {
+	transform: translate3d(807px, 0, -328px) translateZ(0) rotateY(6deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(167, 6, 158);
 }
 #group3 .parallax__layer--back {
+	transform: translate3d(807px, 0, -328px) translateZ(-400px) scale(3) rotateY(6deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(155, 5, 42);
+}
+#group3 .parallax__layer--deep{
+	transform: translate3d(807px, 0, -328px) translateZ(-600px) scale(3) rotateY(6deg) rotateX(1deg) rotateZ(-5deg);
+	background: #153b35;
+}
+#group3 .parallax__layer--deeper{
+	transform: translate3d(807px, 0, -328px) translateZ(-650px) scale(3) rotateY(6deg) rotateX(1deg) rotateZ(-5deg);
+	background: #05bba0;
+}
+#group3 .parallax__layer--fore{
+	transform: translate3d(-50vh, 0, -328px) translateZ(90px) scale(.7) rotateY(6deg) rotateX(1deg) rotateZ(-5deg);
+	background: #abbebc;
 }
 
 .title {
