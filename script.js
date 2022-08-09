@@ -17,8 +17,16 @@ fetch('/bottombar.html')
         bottombar.innerHTML = data
     }
     
-})
-
+})/*
+const question_m = document.querySelector('archive-why-button')
+fetch('/question_mark.html')
+.then(res=>res.text())
+.then(data=>{
+    if(data){
+        question_m.innerHTML = data
+    }
+    
+})*/
 /*      End Loading of Common HTML Elements     */
 
 setTimeout(function(){

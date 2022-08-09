@@ -14,18 +14,69 @@
         <link rel="prefetch" href="./Resources/Images/empty_space.png">
 	</head>
 	<body class="archive-body">
+        
         <div class="archive-wrapper">
+            
             <div id="sidebar">
                 <!-- Loaded by sidebar.html in script.js -->
                 
             </div>
             <div class="archive">
-                
-                <h2>Archive: Homiebot</h2>
-                <p>Aptly named Homiebot due to its relation to a server named "Homiewatch" on Discord, this 
-                    program was designed to be a fun bot which ran continuously on several servers.<br><br>
+                <div class="archive-header">
                     
-                </p>
+                    <h2>Archive: Homiebot</h2>
+                    <p>Aptly named Homiebot due to its relation to a server named "Homiewatch" on Discord, this 
+                        program was designed to be a fun bot which ran continuously on several servers.<br><br>
+                        
+                    </p>
+                    <form>
+                        <input id="WhyButton" class="archive-why-button lightbox_trigger" type="Image" src="./Resources/Images/question_mark.png" href="" >
+                    </form>
+                </div>
+                <!-- Handling the modal using Lightboxes from JQuery -->
+                <script>
+                    //Prepping jquery for use in this file
+                    jQuery(document).ready(function($) {
+                         // Setting up anything with "lightbox_trigger" to trigger a lightbox on click
+                        $('.lightbox_trigger').click(function(e) {
+     
+                            // Code that makes the lightbox appear
+                        	//This prevents new page from opening
+                            e.preventDefault();
+
+                            // getting a reference to the image that should be displayed
+                            var image_href = $(this).attr("href");
+                            if ($('#lightbox').length > 0) { // #lightbox exists
+                                
+                                //insert img tag with clicked link's href as src value
+                                $('#content').html('<img src="' + image_href + '" />');
+                                
+                                //show lightbox window - you can use a transition here if you want, i.e. .show('fast')
+                                $('#lightbox').show();
+                            }
+                            else { //#lightbox does not exist 
+     
+                                //create HTML markup for lightbox window
+                                var lightbox = 
+                                '<div id="lightbox">' +
+                                    '<p>Click to close</p>' +
+                                    '<div id="content">' + //insert clicked link's href into img src
+                                        '<img src="' + image_href +'" />' +
+                                    '</div>' +    
+                                '</div>';
+                                    
+                                //insert lightbox HTML into page
+                                $('body').append(lightbox);
+                            }
+                        });
+                        $('body').on('click', '#lightbox', function() {
+                            $('#lightbox').hide();
+                        });
+                    });
+                </script>
+                
+                
+                
                 <div class="parallax rotate__parallax">
                     <div id="group1" class="parallax__group">
                         <div class="parallax__layer parallax__layer--back">
@@ -61,17 +112,14 @@
                         </div>
                     </div>
                 </div>
-                <form>
-                    <input id="WhyButton" class="archive-why-button" type="Image" src="./Resources/Images/question_mark.png" >
-                    
-                </form>
+                
                 
             </div>
             <div id="bottombar">
                 <!-- Loaded by bottombar.html in script.js -->
             </div>
         </div>
-		
+		<script src="https://code.jquery.com/jquery-1.6.2.min.js"></script>
 	</body>
     
     <script async src="script.js" defer="defer"></script>

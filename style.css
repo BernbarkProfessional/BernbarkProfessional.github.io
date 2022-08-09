@@ -927,18 +927,24 @@ span {
   /*		Archive page style		*/
 
   .archive {
-	left: 26%;
+	left: 15.5%;
     height: 60%;
-    width: 60%;
+    width: 80%;
     position: relative;
+	
   }
 
-  .archive > h2{
+	.archive-header > h2{
+	margin: 5%;
 	font: 1.2em "Verdana", sans-serif;
+  }
+  .archive-header>p{
+	  margin: 5%;
+	font: 1.0em "Verdana", sans-serif;
   }
 
   .archive-body{
-	  position: absolute;
+	  position: relative;
 	  height: 100%;
 	  width: 100%;
 	  overflow: hidden;
@@ -958,10 +964,45 @@ span {
 
   .archive-why-button{
 	  
-	  position: absolute;
-	  top:25%;
-	  left:25%;
-	  transform: scale(.1);
+	  position: relative;
+	  
+	  max-width: 80%;
+	  transform: scale(.3);
+  }
+
+  #lightbox {
+    position:fixed; /* keeps the lightbox window in the current viewport */
+    top:0; 
+    left:0; 
+    width:100%; 
+	min-width: 20%;
+    height:100%; 
+	min-height: 20%;
+    background:url(overlay.png) repeat; 
+    text-align:center;
+}
+
+#lightbox p {
+    text-align:right; 
+    color:#fff; 
+    margin-right:20px; 
+    font-size:12px; 
+}
+
+#lightbox img {
+    box-shadow:0 0 25px #111;
+    max-width:940px;
+}
+
+  .archive-header{
+	  border: solid 2px white;
+	  min-width: 60%;
+	  height: 12%;
+	  display: flex;
+	  flex-direction: row;
+	  justify-content: center;
+	  align-items: center;
+	  margin: 0 15px;
   }
 
   .archive-why-button:hover{
@@ -971,7 +1012,9 @@ span {
 
   @keyframes question-mark {
 	  0%{
-		background-image: url(./Resources/Images/question_mark.png);		
+		  
+		background-image: url(./Resources/Images/question_mark.png);	
+		
 	  }
 	  13%{
 		  background-image: url(./Resources/Images/question_mark_1.png);
