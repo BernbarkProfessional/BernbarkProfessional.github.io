@@ -33,51 +33,11 @@
                         <input id="WhyButton" class="archive-why-button lightbox_trigger" type="Image" src="./Resources/Images/question_mark.png" href="" >
                     </form>
                 </div>
-                <!-- Handling the modal using Lightboxes from JQuery -->
-                <script>
-                    //Prepping jquery for use in this file
-                    jQuery(document).ready(function($) {
-                         // Setting up anything with "lightbox_trigger" to trigger a lightbox on click
-                        $('.lightbox_trigger').click(function(e) {
-     
-                            // Code that makes the lightbox appear
-                        	//This prevents new page from opening
-                            e.preventDefault();
-
-                            // getting a reference to the image that should be displayed
-                            var image_href = $(this).attr("href");
-                            if ($('#lightbox').length > 0) { // #lightbox exists
-                                
-                                //insert img tag with clicked link's href as src value
-                                $('#content').html('<img src="' + image_href + '" />');
-                                
-                                //show lightbox window - you can use a transition here if you want, i.e. .show('fast')
-                                $('#lightbox').show();
-                            }
-                            else { //#lightbox does not exist 
-     
-                                //create HTML markup for lightbox window
-                                var lightbox = 
-                                '<div id="lightbox">' +
-                                    '<p>Click to close</p>' +
-                                    '<div id="content">' + //insert clicked link's href into img src
-                                        '<img src="' + image_href +'" />' +
-                                    '</div>' +    
-                                '</div>';
-                                    
-                                //insert lightbox HTML into page
-                                $('body').append(lightbox);
-                            }
-                        });
-                        $('body').on('click', '#lightbox', function() {
-                            $('#lightbox').hide();
-                        });
-                    });
-                </script>
                 
                 
                 
-                <div class="parallax rotate__parallax">
+                
+                <div class="parallax rotate__parallax js-loop">
                     <div id="group1" class="parallax__group">
                         <div class="parallax__layer parallax__layer--back">
                             <div class="title">Back Group 1</div>
@@ -86,12 +46,12 @@
                             <div class="title">Base Group 1</div>
                         </div>
                     </div>
-                    <div id="group2" class="parallax__group">
+                    <div id="group2" class="parallax__group ">
                         <div class="parallax__layer parallax__layer--back">
-                            <div class="title">Back Group 2</div>
+                            <div class="title">Clone Group 2</div>
                         </div>
                         <div class="parallax__layer parallax__layer--base">
-                            <div class="title">Base Group 2</div>
+                            <div class="title">Clone Group 2</div>
                         </div>
                     </div>
                     <div id="group3" class="parallax__group">
@@ -111,6 +71,24 @@
                             <div class="title">Fore Group 3</div>
                         </div>
                     </div>
+
+                    
+                    <div id="group1" class="parallax__group">
+                        <div class="parallax__layer parallax__layer--back is-clone">
+                            <div class="title">Clone Group 1</div>
+                        </div>
+                        <div class="parallax__layer parallax__layer--base is-clone">
+                            <div class="title">Clone Group 1</div>
+                        </div>
+                    </div>
+                    <div id="group2" class="parallax__group ">
+                        <div class="parallax__layer parallax__layer--back is-clone">
+                            <div class="title">Clone Group 2</div>
+                        </div>
+                        <div class="parallax__layer parallax__layer--base is-clone">
+                            <div class="title">Clone Group 2</div>
+                        </div>
+                    </div>
                 </div>
                 
                 
@@ -120,6 +98,7 @@
             </div>
         </div>
 		<script src="https://code.jquery.com/jquery-1.6.2.min.js"></script>
+        <script src="archive_scripts.js"></script>
 	</body>
     
     <script async src="script.js" defer="defer"></script>
