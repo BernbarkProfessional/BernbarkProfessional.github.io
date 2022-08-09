@@ -817,7 +817,8 @@ span {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	padding: 25vh 0; /*This is needed to make the scroll effect work*/
+	padding: 35vh 0; /*This is needed to make the scroll effect work*/
+	max-width: 100vh;
 	
   }
   .parallax__layer {
@@ -855,7 +856,7 @@ span {
   .parallax__group {
 	
 	position: relative;
-	height: 115vh;
+	height: 170vh;
 	transform-style: preserve-3d;
   }
 
@@ -865,13 +866,14 @@ span {
     z-index: 9;
 }
 #group1 .parallax__layer--base {
-	transform: translate3d(-1.5vh, -300vh, -52vh) translateZ(0) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(-1.5vh, -30vh, -52vh) translateZ(0) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(102,204,102);
 }
 #group1 .parallax__layer--back {
-	transform: translate3d(807px, -600px, -478px) translateZ(-400px) scale(1) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(807px, -65vh, -478px) translateZ(-400px) scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(1, 109, 136);
 }
+
 #group2{
 	
 	z-index: 3;
@@ -881,7 +883,7 @@ span {
     background: rgb(167, 6, 158);
 }
 #group2 .parallax__layer--back {
-	transform: translate3d(50vh, -300px, -328px)  translateZ(-300px) scale(1) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(150vh, 10vh, -328px)  translateZ(-300px) scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(192, 9, 55);
 }
 #group3{
@@ -889,7 +891,7 @@ span {
 	z-index: 10;
 }
 #group3 .parallax__layer--base {
-	transform: translate3d(807px, -300px, -328px) translateZ(0) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(807px, -250vh, -328px) translateZ(0) rotateY(-10deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(167, 6, 158);
 }
 #group3 .parallax__layer--back {
@@ -898,18 +900,42 @@ span {
 	z-index:1;
 }
 #group3 .parallax__layer--deep{
-	transform: translate3d(807px, -300px, -328px) translateZ(-600px) scale(1) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(807px, -210vh, -328px) translateZ(-600px) scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
 	background: #153b35;
 }
 #group3 .parallax__layer--deeper{
-	transform: translate3d(807px, -300px, -328px) translateZ(-650px) scale(1) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(807px, -380vh, -428px)  scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
 	background: #05bba0;
 }
 #group3 .parallax__layer--fore{
-	transform: translate3d(-50vh, -300px, -328px) translateZ(90px) scale(.7) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(-50vh, -400vh, -328px) translateZ(90px) scale(.7) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
 	background: #abbebc;
 }
 
+#group4 {
+	
+    z-index: 9;
+}
+#group4 .parallax__layer--base {
+	transform: translate3d(-1.5vh, 30vh, -52vh) translateZ(0) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+    background: rgb(102,204,102);
+}
+#group4 .parallax__layer--back {
+	transform: translate3d(807px, -5vh, -478px) translateZ(-400px) scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
+    background: rgb(1, 109, 136);
+}
+#group5{
+	
+	z-index: 3;
+}
+#group5 .parallax__layer--base {
+	transform: translate3d(807px, -340vh, -328px) translateZ(0) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+    background: rgb(167, 6, 158);
+}
+#group5 .parallax__layer--back {
+	transform: translate3d(50vh, -370vh, -328px)  translateZ(-300px) scale(1) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+    background: rgb(192, 9, 55);
+}
 .title {
 	font: 3.2em "Verdana", sans-serif;
     text-align: center;
@@ -931,7 +957,9 @@ span {
     position: relative;
 	
   }
-
+  .archive-header{
+	  max-height: 10vh;
+  }
 	.archive-header > h2{
 	margin: 5%;
 	font: 1.2em "Verdana", sans-serif;
@@ -956,7 +984,7 @@ span {
     min-width: 100%;
     height: auto;
     min-height: 100%;
-    background: #999;
+    background: rgb(51, 24, 70);
     overflow: hidden;
   }
 
