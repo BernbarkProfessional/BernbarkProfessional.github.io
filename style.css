@@ -825,6 +825,26 @@ span {
   .parallax__layer {
 	font: 3.2em "Verdana", sans-serif;
   }
+  
+  .parallax__layer > a{
+	  position: relative;
+	  bottom: 80%;
+	  width: 20%;
+	  color: rgb(0, 0, 0);
+	  
+  }
+  .parallax__layer > a:hover{
+	position: relative;
+	top: 80%;
+	color: rgba(0, 255, 98, 0.877);
+	
+}
+.parallax__layer > a:active{
+	position: relative;
+	top: 80%;
+	color: white;
+	
+}
   .rotate__parallax .parallax__layer{
 	box-shadow: -7px 5px 7px 6px #000;
     opacity: 0.9;
@@ -925,7 +945,7 @@ span {
 
 @keyframes bringToForegroundFromEnd {
 	0%{transform: calc();}
-	100%{transform: translate3d(25.5vh, -230vh, 0vh) scale(1) rotateY(0deg);
+	100%{transform: translate3d(5.5vh, -200vh, -60vh) scale(2) rotateY(0deg);
 		font-size: 1em;
 		color: #000; /* Fallback for older browsers */
     	color: rgba(233, 155, 10, 0.459);
@@ -1071,7 +1091,7 @@ span {
 }
 #group5{
 	
-	z-index: 550;
+	z-index: 450;
 }
 #group5 .parallax__layer--base {
 	transform: translate3d(807px, -340vh, -28px) translateZ(0) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
