@@ -809,9 +809,9 @@ span {
 	.parallax{
 		position: relative;
 	
-		
-		width: 100%;
-		perspective: 327px;
+		left:-30%;
+		width: 160%;
+		perspective: 527px;
 		height: 120vh;
 		overflow-x: hidden;
 		overflow-y: auto;
