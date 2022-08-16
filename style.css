@@ -890,6 +890,16 @@ span {
 	}
 }
 
+@keyframes bringToForegroundFromGroup2 {
+	0%{transform: calc();}
+	100%{transform: translate3d(55.5vh, 130vh, 0vh) scale(1) rotateY(0deg);
+		font-size: 1em;
+		color: #000; /* Fallback for older browsers */
+    	color: rgba(233, 155, 10, 0.459);
+		
+	}
+}
+
 #group1 {
 	
     z-index: 100;
@@ -924,25 +934,25 @@ span {
 
 #group2{
 	
-	z-index: 101;
+	z-index: 99;
 }
 #group2 .parallax__layer--base {
-	transform: translate3d(807px, 60vh, -28vh) translateZ(0) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(807px, 160vh, -28vh) translateZ(0) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(167, 6, 158);
 }
 #group2 .parallax__layer--base:hover {
-	animation: bringToForeground 2s forwards;
+	animation: bringToForegroundFromGroup2 2s forwards;
 }
 #group2 .parallax__layer--back {
 	transform: translate3d(190vh, 100vh, -328px)  translateZ(-300px) scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(192, 9, 55);
 }
 #group2 .parallax__layer--back:hover {
-	animation: bringToForeground 2s forwards;
+	animation: bringToForegroundFromGroup2 2s forwards;
 }
 #group3{
 	
-	z-index: 20;
+	z-index: 200;
 }
 #group3 .parallax__layer--base {
 	transform: translate3d(807px, -270vh, -328px) translateZ(0) rotateY(-10deg) rotateX(1deg) rotateZ(-5deg);
