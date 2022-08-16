@@ -865,7 +865,7 @@ span {
 
 @keyframes bringToForeground {
 	0%{transform: calc();}
-	100%{transform: translate3d(55.5vh, 0vh, 0vh) scale(1) rotateY(0deg);
+	100%{transform: translate3d(25.5vh, 0vh, 0vh) scale(1) rotateY(0deg);
 		font-size: 1em;
 		color: #000; /* Fallback for older browsers */
     	color: rgba(233, 155, 10, 0.459);
@@ -875,7 +875,7 @@ span {
 
 @keyframes bringToForegroundFromMid {
 	0%{transform: calc();}
-	100%{transform: translate3d(55.5vh, -250vh, 0vh) scale(1) rotateY(0deg);
+	100%{transform: translate3d(25.5vh, -250vh, 0vh) scale(1) rotateY(0deg);
 		font-size: 1em;
 		color: #000; /* Fallback for older browsers */
     	color: rgba(233, 155, 10, 0.459);
@@ -885,7 +885,7 @@ span {
 
 @keyframes bringToForegroundFromFore {
 	0%{transform: calc();}
-	100%{transform: translate3d(55.5vh, -350vh, 0vh) scale(1) rotateY(0deg);
+	100%{transform: translate3d(25.5vh, -350vh, 0vh) scale(1) rotateY(0deg);
 		font-size: 1em;
 		color: #000; /* Fallback for older browsers */
     	color: rgba(233, 155, 10, 0.459);
@@ -895,7 +895,7 @@ span {
 
 @keyframes bringToForegroundFromGroup2 {
 	0%{transform: calc();}
-	100%{transform: translate3d(55.5vh, 130vh, 0vh) scale(1) rotateY(0deg);
+	100%{transform: translate3d(25.5vh, 130vh, 0vh) scale(1) rotateY(0deg);
 		font-size: 1em;
 		color: #000; /* Fallback for older browsers */
     	color: rgba(233, 155, 10, 0.459);
@@ -905,7 +905,7 @@ span {
 
 @keyframes bringToForegroundFromBack {
 	0%{transform: calc();}
-	100%{transform: translate3d(55.5vh, -80vh, 0vh) scale(1) rotateY(0deg);
+	100%{transform: translate3d(25.5vh, -80vh, 0vh) scale(1) rotateY(0deg);
 		font-size: 1em;
 		color: #000; /* Fallback for older browsers */
     	color: rgba(233, 155, 10, 0.459);
@@ -915,7 +915,7 @@ span {
 
 @keyframes bringToForegroundFromCloneBack {
 	0%{transform: calc();}
-	100%{transform: translate3d(55.5vh, -330vh, 0vh) scale(1) rotateY(0deg);
+	100%{transform: translate3d(25.5vh, -330vh, 0vh) scale(1) rotateY(0deg);
 		font-size: 1em;
 		color: #000; /* Fallback for older browsers */
     	color: rgba(233, 155, 10, 0.459);
@@ -925,7 +925,7 @@ span {
 
 @keyframes bringToForegroundFromEnd {
 	0%{transform: calc();}
-	100%{transform: translate3d(55.5vh, -230vh, 0vh) scale(1) rotateY(0deg);
+	100%{transform: translate3d(25.5vh, -230vh, 0vh) scale(1) rotateY(0deg);
 		font-size: 1em;
 		color: #000; /* Fallback for older browsers */
     	color: rgba(233, 155, 10, 0.459);
@@ -938,7 +938,7 @@ span {
     z-index: 100;
 }
 #group1 .parallax__layer--base {
-	transform: translate3d(15.5vh, -30vh, -52vh) translateZ(0) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(15.5vh, -50vh, -52vh) translateZ(0) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
     
 	background:hsla(221, 100%, 54%, 0.3);
 	background-image: url(./Resources/Images/homiebot_2.PNG);
@@ -954,7 +954,7 @@ span {
 }
 
 #group1 .parallax__layer--back {
-	transform: translate3d(807px, -65vh, -478px) translateZ(-400px) scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(807px, -105vh, -478px) translateZ(-400px) scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
     background-image: url(./Resources/Images/homiebot_1.PNG);
 	
 	background-size: cover;
@@ -1014,6 +1014,8 @@ span {
 #group3 .parallax__layer--end{
 	transform: translate3d(150vh, -240vh, -328px)  translateZ(-300px) scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(192, 9, 55);
+	z-index:400;
+	position: relative;
 }
 #group3 .parallax__layer--end:hover{
 	animation: bringToForegroundFromEnd 2s forwards;
@@ -1043,9 +1045,9 @@ span {
     z-index: 9;
 }
 #group4 .parallax__layer--base {
-	transform: translate3d(15.5vh, 30vh, -52vh) translateZ(0) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(15.5vh, 80vh, -52vh) translateZ(0) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
     background:hsla(221, 100%, 54%, 0.3);
-	background-image: url(./Resources/Images/homiebot_2.png);
+	background-image: url(./Resources/Images/homiebot_2.PNG);
 	
 	background-size: 100%;
 	background-repeat: no-repeat;
@@ -1056,9 +1058,9 @@ span {
     
 }
 #group4 .parallax__layer--back {
-	transform: translate3d(807px, -5vh, -478px) translateZ(-400px) scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(807px, 25vh, -478px) translateZ(-400px) scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(1, 109, 136);
-	background-image: url(./Resources/Images/homiebot_1.png);
+	background-image: url(./Resources/Images/homiebot_1.PNG);
 	
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -1076,7 +1078,7 @@ span {
     opacity: 0;
 }
 #group5 .parallax__layer--back {
-	transform: translate3d(-25vh, -350vh, -328px)  translateZ(-300px) scale(1) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(-55vh, -350vh, -428px)  translateZ(-300px) scale(1) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(192, 9, 55);
 	background-image: url(./Resources/Images/homiebot_6.PNG);
 	
