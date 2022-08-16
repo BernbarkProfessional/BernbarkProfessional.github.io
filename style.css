@@ -908,7 +908,7 @@ span {
 	transform: translate3d(15.5vh, -30vh, -52vh) translateZ(0) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
     
 	background:hsla(221, 100%, 54%, 0.3);
-	background-image: url(./Resources/Images/homiebot_2.png);
+	background-image: url(./Resources/Images/homiebot_2.PNG);
 	
 	background-size: 100%;
 	background-repeat: no-repeat;
@@ -922,7 +922,7 @@ span {
 
 #group1 .parallax__layer--back {
 	transform: translate3d(807px, -65vh, -478px) translateZ(-400px) scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
-    background-image: url(./Resources/Images/homiebot_1.png);
+    background-image: url(./Resources/Images/homiebot_1.PNG);
 	
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -957,7 +957,7 @@ span {
 #group3 .parallax__layer--base {
 	transform: translate3d(807px, -270vh, -328px) translateZ(0) rotateY(-10deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(167, 6, 158);
-	background-image: url(./Resources/Images/homiebot_3.png);
+	background-image: url(./Resources/Images/homiebot_3.PNG);
 	
 	background-size: 90%;
 	background-repeat: no-repeat;
@@ -984,7 +984,7 @@ span {
 #group3 .parallax__layer--fore{
 	transform: translate3d(10vh, -350vh, -328px) translateZ(90px) scale(.7) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
 	background: #abbebc;
-	background-image: url(./Resources/Images/homiebot_4.png);
+	background-image: url(./Resources/Images/homiebot_4.PNG);
 	
 	background-size: 100%;
 	background-repeat: no-repeat;
