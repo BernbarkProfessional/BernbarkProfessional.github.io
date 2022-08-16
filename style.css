@@ -805,7 +805,20 @@ span {
   	scrollbar-width: none;  /* Firefox */
 	 
   }
-
+  @media screen and (max-width: 520px) {
+	.parallax{
+		position: relative;
+	
+		
+		width: 100%;
+		perspective: 327px;
+		height: 120vh;
+		overflow-x: hidden;
+		overflow-y: auto;
+		-ms-overflow-style: none;  /* IE and Edge */
+		scrollbar-width: none;  /* Firefox */
+	}
+}
   
   
   /* Hide scrollbar for Chrome, Safari and Opera */
