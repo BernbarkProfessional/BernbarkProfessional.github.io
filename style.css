@@ -13,14 +13,21 @@ img {
 }
 table{
 	border: white 3px solid;
-	
+	table-layout: fixed;
+    width: 80%;
+	max-height: 40%;
 }
 td{
 	border: white 3px solid;
 	padding: 120px;
+	
 }
 td:hover{
 	background-color: rgb(24, 78, 40);
+}
+td > h6{
+	max-width: 50%;
+	font: 1em sans-serif;
 }
 #bottombar
 {
