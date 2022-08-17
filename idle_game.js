@@ -56,7 +56,9 @@ function saveGame(){
     var gameSave = {
         gold: gold,
         oldCouches: oldCouches,
-        oldCouchesCost: oldCouchesCost
+        oldCouchesCost: oldCouchesCost,
+        crackedTV: crackedTV,
+        crackedTVCost, crackedTVCost
     };
     localStorage.setItem("gameSave",JSON.stringify(gameSave));
 }
@@ -66,6 +68,8 @@ function loadGame(){
     if(typeof savedGame.gold !== "undefined") gold = savedGame.gold;
     if(typeof savedGame.oldCouches !== "undefined") oldCouches = savedGame.oldCouches;
     if(typeof savedGame.oldCouchesCost !== "undefined") oldCouchesCost = savedGame.oldCouchesCost;
+    if(typeof savedGame.crackedTV !== "undefined") crackedTV = savedGame.crackedTV;
+    if(typeof savedGame.crackedTVCost !== "undefined") crackedTVCost = savedGame.crackedTVCost;
 }
 
 setInterval(function(){
