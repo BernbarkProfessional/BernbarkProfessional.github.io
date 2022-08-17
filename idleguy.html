@@ -20,9 +20,22 @@
 					<h1>Idle Guy<br>A silly incremental/idle game.</h1>
 					<input id="goldperclickbutton" type="button" value="Click for Gold!" onclick="addToScore(1)">
                     <p><span id="gold">Gold: 0</span></p>
-                    <p id="oldCouchesCost">Old Couch: $20</p>
-                    <input id="oldCouchButton" type="button" value="Buy Old Couch" onclick="buyOldCouch()">
-                    <p id="oldCouches">0 Old Couches</p>
+                    <table>
+                        <tr >
+                            <td>
+                                <p id="oldCouchesCost">Old Couch: $20</p>
+                                <input class="sidebar-button-animate" id="oldCouchButton" type="button" value="Buy Old Couch" onclick="buyOldCouch()">
+                                <p id="oldCouches">Couches: 0</p>
+                            </td>
+                            <td >
+                                <p id="crackedTVCost">Cracked TV: $100</p>
+                                <input class="sidebar-button-animate"id="crackedTVButton" type="button" value="Buy Cracked TV" onclick="buyCrackedTV()">
+                                <p id="crackedTVs">TVs: 0</p>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                    
 				</div>
 				<button onclick="saveGame();">Save</button>
                 <button onclick="loadGame();">Load</button>

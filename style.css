@@ -11,6 +11,17 @@ img {
     max-height: 30%;
     float: right;
 }
+table{
+	border: white 3px solid;
+	
+}
+td{
+	border: white 3px solid;
+	padding: 120px;
+}
+td:hover{
+	background-color: rgb(24, 78, 40);
+}
 #bottombar
 {
 	position: fixed;
