@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Home Page</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+		<div id="wrapper">
+			
+			<div id="sidebar">
+				<div id="sidebar">
+					<!-- Loaded by sidebar.html in script.js -->
+			
+				</div>
+				
+			
+			</div>
+			<div id="main" align="center">
+				<div id="content">
+					<h1>Idle Guy<br>A silly incremental/idle game.</h1>
+					<input id="goldperclickbutton" type="button" value="Click for Gold!" onclick="addToScore(1)">
+                    <p><span id="gold">Gold: 0</span></p>
+                    <p id="oldCouchesCost">Old Couch: $20</p>
+                    <input id="oldCouchButton" type="button" value="Buy Old Couch" onclick="buyOldCouch()">
+                    <p id="oldCouches">0 Old Couches</p>
+				</div>
+				<button onclick="saveGame();">Save</button>
+			</div>
+			<div id="bottombar">
+				<!-- Loaded by bottombar.html in script.js -->
+			</div>
+		</div>
+        <script src="idle_game.js"></script>
+		<script async src="script.js" defer="defer"></script>
+	</body>
+</html>

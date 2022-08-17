@@ -918,7 +918,7 @@ span {
 
 @keyframes bringToForegroundFromFore {
 	0%{transform: calc();}
-	100%{transform: translate3d(25.5vh, -350vh, 0vh) scale(1) rotateY(0deg);
+	100%{transform: translate3d(25.5vh, -280vh, 0vh) scale(1) rotateY(0deg);
 		font-size: 1em;
 		color: #000; /* Fallback for older browsers */
     	color: rgba(233, 155, 10, 0.459);
@@ -957,18 +957,19 @@ span {
 }
 
 @keyframes bringToForegroundFromEnd {
-	0%{transform: calc();}
-	100%{transform: translate3d(5.5vh, -200vh, -60vh) scale(2) rotateY(0deg);
+	0%{transform: calc();
+		z-index: 1}
+	100%{transform: translate3d(5.5vh, 0vh, -60vh) translateZ(200px) scale(2) rotateY(0deg);
 		font-size: 1em;
 		color: #000; /* Fallback for older browsers */
     	color: rgba(233, 155, 10, 0.459);
-		
+		z-index: 501;
 	}
 }
 
 #group1 {
 	
-    z-index: 100;
+    z-index: 500;
 }
 #group1 .parallax__layer--base {
 	transform: translate3d(15.5vh, -50vh, -52vh) translateZ(0) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
@@ -1017,7 +1018,7 @@ span {
 }
 #group3{
 	
-	z-index: 400;
+	z-index: 500;
 }
 #group3 .parallax__layer--base {
 	transform: translate3d(807px, -270vh, -328px) translateZ(0) rotateY(-10deg) rotateX(1deg) rotateZ(-5deg);
@@ -1045,10 +1046,10 @@ span {
 	animation: bringToForegroundFromBack 2s forwards;
 }
 #group3 .parallax__layer--end{
-	transform: translate3d(150vh, -240vh, -328px)  translateZ(-300px) scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(150vh, 0vh, -28px) translateZ(-800px)  scale(2) rotateY(-30deg) rotateX(1deg) ;
     background: rgb(192, 9, 55);
-	z-index:400;
-	position: relative;
+	
+	
 }
 #group3 .parallax__layer--end:hover{
 	animation: bringToForegroundFromEnd 2s forwards;
@@ -1062,7 +1063,7 @@ span {
 	background: #05bba0;
 }
 #group3 .parallax__layer--fore{
-	transform: translate3d(10vh, -350vh, -328px) translateZ(90px) scale(.7) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(10vh, -280vh, -328px) translateZ(90px) scale(.7) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
 	background: #abbebc;
 	background-image: url(./Resources/Images/homiebot_4.PNG);
 	
@@ -1078,7 +1079,7 @@ span {
     z-index: 9;
 }
 #group4 .parallax__layer--base {
-	transform: translate3d(15.5vh, 80vh, -52vh) translateZ(0) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(15.5vh, 420vh, -52vh) translateZ(0) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
     background:hsla(221, 100%, 54%, 0.3);
 	background-image: url(./Resources/Images/homiebot_2.PNG);
 	
@@ -1091,7 +1092,7 @@ span {
     
 }
 #group4 .parallax__layer--back {
-	transform: translate3d(807px, 25vh, -478px) translateZ(-400px) scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(807px, 365vh, -478px) translateZ(-400px) scale(1) rotateY(-30deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(1, 109, 136);
 	background-image: url(./Resources/Images/homiebot_1.PNG);
 	
@@ -1104,14 +1105,14 @@ span {
 }
 #group5{
 	
-	z-index: 450;
+	z-index: 500;
 }
 #group5 .parallax__layer--base {
 	transform: translate3d(807px, -340vh, -28px) translateZ(0) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
     opacity: 0;
 }
 #group5 .parallax__layer--back {
-	transform: translate3d(-55vh, -350vh, -428px)  translateZ(-300px) scale(1) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
+	transform: translate3d(-95vh, -350vh, -428px)  translateZ(-300px) scale(1) rotateY(30deg) rotateX(1deg) rotateZ(-5deg);
     background: rgb(192, 9, 55);
 	background-image: url(./Resources/Images/homiebot_6.PNG);
 	
@@ -1171,7 +1172,7 @@ span {
 
   .archive-body{
 	  position: relative;
-	  height: 120%;
+	  height: 150%;
 	  width: 100%;
 	  overflow: hidden;
 	  margin: 0px;
