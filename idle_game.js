@@ -12,7 +12,7 @@ function buyOldCouch() {
         oldCouches = oldCouches + 1;
         oldCouchesCost = Math.round(oldCouchesCost * 1.14);
         updateUI();
-
+        saveGame();
         
     }
 }
@@ -20,6 +20,7 @@ function buyOldCouch() {
 function addToScore(amount){
     gold = gold + amount;
     updateUI();
+    saveGame();
 }
 
 function updateUI(){
@@ -44,9 +45,9 @@ function saveGame(){
 
 function loadGame(){
     var savedGame = JSON.parse(localStorage.getItem("gameSave"));
-    if(typeof savedGame.gold !== "undefined") score = savedGame.gold;
-    if(typeof savedGame.oldCouches !== "undefined") score = savedGame.oldCouches;
-    if(typeof savedGame.oldCouchesCost !== "undefined") score = savedGame.oldCouchesCost;
+    if(typeof savedGame.gold !== "undefined") gold = savedGame.gold;
+    if(typeof savedGame.oldCouches !== "undefined") oldCouches = savedGame.oldCouches;
+    if(typeof savedGame.oldCouchesCost !== "undefined") oldCouchesCost = savedGame.oldCouchesCost;
 }
 
 setInterval(function(){
