@@ -29,6 +29,14 @@ td > h6{
 	max-width: 50%;
 	font: 1em sans-serif;
 }
+.shopContainer{
+	background: tomato;
+}
+td > img{
+	float:left;
+	min-width: 50%;
+	min-height: 50%;
+}
 #bottombar
 {
 	position: fixed;

@@ -18,16 +18,20 @@
 			<div id="main" align="center">
 				<div id="content">
 					<h1>Idle Guy<br>A silly incremental/idle game.</h1>
-					<input id="goldperclickbutton" type="button" value="Click for Gold!" onclick="addToScore(1)">
-                    <p><span id="gold">Gold: 0</span></p>
+					<input id="goldperclickbutton" type="button" value="Click for Gold!" onclick="Game.addToGold(Game.clickValue)">
+                    
                     <table>
-                        <tr >
+                        <tr>
                             <td>
-                                <p id="oldCouchesCost">Old Couch: $20</p>
-                                <input class="sidebar-button-animate" id="oldCouchButton" type="button" value="Buy Old Couch" onclick="buyOldCouch()">
-                                <p id="oldCouches">Couches: 0</p>
-                                <h3>Alright! A sweet hand-me-down couch that you still had to pay for! Fleas included.</h1>
+                                <p><span id="gold">Gold: 0</span></p>
+                                <p><span id="goldPerSecond">Gold per second: 0</span></p>
                             </td>
+                        </tr>
+                        
+                    </table>
+                    <table >
+                        <tr class="shopContainer">
+                            
                             <td >
                                 <p id="crackedTVCost">Cracked TV: $100</p>
                                 <input class="sidebar-button-animate"id="crackedTVButton" type="button" value="Buy Cracked TV" onclick="buyCrackedTV()">
