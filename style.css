@@ -9,8 +9,12 @@ img {
 	max-width: 30%;
     margin: 10px;
     max-height: 30%;
-    float: right;
+    float:left;
+	padding: 5px;
 	
+}
+.image{
+	float:right;
 }
 table{
 	position: relative;
@@ -24,12 +28,14 @@ table{
 
 table img{
 	
+	
 	min-width: 90px;
 	min-height: 90px;
 	display: block;
   	margin-left: auto;
   	margin-right: auto;
 }
+
 td{
 	background-size: cover;
 	position: relative;
@@ -50,13 +56,17 @@ td > h6{
 	max-width: 50%;
 	font: 1em sans-serif;
 }
+.emphasized { font-style: italic; }
+.disable-dbl-tap-zoom {
+	touch-action: manipulation;
+  }
 .upgrade-sidebar{
 	position: fixed;
 	overflow-y: scroll;
 	padding: 4px;
-	left:85%;
+	left:80%;
 	bottom: 17.8%;
-	width: 12%;
+	width: 11.1%;
 	max-width: 15%;
 	height: 95%;
 	max-height: 60%;
@@ -66,24 +76,38 @@ td > h6{
 .upgrade-sidebar img{
 	padding: 3px;
 }
-.upgrade-sidebar h2{
-	position: relative;
-	left: 5%;
-	
+.upgrade-sidebar h4{
+	position: fixed;
+	align: center;
+	text-align: left;
 }
 
 #idle-game-content{
 	
 	left: 20%
 }
+#idle-game-content > button{
+	position: relative;
+	left:-10%;
+	border: solid 2px white;
+	
+	margin: 5px;
+	padding: 15px;
+}
 #idle-game-content h2{
 	position: relative;
 	font: 2em sans-serif;
 	left:-10%;
 }
+
 #idle-game-content h1{
 	position: relative;
 	left: -10%;
+}
+#idle-game-content h4{
+	position: fixed;
+	left: 80%;
+	top: 15%;
 }
 @keyframes button_animation {
 	0%{

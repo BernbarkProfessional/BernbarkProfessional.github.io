@@ -2,7 +2,8 @@ const tableDataButton = document.querySelectorAll('td');
 for (let index = 0; index < tableDataButton.length; index++) {
     let element = tableDataButton[index];
     element.addEventListener('click', ()=> {
-        console.log('text');
+        
+        
         let overlay = document.createElement('circle');
         overlay.style.cssText = `
             position: absolute;
@@ -68,8 +69,8 @@ var building = {
     ],
     income:[
         1,
-        6,
-        76
+        10,
+        100
     ],
     cost:[
         20,
@@ -98,9 +99,9 @@ var upgrade ={
     name:[
         "Loose Change:",
         "Red Fingers:",
-        "Potato",
-        "Sticky Fingers",
-        "Stink Eye"
+        "Potato:",
+        "Sticky Fingers:",
+        "Stink Eye:"
     ],
     effect: [
         "2x Boost to Couch Income",
@@ -194,6 +195,44 @@ var upgrade ={
     }
 };
 
+var achievement = {
+    name: [
+        "Not So Idle, Guy",
+        "Get More Couches"
+
+    ],
+    description: [
+        "Click 100 times!",
+        "I don't see why you don't just get even more of them"
+    ],
+    image:[
+        "click100.PNG",
+        "couch25.PNG"
+    ],
+    // building, click, goldEarned, etc.
+    type:[
+        "click",
+        "building"
+    ],
+    requirement:[
+        100,
+        25
+    ],
+    // -1 if it's not a building, otherwise go with the building index we are referring to
+    objectIndex:[
+        -1,
+        0
+    ],
+    awarded:[
+        false,
+        false
+    ],
+    
+    earn: function(index){
+        this.awarded[index] = true;
+    }
+};
+
 var display = {
     updateScore: function() {
         document.getElementById("gold").innerHTML = "Gold: " +Game.gold;
@@ -215,7 +254,7 @@ var display = {
             // Create a section for already purchased upgrades to be reviewed
             if(upgrade.purchased[i]){
                 
-                document.querySelector('.upgradeContainer').innerHTML += '<td><img style="padding: 5px; object-fit: center; opacity: 0.5; top:40%;" src="./Resources/Images/'+upgrade.image[i]+'" title="'+upgrade.name[i] +' &#10; '+upgrade.effect[i]+' &#10; '+upgrade.description[i]+'&#10; ($'+upgrade.cost[i]+')"></td>';
+                document.querySelector('.upgradeContainer').innerHTML += '<tr><td><img style="padding: 5px; object-fit: center; opacity: 0.5;" src="./Resources/Images/'+upgrade.image[i]+'" title="'+upgrade.name[i] +' &#10; '+upgrade.effect[i]+' &#10; '+upgrade.description[i]+'&#10; ($'+upgrade.cost[i]+')"></td><td><h3>'+upgrade.name[i]+'</h3><h5>'+upgrade.effect[i]+'</h5><h5 class="emphasized">'+upgrade.description[i]+'</h5></td></tr>';
             }
             else {
                 upgrade.spawned[i] = true;
@@ -226,6 +265,15 @@ var display = {
                     document.querySelector('.upgrade-sidebar').innerHTML += '<img src="./Resources/Images/'+upgrade.image[i]+'" title="'+upgrade.name[i] +' &#10; '+upgrade.effect[i]+' &#10; '+upgrade.description[i]+'&#10; ($'+upgrade.cost[i]+')" onclick="upgrade.purchase('+i+')">';
                 }
                 
+            }
+            
+        }
+    },
+    updateAchievements: function(){
+        document.querySelector('.achievementContainer').innerHTML = "";
+        for (let index = 0; index < achievement.name.length; index++) {
+            if(achievement.awarded[index]){
+                document.querySelector('.achievementContainer').innerHTML += '<img src="./Resources/Images/'+achievement.image[index]+'" title="'+achievement.name[index]+' &#10; '+achievement.description[index]+'">';
             }
             
         }
@@ -250,7 +298,8 @@ function saveGame(){
         buildingCount: building.count,
         buildingIncome: building.income,
         buildingCost: building.cost,
-        upgradePurchased: upgrade.purchased
+        upgradePurchased: upgrade.purchased,
+        achievementAwarded: achievement.awarded
     };
     localStorage.setItem("gameSave", JSON.stringify(gameSave));
 }
@@ -286,6 +335,12 @@ function loadGame(){
                 
             }
         }
+        if(typeof savedGame.achievementAwarded !== "undefined"){
+            for (let index = 0; index < savedGame.achievementAwarded.length; index++) {
+                achievement.awarded[index] = savedGame.achievementAwarded[index];
+                
+            }
+        }
     }
 }
 
@@ -294,9 +349,22 @@ setInterval(function() {
 },30000);
 
 setInterval(function() {
+    for (let index = 0; index < achievement.name.length; index++) {
+        if(achievement.type[index] == "goldEarned" && Game.totalGold >= achievement.requirement[index]){
+            achievement.earn(index);
+        }
+        else if(achievement.type[index] == "click" && Game.totalClicks >= achievement.requirement[index]){
+
+            achievement.earn(index);
+        }
+        else if(achievement.type[index] == "building" && building.count[achievement.objectIndex[index]] >= achievement.requirement[index]){
+            achievement.earn(index);
+        }
+    }
     display.updateScore();
     display.updateUpgrades();
-},10000);
+    display.updateAchievements();
+},1000);
 
 document.getElementById("clicker").addEventListener("click", function(){
     Game.totalClicks++;
@@ -307,6 +375,7 @@ window.onload = function(){
     loadGame();
     display.updateScore();
     display.updateUpgrades();
+    display.updateAchievements();
     display.updateShop();
 }
 
