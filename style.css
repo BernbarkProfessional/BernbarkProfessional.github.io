@@ -13,25 +13,35 @@ img {
 	
 }
 table{
+	position: relative;
 	border: white 3px solid;
 	table-layout: fixed;
     width: 60%;
 	max-height: 40%;
 	
-	left:20%
+	left:-10%
 }
 
+table img{
+	
+	min-width: 90px;
+	min-height: 90px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
 td{
-	background-size: contain;
+	background-size: cover;
 	position: relative;
 	overflow: hidden;
 	background-color: transparent;
 	outline: none;
 	z-index: 1;
 	border: white 3px solid;
-	padding: 20px;
+	padding: 10px;
 	
 }
+
 td:hover{
 	background-color: rgb(24, 78, 40);
 }
@@ -41,12 +51,39 @@ td > h6{
 	font: 1em sans-serif;
 }
 .upgrade-sidebar{
-	position: relative;
+	position: fixed;
+	overflow-y: scroll;
+	padding: 4px;
 	left:85%;
-	bottom: 5%;
-	width: 15%;
-	height: 105%;
-	background-color: rgb(225, 0, 255);
+	bottom: 17.8%;
+	width: 12%;
+	max-width: 15%;
+	height: 95%;
+	max-height: 60%;
+	background-color: rgb(0, 0, 0);
+	
+}
+.upgrade-sidebar img{
+	padding: 3px;
+}
+.upgrade-sidebar h2{
+	position: relative;
+	left: 5%;
+	
+}
+
+#idle-game-content{
+	
+	left: 20%
+}
+#idle-game-content h2{
+	position: relative;
+	font: 2em sans-serif;
+	left:-10%;
+}
+#idle-game-content h1{
+	position: relative;
+	left: -10%;
 }
 @keyframes button_animation {
 	0%{
@@ -81,7 +118,7 @@ td img{
 	background-color: turquoise;
 }
 .upgradeContainer > img{
-	background-size: contain;
+	background-size: cover;
 	height: 64px;
 	width: 64px;
 }
@@ -137,6 +174,7 @@ td img{
 {
 	background:black;
 	align:center;
+	
 }
 .unselectable {
     -webkit-touch-callout: none;

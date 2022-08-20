@@ -99,59 +99,75 @@ var upgrade ={
         "Loose Change:",
         "Red Fingers:",
         "Potato",
-        "Sticky Fingers"
+        "Sticky Fingers",
+        "Stink Eye"
     ],
     effect: [
         "2x Boost to Couch Income",
         "5x Boost to Click Power",
         "3x Boost to Couch Income",
-        "10x Boost to Click Power"
+        "10x Boost to Click Power",
+        "5x Boost to TV Power"
     ],
     description: [
         "Couches are a great form of passive income.",
         "The power in the red-stained finger is brought to you by Hot Cheetos.",
         "What's a couch without a potato?",
-        "I'm not even going to ask what made them sticky."
+        "I'm not even going to ask what made them sticky.",
+        "You're getting the stink eye from your loved ones for not fixing the TV situation"
     ],
     image:[
         "loosechange.PNG",
         "redfinger.PNG",
         "potato.PNG",
-        "stickyfingers.PNG"
+        "stickyfingers.PNG",
+        "stinkeye.PNG"
     ],
     type:[
         "building",
         "click",
         "building",
-        "click"
+        "click",
+        "building"
     ],
     cost:[
         300,
         500,
         10000,
-        100000
+        10000,
+        1000000
     ],
     //Which building index does this upgrade affect
     buildingIndex: [
         0,
         -1,
         0,
-        -1
+        -1,
+        1
     ],
     requirement: [
         10,
         25,
-        50,
-        1000
-
+        25,
+        1000,
+        50
     ],
     bonus: [
         2,
         5,
         3,
-        10
+        10,
+        5
     ],
     purchased: [
+        false,
+        false,
+        false,
+        false,
+        false
+    ],
+    spawned:[
+        false,
         false,
         false,
         false,
@@ -193,29 +209,35 @@ var display = {
     },
     updateUpgrades: function() {
         document.querySelector('.upgradeContainer').innerHTML = "";
+        document.querySelector('.upgrade-sidebar').innerHTML = '';
         for(i=0; i< upgrade.name.length; i++){
-            if(!upgrade.purchased[i]){
+            
+            // Create a section for already purchased upgrades to be reviewed
+            if(upgrade.purchased[i]){
+                
+                document.querySelector('.upgradeContainer').innerHTML += '<td><img style="padding: 5px; object-fit: center; opacity: 0.5; top:40%;" src="./Resources/Images/'+upgrade.image[i]+'" title="'+upgrade.name[i] +' &#10; '+upgrade.effect[i]+' &#10; '+upgrade.description[i]+'&#10; ($'+upgrade.cost[i]+')"></td>';
+            }
+            else {
+                upgrade.spawned[i] = true;
                 if(upgrade.type[i] == "building" && building.count[upgrade.buildingIndex[i]] >= upgrade.requirement[i]){
-                    document.querySelector('.upgradeContainer').innerHTML += '<img src="./Resources/Images/'+upgrade.image[i]+'" title="'+upgrade.name[i] +' &#10; '+upgrade.effect[i]+' &#10; '+upgrade.description[i]+'&#10; ($'+upgrade.cost[i]+')" onclick="upgrade.purchase('+i+')">';
+                    document.querySelector('.upgrade-sidebar').innerHTML += '<img src="./Resources/Images/'+upgrade.image[i]+'" title="'+upgrade.name[i] +' &#10; '+upgrade.effect[i]+' &#10; '+upgrade.description[i]+'&#10; ($'+upgrade.cost[i]+')" onclick="upgrade.purchase('+i+')">';
                 }
                 else if (upgrade.type[i] == "click" && Game.totalClicks >= upgrade.requirement[i]){
-                    document.querySelector('.upgradeContainer').innerHTML += '<img src="./Resources/Images/'+upgrade.image[i]+'" title="'+upgrade.name[i] +' &#10; '+upgrade.effect[i]+' &#10; '+upgrade.description[i]+'&#10; ($'+upgrade.cost[i]+')" onclick="upgrade.purchase('+i+')">';
+                    document.querySelector('.upgrade-sidebar').innerHTML += '<img src="./Resources/Images/'+upgrade.image[i]+'" title="'+upgrade.name[i] +' &#10; '+upgrade.effect[i]+' &#10; '+upgrade.description[i]+'&#10; ($'+upgrade.cost[i]+')" onclick="upgrade.purchase('+i+')">';
                 }
+                
             }
-            // Create a section for already purchased upgrades to be reviewed
-            else{
-                document.querySelector('.upgradeContainer').innerHTML += '<tr><td><img style="padding: 10px; opacity: 0.5; top:40%;" src="./Resources/Images/'+upgrade.image[i]+'" title="'+upgrade.name[i] +' &#10; '+upgrade.effect[i]+' &#10; '+upgrade.description[i]+'&#10; ($'+upgrade.cost[i]+')" "></td></tr>';
-            }
+            
         }
     }
 };
 
 function resetGame(){
-    if(confirm("Are you sure you wish to reset all of your progress?")){
+    //if(confirm("Are you sure you wish to reset all of your progress?")){
         var gameSave = {};
         localStorage.setItem("gameSave",JSON.stringify(gameSave));
         location.reload();
-    }
+    //}
 }
 
 function saveGame(){
