@@ -1,3 +1,32 @@
+const tableDataButton = document.querySelectorAll('td');
+for (let index = 0; index < tableDataButton.length; index++) {
+    let element = tableDataButton[index];
+    element.addEventListener('click', ()=> {
+        console.log('text');
+        let overlay = document.createElement('circle');
+        overlay.style.cssText = `
+            position: absolute;
+            height: 450px;
+            width: 450px;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            background-color: rgba(245, 222, 179, 0.514);
+            z-index: -1;
+            border-radius: 50%;
+            opacity: 0;
+            animation: button_animation .5s ease;
+        `
+        overlay.addEventListener('animationend',(e)=>{
+            e.target.remove();
+        })
+        element.appendChild(overlay);
+    });
+}   
+
+    
+
+
 var Game = {
     gold: 0,
     totalGold: 0,
@@ -18,6 +47,7 @@ var Game = {
         }
         return scorePerSecond;
     }
+
 };
 
 var building = {
@@ -41,6 +71,10 @@ var building = {
         20,
         100
     ],
+    description:[
+        "Wow! You paid for something that should be free!",
+        "Changing the definition of split-screen gaming."
+    ],
 
     purchase: function(index){
         if(Game.gold >= this.cost[index]){
@@ -49,6 +83,75 @@ var building = {
             this.cost[index] = Math.round(this.cost[index] * 1.145);
             display.updateScore();
             display.updateShop();
+            display.updateUpgrades();
+        }
+    }
+};
+
+var upgrade ={
+    name:[
+        "Loose Change:",
+        "Red Fingers:",
+        "Potato"
+    ],
+    effect: [
+        "2x Boost to Couch Income",
+        "5x Boost to Click Power"
+    ],
+    description: [
+        "Couches are a great form of passive income.",
+        "The power in the red-stained finger is brought to you by Hot Cheetos."
+    ],
+    image:[
+        "loosechange.PNG",
+        "redfinger.PNG"
+    ],
+    purchasedImage:[
+        "loosechangepurchased.PNG",
+        "redfingerpurchased.PNG"
+    ],
+    type:[
+        "building",
+        "click"
+    ],
+    cost:[
+        300,
+        500,
+    ],
+    //Which building index does this upgrade affect
+    buildingIndex: [
+        0,
+        -1
+    ],
+    requirement: [
+        10,
+        25,
+    ],
+    bonus: [
+        2,
+        5
+    ],
+    purchased: [
+        false,
+        false
+    ],
+    
+    purchase: function(index){
+        if(!this.purchased[index] && Game.gold >= this.cost[index]){
+            if(this.type[index] == "building" && building.count[this.buildingIndex[index]] >= this.requirement[index]){
+                Game.gold -= this.cost[index];
+                building.income[this.buildingIndex[index]] *= this.bonus[index];
+                this.purchased[index] = true;
+                display.updateUpgrades();
+                display.updateScore();
+            }
+            else if(this.type[index] == "click" && Game.totalClicks >= this.requirement[index]){
+                Game.gold -= this.cost[index];
+                Game.clickValue *= this.bonus[index];
+                this.purchased[index] = true;
+                display.updateUpgrades();
+                display.updateScore();
+            }
         }
     }
 };
@@ -57,20 +160,117 @@ var display = {
     updateScore: function() {
         document.getElementById("gold").innerHTML = "Gold: " +Game.gold;
         document.getElementById("goldPerSecond").innerHTML = "Gold per second: " +Game.getScorePerSecond();
+        document.getElementById("clickPower").innerHTML = "Gold per click: " +Game.clickValue;
         document.title = "Gold: " + Game.gold;
     },
     updateShop: function() {
         document.querySelector('.shopContainer').innerHTML = "";
         for(i=0; i < building.name.length; i++){
-            document.querySelector('.shopContainer').innerHTML += '<td onclick="building.purchase('+i+')"><p>'+building.name[i]+'</p><p>$'+building.cost[i]+'</p><img class="sidebar-button-animate" src="./Resources/Images/'+building.image[i]+'" ></img><p>'+building.count[i]+'</p></td>'
+            document.querySelector('.shopContainer').innerHTML += '<td style="background-image: url(./Resources/Images/'+building.image[i]+'); background-size: contain; background-repeat: no-repeat;"></td><td onclick="building.purchase('+i+')"><p>'+building.name[i]+'</p><p>$'+building.cost[i]+'</p><p>'+building.count[i]+'</p><h3>'+building.description[i]+'</h3></td>'
+        }
+    },
+    updateUpgrades: function() {
+        document.querySelector('.upgradeContainer').innerHTML = "";
+        for(i=0; i< upgrade.name.length; i++){
+            if(!upgrade.purchased[i]){
+                if(upgrade.type[i] == "building" && building.count[upgrade.buildingIndex[i]] >= upgrade.requirement[i]){
+                    document.querySelector('.upgradeContainer').innerHTML += '<img src="./Resources/Images/'+upgrade.image[i]+'" title="'+upgrade.name[i] +' &#10; '+upgrade.effect[i]+' &#10; '+upgrade.description[i]+'&#10; ($'+upgrade.cost[i]+')" onclick="upgrade.purchase('+i+')">';
+                }
+                else if (upgrade.type[i] == "click" && Game.totalClicks >= upgrade.requirement[i]){
+                    document.querySelector('.upgradeContainer').innerHTML += '<img src="./Resources/Images/'+upgrade.image[i]+'" title="'+upgrade.name[i] +' &#10; '+upgrade.effect[i]+' &#10; '+upgrade.description[i]+'&#10; ($'+upgrade.cost[i]+')" onclick="upgrade.purchase('+i+')">';
+                }
+            }
+            // Create a section for already purchased upgrades to be reviewed
+            else{
+                document.querySelector('.upgradeContainer').innerHTML += '<img style="opacity: 0.5" src="./Resources/Images/'+upgrade.image[i]+'" title="'+upgrade.name[i] +' &#10; '+upgrade.effect[i]+' &#10; '+upgrade.description[i]+'&#10; ($'+upgrade.cost[i]+')" ">';
+            }
         }
     }
 };
 
-window.onload = function(){
+function resetGame(){
+    if(confirm("Are you sure you wish to reset all of your progress?")){
+        var gameSave = {};
+        localStorage.setItem("gameSave",JSON.stringify(gameSave));
+        location.reload();
+    }
+}
+
+function saveGame(){
+    var gameSave = {
+        gold: Game.gold,
+        totalGold: Game.totalGold,
+        totalClicks: Game.totalClicks,
+        clickValue: Game.clickValue,
+        version: Game.version,
+        buildingCount: building.count,
+        buildingIncome: building.income,
+        buildingCost: building.cost,
+        upgradePurchased: upgrade.purchased
+    };
+    localStorage.setItem("gameSave", JSON.stringify(gameSave));
+}
+
+function loadGame(){
+    var savedGame = JSON.parse(localStorage.getItem("gameSave"));
+    if(localStorage.getItem('gameSave') !== null){
+        if(typeof savedGame.gold !== "undefined") Game.gold = savedGame.gold;
+        if(typeof savedGame.totalGold !== "undefined") Game.totalGold = savedGame.totalGold;
+        if(typeof savedGame.totalClicks !== "undefined") Game.totalClicks = savedGame.totalClicks;
+        if(typeof savedGame.clickValue !== "undefined") Game.clickValue = savedGame.clickValue;
+        if(typeof savedGame.buildingCount !== "undefined"){
+            for (let index = 0; index < savedGame.buildingCount.length; index++) {
+                building.count[index] = savedGame.buildingCount[index];
+                
+            }
+        }
+        if(typeof savedGame.buildingIncome !== "undefined"){
+            for (let index = 0; index < savedGame.buildingIncome.length; index++) {
+                building.income[index] = savedGame.buildingIncome[index];
+                
+            }
+        }
+        if(typeof savedGame.buildingCost !== "undefined"){
+            for (let index = 0; index < savedGame.buildingCost.length; index++) {
+                building.cost[index] = savedGame.buildingCost[index];
+                
+            }
+        }
+        if(typeof savedGame.upgradePurchased !== "undefined"){
+            for (let index = 0; index < savedGame.upgradePurchased.length; index++) {
+                upgrade.purchased[index] = savedGame.upgradePurchased[index];
+                
+            }
+        }
+    }
+}
+
+setInterval(function() {
+    saveGame();
+},30000);
+
+setInterval(function() {
     display.updateScore();
+    display.updateUpgrades();
+},10000);
+
+document.getElementById("clicker").addEventListener("click", function(){
+    Game.totalClicks++;
+    Game.addToGold(Game.clickValue);
+}, false);
+
+window.onload = function(){
+    loadGame();
+    display.updateScore();
+    display.updateUpgrades();
     display.updateShop();
 }
+
+setInterval(function(){
+    Game.gold += Game.getScorePerSecond();
+    Game.totalGold += Game.getScorePerSecond();
+    display.updateScore();
+},1000)
 
 /*var gold = 0;
 

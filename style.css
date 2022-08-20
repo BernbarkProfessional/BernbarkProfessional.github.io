@@ -10,6 +10,7 @@ img {
     margin: 10px;
     max-height: 30%;
     float: right;
+	
 }
 table{
 	border: white 3px solid;
@@ -18,24 +19,59 @@ table{
 	max-height: 40%;
 }
 td{
+	background-size: contain;
+	position: relative;
+	overflow: hidden;
+	background-color: transparent;
+	outline: none;
+	z-index: 1;
 	border: white 3px solid;
-	padding: 120px;
+	padding: 20px;
 	
 }
 td:hover{
 	background-color: rgb(24, 78, 40);
 }
+
 td > h6{
 	max-width: 50%;
 	font: 1em sans-serif;
 }
+@keyframes button_animation {
+	0%{
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(0);
+	}
+	30%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0;
+
+		transform: translate(-50%, -50%) scale(1);
+	}
+}
+td img{
+	width: 64px;
+}
 .shopContainer{
 	background: tomato;
 }
-td > img{
-	float:left;
-	min-width: 50%;
-	min-height: 50%;
+.shopContainer img {
+	height: 64px;
+	width: 64px;
+}
+
+#clicker{
+	background-color: turquoise;
+}
+.upgradeContainer{
+	background-color: turquoise;
+}
+.upgradeContainer > img{
+	background-size: contain;
+	height: 64px;
+	width: 64px;
 }
 #bottombar
 {
@@ -82,7 +118,7 @@ td > img{
 {
 	width:85%;
 	height:85%;
-	background:purple;
+	background:rgb(3, 3, 3);
 	float:right;
 }
 #content
@@ -90,11 +126,19 @@ td > img{
 	background:black;
 	align:center;
 }
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 .scrollable-body{
 	
 	height:85%;
 	/* Trying to make content not hide behind the footer */
-    padding-bottom: 42px;
+    padding-bottom: 10vh;
     box-sizing: border-box;
 }
 
@@ -1291,3 +1335,4 @@ span {
 		  background-image: url(./Resources/Images/question_mark_7.png);
 	  }
   }
+

@@ -8,43 +8,48 @@
 		<div id="wrapper">
 			
 			<div id="sidebar">
-				<div id="sidebar">
-					<!-- Loaded by sidebar.html in script.js -->
-			
-				</div>
-				
-			
+                <!-- Loaded by sidebar.html in script.js -->
+
 			</div>
 			<div id="main" align="center">
-				<div id="content">
+				<div id="content" class="scrollable-body">
 					<h1>Idle Guy<br>A silly incremental/idle game.</h1>
-					<input id="goldperclickbutton" type="button" value="Click for Gold!" onclick="Game.addToGold(Game.clickValue)">
+					
                     
-                    <table>
-                        <tr>
-                            <td>
+                    <table id="clicker">
+                        <tr id="goldperclickbutton" >
+                            <td class="unselectable">
+                                
                                 <p><span id="gold">Gold: 0</span></p>
                                 <p><span id="goldPerSecond">Gold per second: 0</span></p>
+                                <p><span id="clickPower">Gold per click: 0</span></p>
+                            </td>
+                            <td class="unselectable">
+                                <p><span><h3>You must embody the laziness. Click me to understand.....</h3></hs></span></p>
                             </td>
                         </tr>
                         
                     </table>
-                    <table >
-                        <tr class="shopContainer">
+                    <table class="shopContainer unselectable">
+                        <tr >
                             
                             <td >
                                 <p id="crackedTVCost">Cracked TV: $100</p>
-                                <input class="sidebar-button-animate"id="crackedTVButton" type="button" value="Buy Cracked TV" onclick="buyCrackedTV()">
+                                <input class="sidebar-button-animate"id="crackedTVButton" type="button" value="Buy Cracked TV" onclick="">
                                 <p id="crackedTVs">TVs: 0</p>
                                 <h3>You made a decision to purchase a broken television. Go you saucy sausage!</h1>
                             </td>
                         </tr>
                         
                     </table>
+                    <table class="upgradeContainer">
+                        
+                    </table>
                     
 				</div>
 				<button onclick="saveGame();">Save</button>
                 <button onclick="loadGame();">Load</button>
+                <button onclick="resetGame();">Reset</button>
 			</div>
 			<div id="bottombar">
 				<!-- Loaded by bottombar.html in script.js -->
