@@ -52,28 +52,34 @@ var Game = {
 
 var building = {
     name:[
-        "Couch",
-        "TV"
+        "Old Couch:",
+        "Cracked TV:",
+        "3-Legged Coffee Table"
     ],
     image:[
         "oldcouch.PNG",
-        "crackedtv.PNG"
+        "crackedtv.PNG",
+        "coffeetable.PNG"
     ],
     count:[
+        0,
         0,
         0
     ],
     income:[
         1,
-        6
+        6,
+        76
     ],
     cost:[
         20,
-        100
+        100,
+        10000
     ],
     description:[
         "Wow! You paid for something that should be free!",
-        "Changing the definition of split-screen gaming."
+        "Changing the definition of split-screen gaming.",
+        "The fourth leg was too expensive."
     ],
 
     purchase: function(index){
@@ -92,46 +98,62 @@ var upgrade ={
     name:[
         "Loose Change:",
         "Red Fingers:",
-        "Potato"
+        "Potato",
+        "Sticky Fingers"
     ],
     effect: [
         "2x Boost to Couch Income",
-        "5x Boost to Click Power"
+        "5x Boost to Click Power",
+        "3x Boost to Couch Income",
+        "10x Boost to Click Power"
     ],
     description: [
         "Couches are a great form of passive income.",
-        "The power in the red-stained finger is brought to you by Hot Cheetos."
+        "The power in the red-stained finger is brought to you by Hot Cheetos.",
+        "What's a couch without a potato?",
+        "I'm not even going to ask what made them sticky."
     ],
     image:[
         "loosechange.PNG",
-        "redfinger.PNG"
-    ],
-    purchasedImage:[
-        "loosechangepurchased.PNG",
-        "redfingerpurchased.PNG"
+        "redfinger.PNG",
+        "potato.PNG",
+        "stickyfingers.PNG"
     ],
     type:[
+        "building",
+        "click",
         "building",
         "click"
     ],
     cost:[
         300,
         500,
+        10000,
+        100000
     ],
     //Which building index does this upgrade affect
     buildingIndex: [
+        0,
+        -1,
         0,
         -1
     ],
     requirement: [
         10,
         25,
+        50,
+        1000
+
     ],
     bonus: [
         2,
-        5
+        5,
+        3,
+        10
     ],
     purchased: [
+        false,
+        false,
         false,
         false
     ],
