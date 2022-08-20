@@ -364,7 +364,7 @@ setInterval(function() {
     display.updateScore();
     display.updateUpgrades();
     display.updateAchievements();
-},1000);
+},5000);
 
 document.getElementById("clicker").addEventListener("click", function(){
     Game.totalClicks++;
