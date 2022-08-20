@@ -15,9 +15,12 @@ img {
 table{
 	border: white 3px solid;
 	table-layout: fixed;
-    width: 80%;
+    width: 60%;
 	max-height: 40%;
+	
+	left:20%
 }
+
 td{
 	background-size: contain;
 	position: relative;
@@ -37,6 +40,14 @@ td > h6{
 	max-width: 50%;
 	font: 1em sans-serif;
 }
+.upgrade-sidebar{
+	position: relative;
+	left:85%;
+	bottom: 5%;
+	width: 15%;
+	height: 105%;
+	background-color: rgb(225, 0, 255);
+}
 @keyframes button_animation {
 	0%{
 		opacity: 0;
@@ -53,6 +64,7 @@ td > h6{
 }
 td img{
 	width: 64px;
+	height: 64px;
 }
 .shopContainer{
 	background: tomato;

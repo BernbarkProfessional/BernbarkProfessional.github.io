@@ -188,7 +188,7 @@ var display = {
     updateShop: function() {
         document.querySelector('.shopContainer').innerHTML = "";
         for(i=0; i < building.name.length; i++){
-            document.querySelector('.shopContainer').innerHTML += '<td style="background-image: url(./Resources/Images/'+building.image[i]+'); background-size: contain; background-repeat: no-repeat;"></td><td onclick="building.purchase('+i+')"><p>'+building.name[i]+'</p><p>$'+building.cost[i]+'</p><p>'+building.count[i]+'</p><h3>'+building.description[i]+'</h3></td>'
+            document.querySelector('.shopContainer').innerHTML += '<td style="background-image: url(./Resources/Images/'+building.image[i]+'); background-size: cover; width: 180px; background-repeat: no-repeat;"></td><td onclick="building.purchase('+i+')"><p>'+building.name[i]+'</p><p>$'+building.cost[i]+'</p><p>'+building.count[i]+'</p><h3>'+building.description[i]+'</h3></td>'
         }
     },
     updateUpgrades: function() {
@@ -204,7 +204,7 @@ var display = {
             }
             // Create a section for already purchased upgrades to be reviewed
             else{
-                document.querySelector('.upgradeContainer').innerHTML += '<img style="opacity: 0.5" src="./Resources/Images/'+upgrade.image[i]+'" title="'+upgrade.name[i] +' &#10; '+upgrade.effect[i]+' &#10; '+upgrade.description[i]+'&#10; ($'+upgrade.cost[i]+')" ">';
+                document.querySelector('.upgradeContainer').innerHTML += '<tr><td><img style="padding: 10px; opacity: 0.5; top:40%;" src="./Resources/Images/'+upgrade.image[i]+'" title="'+upgrade.name[i] +' &#10; '+upgrade.effect[i]+' &#10; '+upgrade.description[i]+'&#10; ($'+upgrade.cost[i]+')" "></td></tr>';
             }
         }
     }
