@@ -192,12 +192,14 @@ var upgrade ={
     
     purchase: function(index){
         if(!this.purchased[index] && Game.gold >= this.cost[index]){
+            
             if(this.type[index] == "building" && building.count[this.buildingIndex[index]] >= this.requirement[index]){
                 Game.gold -= this.cost[index];
                 building.income[this.buildingIndex[index]] *= this.bonus[index];
                 this.purchased[index] = true;
                 display.updateUpgrades();
                 display.updateScore();
+                createTooltips();
             }
             else if(this.type[index] == "click" && Game.totalClicks >= this.requirement[index]){
                 Game.gold -= this.cost[index];
@@ -205,44 +207,54 @@ var upgrade ={
                 this.purchased[index] = true;
                 display.updateUpgrades();
                 display.updateScore();
+                createTooltips();
             }
+            
         }
+        
     }
 };
 
 var achievement = {
     name: [
         "Not So Idle, Guy",
-        "Get More Couches"
-
+        "Get More Couches",
+        "Secret Tip"
     ],
     id:[
         "click100",
-        "couch25"
+        "couch25",
+        "secrettip"
     ],
     description: [
         "Click 100 times!",
-        "I don't see why you don't just get even more of them"
+        "I don't see why you don't just get even more of them",
+        "You found the secret tooltip!"
     ],
     image:[
         "click100.PNG",
-        "couch25.PNG"
+        "couch25.PNG",
+        "secrettip.PNG"
     ],
     // building, click, goldEarned, etc.
     type:[
         "click",
-        "building"
+        "building",
+        "secret"
     ],
     requirement:[
         100,
-        25
+        25,
+        1
     ],
     // -1 if it's not a building, otherwise go with the building index we are referring to
     objectIndex:[
         -1,
-        0
+        0,
+        -1
     ],
     awarded:[
+        false,
         false,
         false
     ],
@@ -251,6 +263,22 @@ var achievement = {
         this.awarded[index] = true;
     }
 };
+
+var secret = {
+    name:[
+        "Secret Tip:"
+    ],
+    description:[
+        "Good job finding me! The first time you click this button, receive 10000 in cold hard cash!"
+    ],
+    activated:[
+        false
+    ],
+
+    activate: function(index){
+        this.activated[index] = true;
+    }
+}
 
 var display = {
     updateScore: function() {
@@ -309,12 +337,40 @@ function createTooltips(){
         tippy('#'+upgrade.id[index],{
             
             content: upgrade.name[index] + ' $'+upgrade.cost[index]+'\r\n'+upgrade.effect[index] +'\r\n' + upgrade.description[index],
+            theme: 'tomato',
         });
     }
     for(let index = 0; index < upgrade.name.length; index++){
         tippy('#'+achievement.id[index],{
             content: achievement.name[index] + '\r\n' + achievement.description[index]
         });
+    }
+    tippy('#tippySec',{
+        content: '<strong id="strongTip" >NO?</strong>',
+        interactive: 'true',
+        placement: 'right',
+        allowHTML: true
+    });
+    tippy('#strongTip',{
+        content: '<p id="ridiculousTip" >MAYBE?</p>',
+        allowHTML: true,
+        placement: 'bottom',
+        interactive: 'true'
+    })
+    tippy('#ridiculousTip',{
+        content: '<button onclick="secretTipEnding();">Don\'t Click Me</button>',
+        placement: 'right',
+        allowHTML: true,
+        interactive: 'true'
+    })
+}
+
+function secretTipEnding(){
+    // 0 index is the tooltip secret
+    if(!secret.activated[0]){
+        secret.activate(0);
+        achievement.earn(2);
+        Game.gold += 10000;
     }
 }
 
@@ -402,7 +458,7 @@ setInterval(function() {
     display.updateScore();
     display.updateUpgrades();
     display.updateAchievements();
-    createTooltips();
+    
 },5000);
 
 document.getElementById("clicker").addEventListener("click", function(){
@@ -423,6 +479,7 @@ setInterval(function(){
     Game.gold += Game.getScorePerSecond();
     Game.totalGold += Game.getScorePerSecond();
     display.updateScore();
+    createTooltips();
 },1000)
 
 /*var gold = 0;

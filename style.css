@@ -28,6 +28,10 @@ table{
 .tippy-content {
     white-space: pre-line;
 }
+.tippy-tooltip.tomato-theme {
+	background-color: tomato;
+	color: yellow;
+  }
 table img{
 	
 	
