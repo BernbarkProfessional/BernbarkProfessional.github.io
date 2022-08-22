@@ -137,7 +137,7 @@ var upgrade ={
         "redfinger.PNG",
         "potato.PNG",
         "stickyfingers.PNG",
-        "stinkeye.PNG"
+        "stinkeye.png"
     ],
     type:[
         "building",
@@ -234,7 +234,7 @@ var achievement = {
     image:[
         "click100.PNG",
         "couch25.PNG",
-        "secrettip.PNG"
+        "secrettip.png"
     ],
     // building, click, goldEarned, etc.
     type:[
