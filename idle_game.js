@@ -199,7 +199,7 @@ var upgrade ={
                 this.purchased[index] = true;
                 display.updateUpgrades();
                 display.updateScore();
-                createTooltips();
+                
             }
             else if(this.type[index] == "click" && Game.totalClicks >= this.requirement[index]){
                 Game.gold -= this.cost[index];
@@ -207,7 +207,7 @@ var upgrade ={
                 this.purchased[index] = true;
                 display.updateUpgrades();
                 display.updateScore();
-                createTooltips();
+                
             }
             
         }
@@ -288,10 +288,14 @@ var display = {
         document.title = "Gold: " + Game.gold;
     },
     updateShop: function() {
+        
         document.querySelector('.shopContainer').innerHTML = "";
         for(i=0; i < building.name.length; i++){
             document.querySelector('.shopContainer').innerHTML += '<td id="'+building.id[i]+'" style="background-image: url(./Resources/Images/'+building.image[i]+'); background-size: cover; width: 180px; background-repeat: no-repeat;"></td><td onclick="building.purchase('+i+')"><p>'+building.name[i]+'</p><p>$'+building.cost[i]+'</p><p>'+building.count[i]+'</p><h3>'+building.description[i]+'</h3></td></span>'
         }
+        // When shop items get purchased, the content of the tooltip
+        // has changed and must be created again
+        createTooltips();
     },
     updateUpgrades: function() {
         document.querySelector('.upgradeContainer').innerHTML = "";
@@ -315,6 +319,7 @@ var display = {
             }
             
         }
+       
     },
     updateAchievements: function(){
         document.querySelector('.achievementContainer').innerHTML = "";
@@ -465,7 +470,7 @@ setInterval(function() {
     display.updateUpgrades();
     display.updateAchievements();
     
-},5000);
+},2000);
 
 document.getElementById("clicker").addEventListener("click", function(){
     Game.totalClicks++;
@@ -485,7 +490,7 @@ setInterval(function(){
     Game.gold += Game.getScorePerSecond();
     Game.totalGold += Game.getScorePerSecond();
     display.updateScore();
-    createTooltips();
+    
 },1000)
 
 /*var gold = 0;
