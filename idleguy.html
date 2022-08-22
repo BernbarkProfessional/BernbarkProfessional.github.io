@@ -3,6 +3,7 @@
 	<head>
 		<title>Home Page</title>
 		<link rel="stylesheet" type="text/css" href="style.css" />
+        
 	</head>
 	<body>
 		<div class="disable-dbl-tap-zoom" id="wrapper">
@@ -32,18 +33,19 @@
                         </tr>
                         
                     </table>
-                    <table class="shopContainer unselectable">
-                        <tr >
+                    
+                        <table class="shopContainer unselectable">
+                            <tr >
+                                
+                                <td >
+                                    <p id="crackedTVCost">Cracked TV: $100</p>
+                                    <input class="sidebar-button-animate"id="crackedTVButton" type="button" value="Buy Cracked TV" onclick="">
+                                    <p id="crackedTVs">TVs: 0</p>
+                                    <h3>You made a decision to purchase a broken television. Go you saucy sausage!</h1>
+                                </td>
+                            </tr>
                             
-                            <td >
-                                <p id="crackedTVCost">Cracked TV: $100</p>
-                                <input class="sidebar-button-animate"id="crackedTVButton" type="button" value="Buy Cracked TV" onclick="">
-                                <p id="crackedTVs">TVs: 0</p>
-                                <h3>You made a decision to purchase a broken television. Go you saucy sausage!</h1>
-                            </td>
-                        </tr>
-                        
-                    </table>
+                        </table>
                     
                         
                     <table class="upgrade-sidebar"> 
@@ -62,6 +64,7 @@
                     <button onclick="saveGame();">Save</button>
                     <button onclick="loadGame();">Load</button>
                     <button onclick="resetGame();">Reset</button>
+                    <button id="myButton">Yo I'm a Button</button>
 				</div>
 				
 			</div>
@@ -70,7 +73,11 @@
 				<!-- Loaded by bottombar.html in script.js -->
 			</div>
 		</div>
+        <script type="module" src="https://unpkg.com/@popperjs/core@2"></script>
+        <script type="module" src="https://unpkg.com/tippy.js@6"></script>
+        
         <script src="idle_game.js"></script>
 		<script async src="script.js" defer="defer"></script>
+        
 	</body>
 </html>

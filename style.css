@@ -19,27 +19,28 @@ img {
 table{
 	position: relative;
 	border: white 3px solid;
-	table-layout: fixed;
+	
     width: 60%;
 	max-height: 40%;
 	
 	left:-10%
 }
-
+.tippy-content {
+    white-space: pre-line;
+}
 table img{
 	
 	
 	min-width: 90px;
 	min-height: 90px;
-	display: block;
-  	margin-left: auto;
-  	margin-right: auto;
+	
+  	
 }
 
 td{
 	background-size: cover;
-	position: relative;
-	overflow: hidden;
+	
+	
 	background-color: transparent;
 	outline: none;
 	z-index: 1;
@@ -49,7 +50,7 @@ td{
 }
 
 td:hover{
-	background-color: rgb(24, 78, 40);
+	background-color: rgba(0, 0, 0, 0.199);
 }
 
 td > h6{
@@ -166,7 +167,7 @@ td img{
 	height:auto;
 	min-height:100%;
 	background:#999;
-	overflow: hidden;
+	overflow: scroll;
 	/*margin: auto;*/
 }
 #sidebar
@@ -197,7 +198,7 @@ td img{
 #content
 {
 	background:black;
-	align:center;
+	
 	
 }
 .unselectable {
