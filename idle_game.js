@@ -278,10 +278,10 @@ var display = {
             else {
                 upgrade.spawned[i] = true;
                 if(upgrade.type[i] == "building" && building.count[upgrade.buildingIndex[i]] >= upgrade.requirement[i]){
-                    document.querySelector('.upgrade-sidebar').innerHTML += '<img src="./Resources/Images/'+upgrade.image[i]+'" >';
+                    document.querySelector('.upgrade-sidebar').innerHTML += '<img id="'+upgrade.id[i]+'" src="./Resources/Images/'+upgrade.image[i]+'" >';
                 }
                 else if (upgrade.type[i] == "click" && Game.totalClicks >= upgrade.requirement[i]){
-                    document.querySelector('.upgrade-sidebar').innerHTML += '<img src="./Resources/Images/'+upgrade.image[i]+'" >';
+                    document.querySelector('.upgrade-sidebar').innerHTML += '<img id="'+upgrade.id[i]+'" src="./Resources/Images/'+upgrade.image[i]+'" >';
                 }
                 
             }
