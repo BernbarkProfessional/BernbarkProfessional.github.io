@@ -415,7 +415,7 @@ function saveGame(){
         upgradePurchased: upgrade.purchased,
         achievementAwarded: achievement.awarded,
         secretsFound: secret.activated,
-        timeOfQuit: date_current_datetime()
+        timeOfQuit: new Date()
     };
     localStorage.setItem("gameSave", JSON.stringify(gameSave));
 }
@@ -464,8 +464,11 @@ function loadGame(){
             }
         }
         if(typeof savedGame.timeOfQuit !== "undefined"){
-            var currentTime = date_current_datetime;
-            var secondsSinceOnline = date_second_span(savedGame.timeOfQuit,currentTime);
+            var currentTime = new Date();
+            var currentTimeInSeconds = currentTime.getTime() / 1000;
+            var quitTime = new Date(savedGame.timeOfQuit);
+            var quitTimeInSeconds = quitTime.getTime() / 1000
+            var secondsSinceOnline = currentTimeInSeconds - quitTimeInSeconds; 
             console.log("Gone for "+ secondsSinceOnline+ " seconds");
             Game.currentTimeUpdate(secondsSinceOnline);
         }
