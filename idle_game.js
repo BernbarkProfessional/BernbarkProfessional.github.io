@@ -49,7 +49,11 @@ var Game = {
             scorePerSecond += building.income[i] * building.count[i];
         }
         return scorePerSecond;
-    }
+    },
+
+    currentTimeUpdate: function(seconds){
+        this.gold += (seconds * this.getScorePerSecond());
+    },
 
 };
 
@@ -136,7 +140,7 @@ var upgrade ={
         "loosechange.PNG",
         "redfinger.PNG",
         "potato.PNG",
-        "stickyfingers.PNG",
+        "stickyfingers.png",
         "stinkeye.png"
     ],
     type:[
@@ -409,7 +413,9 @@ function saveGame(){
         buildingIncome: building.income,
         buildingCost: building.cost,
         upgradePurchased: upgrade.purchased,
-        achievementAwarded: achievement.awarded
+        achievementAwarded: achievement.awarded,
+        secretsFound: secret.activated,
+        timeOfQuit: date_current_datetime()
     };
     localStorage.setItem("gameSave", JSON.stringify(gameSave));
 }
@@ -450,6 +456,18 @@ function loadGame(){
                 achievement.awarded[index] = savedGame.achievementAwarded[index];
                 
             }
+        }
+        if(typeof savedGame.secretsFound !== "undefined"){
+            for (let index = 0; index < savedGame.secretsFound.length; index++) {
+                secret.activated[index] = savedGame.secretsFound[index];
+                
+            }
+        }
+        if(typeof savedGame.timeOfQuit !== "undefined"){
+            var currentTime = date_current_datetime;
+            var secondsSinceOnline = date_second_span(savedGame.timeOfQuit,currentTime);
+            console.log("Gone for "+ secondsSinceOnline+ " seconds");
+            Game.currentTimeUpdate(secondsSinceOnline);
         }
     }
 }
