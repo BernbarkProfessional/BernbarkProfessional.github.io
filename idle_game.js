@@ -52,7 +52,7 @@ var Game = {
     },
 
     currentTimeUpdate: function(seconds){
-        this.gold += (seconds * this.getScorePerSecond());
+        this.gold += Math.ceil(seconds * this.getScorePerSecond());
     },
 
 };
