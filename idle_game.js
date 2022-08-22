@@ -352,7 +352,13 @@ function createTooltips(){
         allowHTML: true
     });
     tippy('#strongTip',{
-        content: '<p id="ridiculousTip" >MAYBE?</p>',
+        content: '<p id="strangeTip" >MAYBE?</p>',
+        allowHTML: true,
+        placement: 'bottom',
+        interactive: 'true'
+    })
+    tippy('#strangeTip',{
+        content: '<p id="ridiculousTip" >Okay fine...</p>',
         allowHTML: true,
         placement: 'bottom',
         interactive: 'true'
