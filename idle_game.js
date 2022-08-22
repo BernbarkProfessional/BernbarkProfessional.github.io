@@ -1,6 +1,5 @@
 
-
-const tableDataButton = document.querySelectorAll('td');
+/**const tableDataButton = document.querySelectorAll('td');
 for (let index = 0; index < tableDataButton.length; index++) {
     let element = tableDataButton[index];
     element.addEventListener('click', ()=> {
@@ -26,7 +25,7 @@ for (let index = 0; index < tableDataButton.length; index++) {
         element.appendChild(overlay);
     });
 
-}   
+}   */
 
     
 
@@ -37,6 +36,7 @@ var Game = {
     totalClicks: 0,
     clickValue: 1,
     version: 0.001,
+    totalSecondsPlayed: 0,
 
     addToGold: function(amount){
         this.gold += amount;
@@ -49,27 +49,41 @@ var Game = {
         for(i = 0; i < building.name.length; i++){
             scorePerSecond += building.income[i] * building.count[i];
         }
+        this.totalSecondsPlayed++;
         return scorePerSecond;
     },
 
     currentTimeUpdate: function(seconds){
-        this.gold += Math.ceil(seconds * this.getScorePerSecond());
+        this.addToGold(Math.ceil(seconds * this.getScorePerSecond()));
     },
 
 };
 
 var building = {
+    
     name:[
         "Old Couch:",
         "Cracked TV:",
-        "3-Legged Coffee Table:"
+        "3-Legged Coffee Table:",
+        "A Dimmer Switch",
+        "Hand-Me-Down Console",
+        "Soon-To-Be-Dead Remote",
+        "Hat Cheetahs and Mountain Spew"
     ],
     image:[
         "oldcouch.png",
         "crackedtv.PNG",
-        "coffeetable.PNG"
+        "coffeetable.PNG",
+        "dimmerswitch.PNG",
+        "handmedownconsole.PNG",
+        "remote.PNG",
+        "food.PNG"
     ],
     count:[
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0
@@ -77,22 +91,39 @@ var building = {
     income:[
         1,
         10,
-        100
+        100,
+        400,
+        2000,
+        5000,
+        10000
     ],
     cost:[
         20,
         100,
-        10000
+        10000,
+        50000,
+        500000,
+        10000000,
+        50000000
     ],
     description:[
         "Wow! You paid for something that should be free!",
         "Changing the definition of split-screen gaming.",
-        "The fourth leg was too expensive."
+        "The fourth leg was too expensive.",
+        "It's pretty neat! It's just a shame that it doesn't work though.",
+        "Huh, I didn't think there was such a thing...",
+        "Just twist the batteries around and smack it, then it magically works again!",
+        "This is the snack that won't stop fighting back, at your internal organs."
+
     ],
     id:[
         'oldcouch',
         'crackedtv',
-        'coffeetable'
+        'coffeetable',
+        'dimmerswitch',
+        'console',
+        'remote',
+        'snack'
     ],
 
     purchase: function(index){
@@ -105,8 +136,19 @@ var building = {
             display.updateUpgrades();
             
         }
+    },
+
+    getTotalBuildings: function(){
+        let sum = 0;
+        for (let index = 0; index < this.count.length; index++) {
+            sum += this.count[index];
+            
+        }
+        return sum;
     }
 };
+
+// Create a section for upgrades with odd attributes, since current upgrades can only handle straight multipliers
 
 var upgrade ={
     name:[
@@ -114,14 +156,34 @@ var upgrade ={
         "Red Fingers:",
         "Potato:",
         "Sticky Fingers:",
-        "Stink Eye:"
+        "Stink Eye:",
+        // Couch section
+        "Pillow Hands",
+        "Couch Groove",
+        "Couch Awareness Month",
+        // TV Section
+        "White Noise Machine",
+        "Antennae",
+        "\"New\" Broken TV",
+        //Click Section
+        "Remote Clicker"
     ],
     id:[
         'loosechange',
         'redfingers',
         'potato',
         'stickyfingers',
-        'stinkeye'
+        'stinkeye',
+        // Couch Section
+        'pillowhands',
+        'groove',
+        'couchmonth',
+        // TV Section
+        'whitenoise',
+        'antennae',
+        'newtv',
+        // Click Section
+        'remoteclicker'
 
     ],
     effect: [
@@ -129,71 +191,129 @@ var upgrade ={
         "5x Boost to Click Power",
         "3x Boost to Couch Income",
         "10x Boost to Click Power",
-        "5x Boost to TV Power"
+        "5x Boost to TV Income",
+        "10x Boost to Click Power",
+        "50x Boost to Couch Income",
+        "25x Boost to Couch Income",
+        "2x Boost to TV Income",
+        "8x Boost to TV Income",
+        "10x Boost to TV Income",
+        "7x Boost to Click Power"
     ],
     description: [
         "Couches are a great form of passive income.",
         "The power in the red-stained finger is brought to you by Hot Cheetos.",
         "What's a couch without a potato?",
         "I'm not even going to ask what made them sticky.",
-        "You're getting the stink eye from your loved ones for not fixing the TV situation"
+        "You're getting the stink eye from your loved ones for not fixing the TV situation...",
+        "You've sat on the couch so long your hands have become pillows, making clicking all the easier?!",
+        "Your butt has made its mark on that beautiful old couch.",
+        "This poor couch has seen some atrocities in its time. The world decides to create a month, right in-between Janurary and February, dedicated to all couches!",
+        "Your broken TV has at least one purpose as a solid white noise machine, listen to that sweet static!",
+        "You've boosted your signal by about 1% and can sometimes almost make out shapes on the screen.",
+        "Someone has gifted you a slightly less broken TV, this is so exciting!",
+        "You're clicking a remote in order to avoid the hassle of cliking a button? That laziness is truly inspired!"
     ],
     image:[
         "loosechange.PNG",
         "redfinger.PNG",
         "potato.PNG",
         "stickyfingers.png",
-        "stinkeye.png"
+        "stinkeye.png",
+        // Couch section
+        "pillowhands.PNG",
+        "groove.PNG",
+        "awarenessmonth.PNG",
+        // TV Section
+        "whitenoise.PNG",
+        "antennae.PNG",
+        "newtv.PNG",
+        // Click Section
+        "remoteclicker.PNG"
     ],
     type:[
         "building",
         "click",
         "building",
         "click",
-        "building"
+        "building",
+        "building",
+        //Couch section
+        "building",
+        "building",
+        
+        // TV Section
+        "building",
+        "building",
+        "building",
+        // Click Section
+        "click"
     ],
     cost:[
         300,
         500,
         10000,
         10000,
-        1000000
+        200000,
+        // Couch Section
+        100000,
+        10000000,
+        500000000,
+        // TV Section
+        75000,
+        500000,
+        35000000,
+        // Click Section
+        100000
     ],
-    //Which building index does this upgrade affect
+    //Which building index does this upgrade affect, -1 for clicks
     buildingIndex: [
         0,
         -1,
         0,
         -1,
-        1
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        -1
     ],
     requirement: [
         10,
         25,
         25,
         1000,
-        50
+        50,
+        50,
+        100,
+        200,
+        10,
+        25,
+        100, 
+        500
     ],
     bonus: [
         2,
         5,
         3,
         10,
-        5
+        5,
+        10,
+        50,
+        25,
+        2,
+        8,
+        10,
+        7
     ],
     purchased: [
-        false,
-        false,
-        false,
-        false,
-        false
+        false,false,false,false,false,false,false,false,false,false,false,false
     ],
     spawned:[
-        false,
-        false,
-        false,
-        false,
-        false
+        false,false,false,false,false,false,false,false,false,false,false,false
     ],
     
     purchase: function(index){
@@ -288,17 +408,22 @@ var secret = {
 }
 
 var display = {
+    
     updateScore: function() {
-        document.getElementById("gold").innerHTML = "Gold: " +Game.gold;
-        document.getElementById("goldPerSecond").innerHTML = "Gold per second: " +Game.getScorePerSecond();
+        let commaSeparatedNumber = Game.gold.toLocaleString('en-US');
+        document.getElementById("gold").innerHTML = "Gold: $" +commaSeparatedNumber;
+        let goldPerSecond = Game.getScorePerSecond();
+        commaSeparatedNumber = goldPerSecond.toLocaleString('en-US');
+        document.getElementById("goldPerSecond").innerHTML = "Gold per second: " +commaSeparatedNumber;
         document.getElementById("clickPower").innerHTML = "Gold per click: " +Game.clickValue;
-        document.title = "Gold: " + Game.gold;
+        
     },
     updateShop: function() {
         
         document.querySelector('.shopContainer').innerHTML = "";
         for(i=0; i < building.name.length; i++){
-            document.querySelector('.shopContainer').innerHTML += '<td id="'+building.id[i]+'" style="background-image: url(./Resources/Images/'+building.image[i]+'); background-size: cover; width: 180px; background-repeat: no-repeat;"></td><td onclick="building.purchase('+i+')"><p>'+building.name[i]+'</p><p>$'+building.cost[i]+'</p><p>'+building.count[i]+'</p><h3>'+building.description[i]+'</h3></td></span>'
+            let individualBuildingIncome = building.income[i] * building.count[i];
+            document.querySelector('.shopContainer').innerHTML += '<td id="'+building.id[i]+'" style="background-image: url(./Resources/Images/'+building.image[i]+'); background-size: cover; width: 180px; background-repeat: no-repeat;"></td><td onclick="building.purchase('+i+')"><p>'+building.name[i]+'</p><p>$'+commafyNumber(building.cost[i])+'</p><p><strong>Owned: </strong>'+building.count[i]+'</p><h3>'+building.description[i]+'</h3><p><strong>Income: </strong>$'+individualBuildingIncome+'/sec</p></td></span>'
         }
         // When shop items get purchased, the content of the tooltip
         // has changed and must be created again
@@ -363,7 +488,7 @@ function createTooltips(){
         });
     }
     tippy('#tippySec',{
-        content: '<strong id="strongTip" >NO?</strong>',
+        content: '<strong id="strongTip" >NO!</strong>',
         interactive: 'true',
         placement: 'right',
         allowHTML: true
@@ -393,7 +518,7 @@ function secretTipEnding(){
     if(!secret.activated[0]){
         secret.activate(0);
         achievement.earn(2);
-        Game.gold += 10000;
+        Game.addToGold(10000);
     }
 }
 
@@ -498,6 +623,7 @@ setInterval(function() {
     display.updateScore();
     display.updateUpgrades();
     display.updateAchievements();
+    createStatsPage();
     
 },5000);
 
@@ -513,94 +639,51 @@ window.onload = function(){
     display.updateAchievements();
     display.updateShop();
     createTooltips();
+    createStatsPage();
+    document.title = "Idle Guy"
 }
 
 setInterval(function(){
-    Game.gold += Game.getScorePerSecond();
-    Game.totalGold += Game.getScorePerSecond();
+    Game.addToGold(Game.getScorePerSecond());
+    Game.addToGold(Game.getScorePerSecond());
     display.updateScore();
     
 },1000)
 
-/*var gold = 0;
+// Get the modal
+var modal = document.getElementById("myModal");
 
-var oldCouches = 0;
-var oldCouchesCost = 20;
-var couchIncome = 1;
+// Get the button that opens the modal
+var statsbtn = document.getElementById("stats");
 
-var crackedTV = 0;
-var crackedTVCost = 100;
-var crackedTVIncome = 5;
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-// Buying Section
+// Get the content of the modal so I can inject HTML into it with data from our JS objects
+var modContent = document.querySelector('.modal-content');
 
-function buyOldCouch() {
-    if(gold >= oldCouchesCost){
-        gold = gold - oldCouchesCost;
-        oldCouches = oldCouches + 1;
-        oldCouchesCost = Math.round(oldCouchesCost * 1.14);
-        updateUI();
-        saveGame();
-        
-    }
+function createStatsPage(){
+    modContent.innerHTML = '<span class="close"></span><p><strong>Total Gold Earned: $'+commafyNumber(Game.totalGold)+'<p><strong>Total Buildings: <strong>'+commafyNumber(building.getTotalBuildings())+'</p><p><strong>Total Clicks: <strong>'+commafyNumber(Game.totalClicks);
+    
 }
 
-function buyCrackedTV() {
-    if(gold >= crackedTVCost){
-        gold = gold - crackedTVCost;
-        crackedTV = crackedTV + 1;
-        crackedTVCost = Math.round(crackedTVCost * 1.145);
-        updateUI();
-        saveGame();
-        
-    }
+// When the user clicks on the button, open the modal
+statsbtn.onclick = function() {
+  modal.style.display = "block";
 }
 
-function addToScore(amount){
-    gold = gold + amount;
-    updateUI();
-    saveGame();
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
 }
 
-function updateUI(){
-    document.getElementById("gold").innerHTML = "Gold: " +gold;
-    document.getElementById("oldCouches").innerHTML = "Couches: "+oldCouches;
-    document.getElementById("oldCouchesCost").innerHTML = "Old Couch: $"+oldCouchesCost;
-    document.getElementById("crackedTVs").innerHTML = "TVs: "+crackedTV;
-    document.getElementById("crackedTVCost").innerHTML = "Cracked TV: $"+crackedTVCost;
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }
 
-setInterval(function(){
-    gold = gold + (couchIncome * oldCouches);
-    gold = gold + (crackedTVIncome * crackedTV);
-    updateUI();
-}, 1000);
-
-function saveGame(){
-    var gameSave = {
-        gold: gold,
-        oldCouches: oldCouches,
-        oldCouchesCost: oldCouchesCost,
-        crackedTV: crackedTV,
-        crackedTVCost, crackedTVCost
-    };
-    localStorage.setItem("gameSave",JSON.stringify(gameSave));
+function commafyNumber(number){
+    return number.toLocaleString('en-US');
 }
-
-function loadGame(){
-    var savedGame = JSON.parse(localStorage.getItem("gameSave"));
-    if(typeof savedGame.gold !== "undefined") gold = savedGame.gold;
-    if(typeof savedGame.oldCouches !== "undefined") oldCouches = savedGame.oldCouches;
-    if(typeof savedGame.oldCouchesCost !== "undefined") oldCouchesCost = savedGame.oldCouchesCost;
-    if(typeof savedGame.crackedTV !== "undefined") crackedTV = savedGame.crackedTV;
-    if(typeof savedGame.crackedTVCost !== "undefined") crackedTVCost = savedGame.crackedTVCost;
-}
-
-setInterval(function(){
-    saveGame();
-}, 30000)
-
-window.onload = function() {
-    loadGame();
-    updateUI();
-};*/
