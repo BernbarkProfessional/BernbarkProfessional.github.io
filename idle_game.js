@@ -55,9 +55,6 @@ var Game = {
     currentTimeUpdate: function(seconds){
         this.gold += Math.ceil(seconds * this.getScorePerSecond());
     },
-=======
-    }
->>>>>>> parent of 577a429 (Trying to figure out offline progress)
 
 };
 
@@ -144,8 +141,8 @@ var upgrade ={
         "loosechange.PNG",
         "redfinger.PNG",
         "potato.PNG",
-        "stickyfingers.PNG",
-        "stinkeye.PNG"
+        "stickyfingers.png",
+        "stinkeye.png"
     ],
     type:[
         "building",
@@ -242,7 +239,7 @@ var achievement = {
     image:[
         "click100.PNG",
         "couch25.PNG",
-        "secrettip.PNG"
+        "secrettip.png"
     ],
     // building, click, goldEarned, etc.
     type:[
@@ -318,10 +315,10 @@ var display = {
             else {
                 upgrade.spawned[i] = true;
                 if(upgrade.type[i] == "building" && building.count[upgrade.buildingIndex[i]] >= upgrade.requirement[i]){
-                    document.querySelector('.upgrade-sidebar').innerHTML += '<img id="'+upgrade.id[i]+'" src="./Resources/Images/'+upgrade.image[i]+'" >';
+                    document.querySelector('.upgrade-sidebar').innerHTML += '<tr><td id="'+upgrade.id[i]+'" ><img src="./Resources/Images/'+upgrade.image[i]+'" ></td>';
                 }
                 else if (upgrade.type[i] == "click" && Game.totalClicks >= upgrade.requirement[i]){
-                    document.querySelector('.upgrade-sidebar').innerHTML += '<img id="'+upgrade.id[i]+'" src="./Resources/Images/'+upgrade.image[i]+'" >';
+                    document.querySelector('.upgrade-sidebar').innerHTML += '<td id="'+upgrade.id[i]+'"><img src="./Resources/Images/'+upgrade.image[i]+'" ></td>';
                 }
                 
             }
@@ -417,13 +414,9 @@ function saveGame(){
         buildingIncome: building.income,
         buildingCost: building.cost,
         upgradePurchased: upgrade.purchased,
-<<<<<<< HEAD
         achievementAwarded: achievement.awarded,
         secretsFound: secret.activated,
         timeOfQuit: new Date()
-=======
-        achievementAwarded: achievement.awarded
->>>>>>> parent of 577a429 (Trying to figure out offline progress)
     };
     localStorage.setItem("gameSave", JSON.stringify(gameSave));
 }
@@ -465,7 +458,6 @@ function loadGame(){
                 
             }
         }
-<<<<<<< HEAD
         if(typeof savedGame.secretsFound !== "undefined"){
             for (let index = 0; index < savedGame.secretsFound.length; index++) {
                 secret.activated[index] = savedGame.secretsFound[index];
@@ -481,8 +473,6 @@ function loadGame(){
             console.log("Gone for "+ secondsSinceOnline+ " seconds");
             Game.currentTimeUpdate(secondsSinceOnline);
         }
-=======
->>>>>>> parent of 577a429 (Trying to figure out offline progress)
     }
 }
 
