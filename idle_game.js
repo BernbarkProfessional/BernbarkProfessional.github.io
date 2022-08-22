@@ -25,6 +25,7 @@ for (let index = 0; index < tableDataButton.length; index++) {
         })
         element.appendChild(overlay);
     });
+
 }   
 
     
@@ -49,7 +50,6 @@ var Game = {
             scorePerSecond += building.income[i] * building.count[i];
         }
         return scorePerSecond;
-<<<<<<< HEAD
     },
 
     currentTimeUpdate: function(seconds){
@@ -103,6 +103,7 @@ var building = {
             display.updateScore();
             display.updateShop();
             display.updateUpgrades();
+            
         }
     }
 };
@@ -196,6 +197,7 @@ var upgrade ={
     ],
     
     purchase: function(index){
+        console.log("inside purchase function");
         if(!this.purchased[index] && Game.gold >= this.cost[index]){
             
             if(this.type[index] == "building" && building.count[this.buildingIndex[index]] >= this.requirement[index]){
@@ -214,9 +216,9 @@ var upgrade ={
                 display.updateScore();
                 
             }
-            
+            console.log("purchased "+this.name[index]);
         }
-        
+        console.log("can't purchase "+this.name[index]);
     }
 };
 
@@ -315,16 +317,16 @@ var display = {
             else {
                 upgrade.spawned[i] = true;
                 if(upgrade.type[i] == "building" && building.count[upgrade.buildingIndex[i]] >= upgrade.requirement[i]){
-                    document.querySelector('.upgrade-sidebar').innerHTML += '<tr><td id="'+upgrade.id[i]+'" ><img src="./Resources/Images/'+upgrade.image[i]+'" ></td>';
+                    document.querySelector('.upgrade-sidebar').innerHTML += '<img id="'+upgrade.id[i]+'" src="./Resources/Images/'+upgrade.image[i]+'" onclick="upgrade.purchase('+i+')" >';
                 }
                 else if (upgrade.type[i] == "click" && Game.totalClicks >= upgrade.requirement[i]){
-                    document.querySelector('.upgrade-sidebar').innerHTML += '<td id="'+upgrade.id[i]+'"><img src="./Resources/Images/'+upgrade.image[i]+'" ></td>';
+                    document.querySelector('.upgrade-sidebar').innerHTML += '<img id="'+upgrade.id[i]+'" src="./Resources/Images/'+upgrade.image[i]+'" onclick="upgrade.purchase('+i+')" >';
                 }
                 
             }
             
         }
-       // When shop items get purchased, the content of the tooltip
+        // When shop items get purchased, the content of the tooltip
         // has changed and must be created again
         createTooltips();
     },
