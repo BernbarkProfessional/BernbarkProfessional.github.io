@@ -60,7 +60,7 @@ var building = {
         "3-Legged Coffee Table:"
     ],
     image:[
-        "oldcouch.PNG",
+        "oldcouch.png",
         "crackedtv.PNG",
         "coffeetable.PNG"
     ],
@@ -319,7 +319,9 @@ var display = {
             }
             
         }
-       
+       // When shop items get purchased, the content of the tooltip
+        // has changed and must be created again
+        createTooltips();
     },
     updateAchievements: function(){
         document.querySelector('.achievementContainer').innerHTML = "";
@@ -329,6 +331,9 @@ var display = {
             }
             
         }
+        // When shop items get purchased, the content of the tooltip
+        // has changed and must be created again
+        createTooltips();
     }
 };
 
@@ -470,7 +475,7 @@ setInterval(function() {
     display.updateUpgrades();
     display.updateAchievements();
     
-},2000);
+},5000);
 
 document.getElementById("clicker").addEventListener("click", function(){
     Game.totalClicks++;
