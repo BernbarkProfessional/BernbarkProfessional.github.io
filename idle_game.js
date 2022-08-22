@@ -49,11 +49,15 @@ var Game = {
             scorePerSecond += building.income[i] * building.count[i];
         }
         return scorePerSecond;
+<<<<<<< HEAD
     },
 
     currentTimeUpdate: function(seconds){
         this.gold += Math.ceil(seconds * this.getScorePerSecond());
     },
+=======
+    }
+>>>>>>> parent of 577a429 (Trying to figure out offline progress)
 
 };
 
@@ -140,7 +144,7 @@ var upgrade ={
         "loosechange.PNG",
         "redfinger.PNG",
         "potato.PNG",
-        "stickyfingers.png",
+        "stickyfingers.PNG",
         "stinkeye.png"
     ],
     type:[
@@ -413,9 +417,13 @@ function saveGame(){
         buildingIncome: building.income,
         buildingCost: building.cost,
         upgradePurchased: upgrade.purchased,
+<<<<<<< HEAD
         achievementAwarded: achievement.awarded,
         secretsFound: secret.activated,
         timeOfQuit: new Date()
+=======
+        achievementAwarded: achievement.awarded
+>>>>>>> parent of 577a429 (Trying to figure out offline progress)
     };
     localStorage.setItem("gameSave", JSON.stringify(gameSave));
 }
@@ -457,6 +465,7 @@ function loadGame(){
                 
             }
         }
+<<<<<<< HEAD
         if(typeof savedGame.secretsFound !== "undefined"){
             for (let index = 0; index < savedGame.secretsFound.length; index++) {
                 secret.activated[index] = savedGame.secretsFound[index];
@@ -472,6 +481,8 @@ function loadGame(){
             console.log("Gone for "+ secondsSinceOnline+ " seconds");
             Game.currentTimeUpdate(secondsSinceOnline);
         }
+=======
+>>>>>>> parent of 577a429 (Trying to figure out offline progress)
     }
 }
 
