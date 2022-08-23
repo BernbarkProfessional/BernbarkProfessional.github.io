@@ -26,7 +26,7 @@ for (let index = 0; index < tableDataButton.length; index++) {
 
 }   */
 
-var Game = {
+const Game = {
   gold: 0,
   totalGold: 0,
   goldEarnedThisRun: 0,
@@ -46,7 +46,7 @@ var Game = {
   },
 
   getScorePerSecond: function () {
-    var scorePerSecond = 0;
+    let scorePerSecond = 0;
     for (i = 0; i < building.name.length; i++) {
       scorePerSecond += building.income[i] * building.count[i];
     }
@@ -69,7 +69,7 @@ var Game = {
   },
 };
 
-var building = {
+const building = {
   name: [
     "Old Couch:",
     "Cracked TV:",
@@ -145,7 +145,7 @@ var building = {
 
 // Create a section for upgrades with odd attributes, since current upgrades can only handle straight multipliers
 
-var upgrade = {
+const upgrade = {
   name: [
     "Loose Change:",
     "Red Fingers:",
@@ -331,7 +331,7 @@ var upgrade = {
   },
 };
 
-var achievement = {
+const achievement = {
   name: ["Not So Idle, Guy", "Get More Couches", "Secret Tip"],
   id: ["click100", "couch25", "secrettip"],
   description: [
@@ -352,7 +352,7 @@ var achievement = {
   },
 };
 
-var secret = {
+const secret = {
   name: ["Secret Tip:"],
   description: [
     "Good job finding me! The first time you click this button, receive 10000 in cold hard cash!",
@@ -364,7 +364,7 @@ var secret = {
   },
 };
 
-var prestige = {
+const prestige = {
   // the currency we're using
   idlePoints: 0,
   // number of times we have restarted
@@ -390,7 +390,7 @@ var prestige = {
   },
 };
 
-var prestigeUpgrades = {
+const prestigeUpgrades = {
   name: [],
   description: [],
   effect: [],
@@ -401,7 +401,7 @@ var prestigeUpgrades = {
   },
 };
 
-var display = {
+const display = {
   updateScore: function () {
     let commaSeparatedNumber = Game.gold.toLocaleString("en-US");
     document.getElementById("gold").innerHTML =
@@ -571,7 +571,7 @@ function secretTipEnding() {
 
 function resetGame() {
   //if(confirm("Are you sure you wish to reset all of your progress?")){
-  var gameSave = {};
+  const gameSave = {};
   localStorage.setItem("gameSave", JSON.stringify(gameSave));
   location.reload();
   //}
@@ -590,7 +590,7 @@ function resetGame() {
     totalBuildingsBuilt: 0,
  */
 function saveGame() {
-  var gameSave = {
+  const gameSave = {
     gold: Game.gold,
     totalGold: Game.totalGold,
     goldEarnedThisRun: Game.goldEarnedThisRun,
@@ -613,7 +613,7 @@ function saveGame() {
 }
 
 function loadGame() {
-  var savedGame = JSON.parse(localStorage.getItem("gameSave"));
+  const savedGame = JSON.parse(localStorage.getItem("gameSave"));
   if (localStorage.getItem("gameSave") !== null) {
     if (typeof savedGame.gold !== "undefined") Game.gold = savedGame.gold;
     if (typeof savedGame.totalGold !== "undefined")
@@ -667,11 +667,11 @@ function loadGame() {
       }
     }
     if (typeof savedGame.timeOfQuit !== "undefined") {
-      var currentTime = new Date();
-      var currentTimeInSeconds = currentTime.getTime() / 1000;
-      var quitTime = new Date(savedGame.timeOfQuit);
-      var quitTimeInSeconds = quitTime.getTime() / 1000;
-      var secondsSinceOnline = currentTimeInSeconds - quitTimeInSeconds;
+      const currentTime = new Date();
+      const currentTimeInSeconds = currentTime.getTime() / 1000;
+      const quitTime = new Date(savedGame.timeOfQuit);
+      const quitTimeInSeconds = quitTime.getTime() / 1000;
+      const secondsSinceOnline = currentTimeInSeconds - quitTimeInSeconds;
       console.log("Gone for " + secondsSinceOnline + " seconds");
       Game.currentTimeUpdate(secondsSinceOnline);
     }
@@ -735,19 +735,19 @@ setInterval(function () {
 }, 1000);
 
 // Get the modal
-var modal = document.getElementById("myModal");
+const modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var statsbtn = document.getElementById("stats");
+const statsbtn = document.getElementById("stats");
 
 // Get the button that opens Prestige modal
-var prestigebtn = document.getElementById("prestige");
+const prestigebtn = document.getElementById("prestige");
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+const span = document.getElementsByClassName("close")[0];
 
 // Get the content of the modal so I can inject HTML into it with data from our JS objects
-var modContent = document.querySelector(".modal-content");
+const modContent = document.querySelector(".modal-content");
 
 function createStatsPage() {
   modContent.innerHTML =
