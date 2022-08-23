@@ -33,14 +33,19 @@ for (let index = 0; index < tableDataButton.length; index++) {
 var Game = {
     gold: 0,
     totalGold: 0,
+    goldEarnedThisRun: 0,
     totalClicks: 0,
+    clicksThisRun: 0,
     clickValue: 1,
     version: 0.001,
+    secondsPlayedThisRun: 0,
     totalSecondsPlayed: 0,
+    totalBuildingsBuilt: 0,
 
     addToGold: function(amount){
         this.gold += amount;
         this.totalGold += amount;
+        this.goldEarnedThisRun += amount;
         display.updateScore();
     },
 
@@ -50,12 +55,22 @@ var Game = {
             scorePerSecond += building.income[i] * building.count[i];
         }
         this.totalSecondsPlayed++;
+        this.secondsPlayedThisRun++;
         return scorePerSecond;
     },
 
     currentTimeUpdate: function(seconds){
         this.addToGold(Math.ceil(seconds * this.getScorePerSecond()));
     },
+
+    // When we prestige
+    resetGame: function(){
+        this.gold = 0;
+        this.clickValue = 1;
+        this.secondsPlayedThisRun = 0;
+        this.goldEarnedThisRun = 0;
+        this.clicksThisRun = 0;
+    }
 
 };
 
@@ -88,6 +103,16 @@ var building = {
         0,
         0
     ],
+    // Same as income, used to initialize during prestige
+    baseIncome:[
+        1,
+        10,
+        100,
+        400,
+        2000,
+        5000,
+        10000
+    ],
     income:[
         1,
         10,
@@ -96,6 +121,16 @@ var building = {
         2000,
         5000,
         10000
+    ],
+    // Same as cost, used to initialize cost during prestige
+    baseCost:[
+        20,
+        100,
+        10000,
+        50000,
+        500000,
+        10000000,
+        50000000
     ],
     cost:[
         20,
@@ -134,7 +169,7 @@ var building = {
             display.updateScore();
             display.updateShop();
             display.updateUpgrades();
-            
+            Game.totalBuildingsBuilt++;
         }
     },
 
@@ -145,6 +180,14 @@ var building = {
             
         }
         return sum;
+    },
+
+    resetBuildings: function(){
+        for (let index = 0; index < building.baseCost.length; index++) {
+            building.cost[index] = building.baseCost[index];
+            building.income[index] = building.baseIncome[index];
+            building.count[index] = 0;
+        }
     }
 };
 
@@ -249,6 +292,24 @@ var upgrade ={
         // Click Section
         "click"
     ],
+    // used to initialize for Prestige
+    baseCost:[
+        300,
+        500,
+        10000,
+        10000,
+        200000,
+        // Couch Section
+        100000,
+        10000000,
+        500000000,
+        // TV Section
+        75000,
+        500000,
+        35000000,
+        // Click Section
+        100000
+    ],
     cost:[
         300,
         500,
@@ -328,7 +389,7 @@ var upgrade ={
                 display.updateScore();
                 
             }
-            else if(this.type[index] == "click" && Game.totalClicks >= this.requirement[index]){
+            else if(this.type[index] == "click" && Game.clicksThisRun >= this.requirement[index]){
                 Game.gold -= this.cost[index];
                 Game.clickValue *= this.bonus[index];
                 this.purchased[index] = true;
@@ -339,6 +400,14 @@ var upgrade ={
             console.log("purchased "+this.name[index]);
         }
         console.log("can't purchase "+this.name[index]);
+    },
+
+    resetUpgrades: function(){
+        for (let index = 0; index < upgrade.baseCost.length; index++) {
+            upgrade.cost[index] = upgrade.baseCost[index];
+            this.purchased[index] = false;
+            this.spawned[index] = false;
+        }
     }
 };
 
@@ -405,7 +474,56 @@ var secret = {
     activate: function(index){
         this.activated[index] = true;
     }
-}
+};
+
+var prestige = {
+    // the currency we're using
+    idlePoints: 0,
+    // number of times we have restarted
+    timesPrestiged: 0,
+
+    // multiplier to prestige currency gain, high number = better prestige gains
+    prestigeMult: .0000001,
+
+    // set whether we have prestiged or not for the first time
+    prestiged: false,
+
+    prestige: function(){
+        let idleCoins = document.getElementById('idleCoins');
+        this.prestiged = true;
+        this.timesPrestiged++;
+        this.idlePoints = Math.floor(Game.goldEarnedThisRun * this.prestigeMult);
+        idleCoins.innerHTML = "Idle Coins: "+this.idlePoints;
+        Game.resetGame();
+        building.resetBuildings();
+        upgrade.resetUpgrades();
+        display.updateShop();
+        saveGame();
+    }
+};
+
+
+
+var prestigeUpgrades = {
+    name:[
+
+    ],
+    description:[
+
+    ],
+    effect:[
+
+    ],
+    cost:[
+
+    ],
+    purchased:[
+
+    ],
+    activate: function(index){
+        this.activated[index] = true;
+    }
+};
 
 var display = {
     
@@ -444,7 +562,7 @@ var display = {
                 if(upgrade.type[i] == "building" && building.count[upgrade.buildingIndex[i]] >= upgrade.requirement[i]){
                     document.querySelector('.upgrade-sidebar').innerHTML += '<img id="'+upgrade.id[i]+'" src="./Resources/Images/'+upgrade.image[i]+'" onclick="upgrade.purchase('+i+')" >';
                 }
-                else if (upgrade.type[i] == "click" && Game.totalClicks >= upgrade.requirement[i]){
+                else if (upgrade.type[i] == "click" && Game.clicksThisRun >= upgrade.requirement[i]){
                     document.querySelector('.upgrade-sidebar').innerHTML += '<img id="'+upgrade.id[i]+'" src="./Resources/Images/'+upgrade.image[i]+'" onclick="upgrade.purchase('+i+')" >';
                 }
                 
@@ -530,13 +648,31 @@ function resetGame(){
     //}
 }
 
+
+/**
+ * gold: 0,
+    totalGold: 0,
+    goldEarnedThisRun: 0,
+    totalClicks: 0,
+    clicksThisRun: 0,
+    clickValue: 1,
+    version: 0.001,
+    secondsPlayedThisRun: 0,
+    totalSecondsPlayed: 0,
+    totalBuildingsBuilt: 0,
+ */
 function saveGame(){
     var gameSave = {
         gold: Game.gold,
         totalGold: Game.totalGold,
+        goldEarnedThisRun: Game.goldEarnedThisRun,
         totalClicks: Game.totalClicks,
+        clicksThisRun: Game.clicksThisRun,
         clickValue: Game.clickValue,
+        secondsPlayedThisRun: Game.secondsPlayedThisRun,
+        totalSecondsPlayed: Game.totalSecondsPlayed,
         version: Game.version,
+        totalBuildingsBuilt: Game.totalBuildingsBuilt,
         buildingCount: building.count,
         buildingIncome: building.income,
         buildingCost: building.cost,
@@ -553,8 +689,13 @@ function loadGame(){
     if(localStorage.getItem('gameSave') !== null){
         if(typeof savedGame.gold !== "undefined") Game.gold = savedGame.gold;
         if(typeof savedGame.totalGold !== "undefined") Game.totalGold = savedGame.totalGold;
+        if(typeof savedGame.goldEarnedThisRun !== "undefined") Game.goldEarnedThisRun = savedGame.goldEarnedThisRun;
         if(typeof savedGame.totalClicks !== "undefined") Game.totalClicks = savedGame.totalClicks;
+        if(typeof savedGame.clicksThisRun !== "undefined") Game.clicksThisRun = savedGame.clicksThisRun;
         if(typeof savedGame.clickValue !== "undefined") Game.clickValue = savedGame.clickValue;
+        if(typeof savedGame.secondsPlayedThisRun !== "undefined") Game.secondsPlayedThisRun = savedGame.secondsPlayedThisRun;
+        if(typeof savedGame.totalSecondsPlayed !== "undefined") Game.totalSecondsPlayed = savedGame.totalSecondsPlayed;
+        if(typeof savedGame.totalBuildingsBuilt !== "undefined") Game.totalBuildingsBuilt = savedGame.totalBuildingsBuilt;
         if(typeof savedGame.buildingCount !== "undefined"){
             for (let index = 0; index < savedGame.buildingCount.length; index++) {
                 building.count[index] = savedGame.buildingCount[index];
@@ -623,12 +764,12 @@ setInterval(function() {
     display.updateScore();
     display.updateUpgrades();
     display.updateAchievements();
-    createStatsPage();
     
 },5000);
 
 document.getElementById("clicker").addEventListener("click", function(){
     Game.totalClicks++;
+    Game.clicksThisRun++;
     Game.addToGold(Game.clickValue);
 }, false);
 
@@ -645,7 +786,7 @@ window.onload = function(){
 
 setInterval(function(){
     Game.addToGold(Game.getScorePerSecond());
-    Game.addToGold(Game.getScorePerSecond());
+    
     display.updateScore();
     
 },1000)
@@ -656,6 +797,9 @@ var modal = document.getElementById("myModal");
 // Get the button that opens the modal
 var statsbtn = document.getElementById("stats");
 
+// Get the button that opens Prestige modal
+var prestigebtn = document.getElementById("prestige");
+
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
@@ -663,13 +807,26 @@ var span = document.getElementsByClassName("close")[0];
 var modContent = document.querySelector('.modal-content');
 
 function createStatsPage(){
-    modContent.innerHTML = '<span class="close"></span><p><strong>Total Gold Earned: $'+commafyNumber(Game.totalGold)+'<p><strong>Total Buildings: <strong>'+commafyNumber(building.getTotalBuildings())+'</p><p><strong>Total Clicks: <strong>'+commafyNumber(Game.totalClicks);
+    modContent.innerHTML = '<span class="close"></span><p><strong>Total Gold Earned: $'+commafyNumber(Game.totalGold)+'<p><strong>Gold Earned This Run: $'+commafyNumber(Game.goldEarnedThisRun)+' <p><strong>Total Buildings: </strong>'+Game.totalBuildingsBuilt+'</p><p><strong>Buildings Bought This Run: </strong>'+ commafyNumber(building.getTotalBuildings())+ '</p><p><strong>Total Clicks: <strong>'+commafyNumber(Game.totalClicks);
+    modContent.innerHTML += '<p><strong>Clicks This Run: '+commafyNumber(Game.clicksThisRun)+'<p><strong>';
+    // Keep adding stats line by line because the long lines of HTML are hard to read/manipulate
     
+}
+
+function changeModalToPrestigeScreen(){
+    modContent.innerHTML = '<span class="close"><button onclick="prestige.prestige()">Prestige Now?</button></span>'
 }
 
 // When the user clicks on the button, open the modal
 statsbtn.onclick = function() {
-  modal.style.display = "block";
+    createStatsPage();
+    modal.style.display = "block";
+}
+
+// Open prestige shop using same modal
+prestigebtn.onclick = function(){
+    changeModalToPrestigeScreen();
+    modal.style.display ="block";
 }
 
 // When the user clicks on <span> (x), close the modal
