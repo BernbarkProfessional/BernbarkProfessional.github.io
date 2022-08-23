@@ -27,8 +27,9 @@ for (let index = 0; index < tableDataButton.length; index++) {
 
 }   */
 
-    
-
+const buildingTooltips = [];
+const upgradeTooltips = [];
+const achievementTooltips = [];
 
 var Game = {
     gold: 0,
@@ -160,7 +161,16 @@ var building = {
         'remote',
         'snack'
     ],
-
+    // in order to track the second table data, I am making a second ID for it
+    dataID:[
+        'oldcouchData',
+        'crackedtvData',
+        'coffeetableData',
+        'dimmerswitchData',
+        'consoleData',
+        'remoteData',
+        'snackData'
+    ],
     purchase: function(index){
         if(Game.gold >= this.cost[index]){
             Game.gold -= this.cost[index];
@@ -170,6 +180,7 @@ var building = {
             display.updateShop();
             display.updateUpgrades();
             Game.totalBuildingsBuilt++;
+            refreshTooltips();
         }
     },
 
@@ -527,6 +538,7 @@ var prestigeUpgrades = {
 
 var display = {
     
+    
     updateScore: function() {
         let commaSeparatedNumber = Game.gold.toLocaleString('en-US');
         document.getElementById("gold").innerHTML = "Gold: $" +commaSeparatedNumber;
@@ -536,16 +548,31 @@ var display = {
         document.getElementById("clickPower").innerHTML = "Gold per click: " +Game.clickValue;
         
     },
-    updateShop: function() {
+    createShop:function(){
         
-        document.querySelector('.shopContainer').innerHTML = "";
+        const shopContainer = document.getElementById('#shopContainer');
+        shopContainer.innerHTML = '';
         for(i=0; i < building.name.length; i++){
             let individualBuildingIncome = building.income[i] * building.count[i];
-            document.querySelector('.shopContainer').innerHTML += '<td id="'+building.id[i]+'" style="background-image: url(./Resources/Images/'+building.image[i]+'); background-size: cover; width: 180px; background-repeat: no-repeat;"></td><td onclick="building.purchase('+i+')"><p>'+building.name[i]+'</p><p>$'+commafyNumber(building.cost[i])+'</p><p><strong>Owned: </strong>'+building.count[i]+'</p><h3>'+building.description[i]+'</h3><p><strong>Income: </strong>$'+individualBuildingIncome+'/sec</p></td></span>'
+            shopContainer.innerHTML += '<td id="'+building.id[i]+'" style="background-image: url(./Resources/Images/'+building.image[i]+'); background-size: cover; width: 180px; background-repeat: no-repeat;"></td><td id="'+building.dataID[i]+'" onclick="building.purchase('+i+')"><p>'+building.name[i]+'</p><p>$'+commafyNumber(building.cost[i])+'</p><p><strong>Owned: </strong>'+building.count[i]+'</p><h3>'+building.description[i]+'</h3><p><strong>Income: </strong>$'+individualBuildingIncome+'/sec</p></td></span>';
+            
+            
+        
         }
+           
+    },
+    updateShop: function() {
+        
+        for(i=0; i < building.name.length; i++){
+            let element = document.getElementById(building.dataID[i]);
+            let individualBuildingIncome = building.income[i] * building.count[i];
+            element.innerHTML ='';
+            element.innerHTML += '<td onclick="building.purchase('+i+')"><p>'+building.name[i]+'</p><p>$'+commafyNumber(building.cost[i])+'</p><p><strong>Owned: </strong>'+building.count[i]+'</p><h3>'+building.description[i]+'</h3><p><strong>Income: </strong>$'+individualBuildingIncome+'/sec</p></td></span>'
+            
+                    }
         // When shop items get purchased, the content of the tooltip
         // has changed and must be created again
-        createTooltips();
+        //refreshTooltips();
     },
     updateUpgrades: function() {
         document.querySelector('.upgradeContainer').innerHTML = "";
@@ -571,7 +598,7 @@ var display = {
         }
         // When shop items get purchased, the content of the tooltip
         // has changed and must be created again
-        createTooltips();
+        //refreshTooltips();
     },
     updateAchievements: function(){
         document.querySelector('.achievementContainer').innerHTML = "";
@@ -583,52 +610,53 @@ var display = {
         }
         // When shop items get purchased, the content of the tooltip
         // has changed and must be created again
-        createTooltips();
+        
     }
 };
 
 function createTooltips(){
+    
     for (let index = 0; index < building.name.length; index++) {
-        tippy('#'+building.id[index],{
-            content: building.name[index] +" $"+building.cost[index] ,    
+        let toolTip = tippy('#'+building.id[index],{
+            content: building.name[index] +" $"+building.cost[index],
+               
         }); 
+        console.log('creating building tooltip ');
+        buildingTooltips[index] = toolTip;
     }
     for(let index = 0; index < upgrade.name.length; index++){
-        tippy('#'+upgrade.id[index],{
+        let toolTip =tippy('#'+upgrade.id[index],{
             
             content: upgrade.name[index] + ' $'+upgrade.cost[index]+'\r\n'+upgrade.effect[index] +'\r\n' + upgrade.description[index],
             theme: 'tomato',
         });
+        upgradeTooltips[index] = toolTip;
     }
-    for(let index = 0; index < upgrade.name.length; index++){
-        tippy('#'+achievement.id[index],{
+    for(let index = 0; index < achievement.name.length; index++){
+        let toolTip = tippy('#'+achievement.id[index],{
             content: achievement.name[index] + '\r\n' + achievement.description[index]
         });
+        achievementTooltips[index] = toolTip;
     }
-    tippy('#tippySec',{
-        content: '<strong id="strongTip" >NO!</strong>',
-        interactive: 'true',
-        placement: 'right',
-        allowHTML: true
-    });
-    tippy('#strongTip',{
-        content: '<p id="strangeTip" >MAYBE?</p>',
-        allowHTML: true,
-        placement: 'bottom',
-        interactive: 'true'
-    })
-    tippy('#strangeTip',{
-        content: '<p id="ridiculousTip" >Okay fine...</p>',
-        allowHTML: true,
-        placement: 'bottom',
-        interactive: 'true'
-    })
-    tippy('#ridiculousTip',{
-        content: '<button onclick="secretTipEnding();">Don\'t Click Me</button>',
-        placement: 'right',
-        allowHTML: true,
-        interactive: 'true'
-    })
+    
+}
+
+function refreshTooltips(){
+    console.log('tooltips refreshed: buildingtooltips length ='+buildingTooltips.length);
+    for (let index = 0; index < buildingTooltips.length; index++) {
+        
+        //let toolTip = buildingTooltips[index][0];
+        //toolTip.setContent('Hello');
+        buildingTooltips[index][0].setContent(building.name[index] + " $" + building.cost[index]);
+    }
+    /*for (let index = 0; index < building.name.length; index++) {
+        tippy('#'+building.id[index],{
+            content: building.name[index] +" $"+building.cost[index],
+               
+        }); 
+        console.log('creating building tooltip ');
+        
+    }*/
 }
 
 function secretTipEnding(){
@@ -778,10 +806,11 @@ window.onload = function(){
     display.updateScore();
     display.updateUpgrades();
     display.updateAchievements();
-    display.updateShop();
+    display.createShop();
+    
     createTooltips();
     createStatsPage();
-    document.title = "Idle Guy"
+    document.title = "Idle Guy";
 }
 
 setInterval(function(){
