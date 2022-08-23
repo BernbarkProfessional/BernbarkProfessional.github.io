@@ -1,6 +1,10 @@
 {
   "name": "bernbarkprofessional.github.io",
   "packageManager": "yarn@3.2.2",
+  "scripts": {
+    "dev": "wds --node-module --open",
+    "dev:watch": "wds --node-module --open --watch"
+  },
   "dependencies": {
     "@web/dev-server": "^0.1.34",
     "tippy.js": "^6.3.7"
