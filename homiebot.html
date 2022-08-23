@@ -53,7 +53,7 @@
                             <div class="title-dark">Saved to a Mongo DB</div>
                         </div>
                         <div class="parallax__layer parallax__layer--end">
-                            <div class="title">Battles, gambling, user-driven profile management, and more!</div>
+                            <div onclick="earnThirdSecret()" class="title">Battles, gambling, user-driven profile management, and more!</div>
                             <a href="https://github.com/Bernbark/HomieBot">Link to GitHub code</a>
                         </div>
                     </div>
@@ -84,10 +84,19 @@
                 <!-- Loaded by bottombar.html in script.js -->
             </div>
         </div>
+        
 		<script src="https://code.jquery.com/jquery-1.6.2.min.js"></script>
         <script src="archive_scripts.js"></script>
 	</body>
-    
+    <script>
+        function earnThirdSecret(){
+            var checkedCode ={
+                checkedCode: true
+            };
+            localStorage.setItem("checkedCode", JSON.stringify(checkedCode));
+            console.log('stored');
+        }
+    </script>
     <script async src="script.js" defer="defer"></script>
     
 </html>

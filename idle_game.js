@@ -1,4 +1,9 @@
-
+/**
+ * 
+ * Author: Kory Stennett
+ * 
+ * Notes: I think that I need to remove the Upgrade sidebar
+ */
 /**const tableDataButton = document.querySelectorAll('td');
 for (let index = 0; index < tableDataButton.length; index++) {
     let element = tableDataButton[index];
@@ -31,6 +36,94 @@ const buildingTooltips = [];
 const upgradeTooltips = [];
 const achievementTooltips = [];
 
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var statsbtn = document.getElementById("stats");
+
+// Get the button that opens Prestige modal
+var prestigebtn = document.getElementById("prestige");
+
+// Button that opens Upgrade modal
+var upgradeBtn = document.getElementById("upgradeBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// Get the content of the modal so I can inject HTML into it with data from our JS objects
+const modContent = document.querySelector('.modal-content');
+
+function createStatsPage(){
+    modContent.innerHTML = '<span class="close"></span><p><strong>Total Gold Earned: $'+commafyNumber(Game.totalGold)+'<p><strong>Gold Earned This Run: $'+commafyNumber(Game.goldEarnedThisRun)+' <p><strong>Total Buildings: </strong>'+Game.totalBuildingsBuilt+'</p><p><strong>Buildings Bought This Run: </strong>'+ commafyNumber(building.getTotalBuildings())+ '</p><p><strong>Total Clicks: <strong>'+commafyNumber(Game.totalClicks);
+    modContent.innerHTML += '<p><strong>Clicks This Run: '+commafyNumber(Game.clicksThisRun)+'<p><strong>';
+    // Keep adding stats line by line because the long lines of HTML are hard to read/manipulate
+    
+}
+
+function changeModalToPrestigeScreen(){
+    modContent.innerHTML = '<span class="close"><button onclick="prestige.prestige()">Prestige Now?</button></span>'
+}
+
+function changeModalToUpgradeScreen(){
+    
+    modContent.innerHTML = '<span class="close">';
+    for(i=0; i< upgrade.name.length; i++){
+        
+        // Create a section for already purchased upgrades to be reviewed
+        if(upgrade.purchased[i]){
+            
+            modContent.innerHTML += '<table class="unselectable upgradeContainer"><tr><td class="upgradeContainer" id="'+upgrade.id[i]+'"><img style="padding: 5px; object-fit: center; opacity: 0.3;" src="./Resources/Images/'+upgrade.image[i]+'"</td><td style="opacity:0.3;"><h3>'+upgrade.name[i]+'</h3><h5>'+upgrade.effect[i]+'</h5><h5 class="emphasized">'+upgrade.description[i]+'</h5></td></tr></table>';
+        }
+        else {
+            upgrade.spawned[i] = true;
+            if(upgrade.type[i] == "building" && building.count[upgrade.buildingIndex[i]] >= upgrade.requirement[i]){
+                modContent.innerHTML += '<table class="unselectable upgradeContainer"><tr><td  id="'+upgrade.id[i]+'"><img onclick="upgrade.purchase('+i+')" style="padding: 5px; object-fit: center; " src="./Resources/Images/'+upgrade.image[i]+'"</td><td ><h3>'+upgrade.name[i]+'</h3><h5>'+upgrade.effect[i]+'</h5><h5 class="emphasized">'+upgrade.description[i]+'</h5></td></tr></table>';
+            }
+            else if (upgrade.type[i] == "click" && Game.clicksThisRun >= upgrade.requirement[i]){
+                modContent.innerHTML += '<table class="unselectable upgradeContainer"><tr><td onclick="upgrade.purchase('+i+')" id="'+upgrade.id[i]+'"><img onclick="upgrade.purchase('+i+')"style="float: left; padding: 5px; object-fit: center; " src="./Resources/Images/'+upgrade.image[i]+'"</td><td ><h3>'+upgrade.name[i]+'</h3><h5>'+upgrade.effect[i]+'</h5><h5 class="emphasized">'+upgrade.description[i]+'</h5></td></tr></table>';
+            }
+            
+        }
+        
+    }
+    modContent.innerHTML += '</span>';
+}
+
+// When the user clicks on the button, open the modal
+statsbtn.onclick = function() {
+    createStatsPage();
+    modal.style.display = "block";
+}
+
+// Open prestige shop using same modal
+prestigebtn.onclick = function(){
+    changeModalToPrestigeScreen();
+    modal.style.display ="block";
+}
+
+// Open upgrade screen with same modal
+upgradeBtn.onclick = function(){
+    changeModalToUpgradeScreen();
+    modal.style.display ="block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+function commafyNumber(number){
+    return number.toLocaleString('en-US');
+}
+
 var Game = {
     gold: 0,
     totalGold: 0,
@@ -42,12 +135,23 @@ var Game = {
     secondsPlayedThisRun: 0,
     totalSecondsPlayed: 0,
     totalBuildingsBuilt: 0,
+    multiplierClickFromIncome: 0,
+    globalIncomeBonus: 1,
+
 
     addToGold: function(amount){
+        amount = amount * this.globalIncomeBonus;
         this.gold += amount;
         this.totalGold += amount;
         this.goldEarnedThisRun += amount;
         display.updateScore();
+    },
+
+    getClickValue: function(){
+        let value = this.clickValue * (1+(this.getScorePerSecond() * this.multiplierClickFromIncome));
+        
+        return Math.ceil(value);
+
     },
 
     getScorePerSecond: function(){
@@ -178,9 +282,11 @@ var building = {
             this.cost[index] = Math.round(this.cost[index] * 1.145);
             display.updateScore();
             display.updateShop();
-            display.updateUpgrades();
+            //display.updateUpgrades();
             Game.totalBuildingsBuilt++;
-            refreshTooltips();
+            refreshBuildingTooltips();
+            handleAchievementTooltips();
+            //handleUpgradeTooltips();
         }
     },
 
@@ -389,28 +495,27 @@ var upgrade ={
     ],
     
     purchase: function(index){
-        console.log("inside purchase function");
+        
         if(!this.purchased[index] && Game.gold >= this.cost[index]){
             
             if(this.type[index] == "building" && building.count[this.buildingIndex[index]] >= this.requirement[index]){
                 Game.gold -= this.cost[index];
                 building.income[this.buildingIndex[index]] *= this.bonus[index];
                 this.purchased[index] = true;
-                display.updateUpgrades();
-                display.updateScore();
+                
                 
             }
             else if(this.type[index] == "click" && Game.clicksThisRun >= this.requirement[index]){
                 Game.gold -= this.cost[index];
                 Game.clickValue *= this.bonus[index];
                 this.purchased[index] = true;
-                display.updateUpgrades();
-                display.updateScore();
+                
                 
             }
-            console.log("purchased "+this.name[index]);
+            display.updateScore();
+            changeModalToUpgradeScreen();
         }
-        console.log("can't purchase "+this.name[index]);
+        
     },
 
     resetUpgrades: function(){
@@ -426,64 +531,129 @@ var achievement = {
     name: [
         "Not So Idle, Guy",
         "Get More Couches",
-        "Secret Tip"
+        // Secrets shhhhh
+        "Secret Tip",
+        "Visited Tour",
+        "What Up Homie?"
     ],
     id:[
         "click100",
         "couch25",
-        "secrettip"
+        // S
+        "secrettip",
+        "visitedtour",
+        "checkedCode"
     ],
     description: [
         "Click 100 times!",
-        "I don't see why you don't just get even more of them",
-        "You found the secret tooltip!"
+        "I don't see why you don't just get even more of them. Receive a flat +10 bonus gold income from couches.",
+        "Good job finding me! The first time you click this button, receive 10000 in cold hard cash! And a 1% bonus to global income.",
+        "Thanks for visiting the tour! It means a lot to me that people are willing to check out my work! Add a 1% bonus to global income.",
+        "What did you think of that older project? Kind of messy looking back...Add a 1% bonus to global income."
+        
     ],
     image:[
         "click100.PNG",
         "couch25.PNG",
-        "secrettip.png"
+        "secrettip.png",
+        "tourchamp.PNG",
+        "checkedCode.PNG"
     ],
-    // building, click, goldEarned, etc.
+    // what type of building, click, goldEarned, etc needs to be earned.
     type:[
         "click",
         "building",
+        "secret",
+        "secret",
         "secret"
     ],
     requirement:[
         100,
         25,
+        1,
+        1,
         1
+    ],
+
+    // what type of building, click etc. that needs to be rewarded
+    bonusType:[
+        "clickPercentFromIncome",
+        "buildingFlatRate",
+        "globalIncomePercentBonus",
+        "globalIncomePercentBonus",
+        "globalIncomePercentBonus"
+    ],
+    bonusAmount:[
+        .02,
+        10,
+        .01,
+        .01,
+        .01
     ],
     // -1 if it's not a building, otherwise go with the building index we are referring to
     objectIndex:[
         -1,
         0,
+        -1,
+        -1,
         -1
     ],
     awarded:[
         false,
         false,
+        false,
+        false,
         false
     ],
+
+    prestigeAchievements: function(){
+        for (let index = 0; index < this.name.length; index++) {
+            if(this.awarded[index] == true){
+                this.earn(index);
+            }
+            
+        }
+    },
     
     earn: function(index){
+        
+        
+        if(this.bonusType[index] == "clickPercentFromIncome"){
+            Game.multiplierClickFromIncome += this.bonusAmount[index];
+        }
+        else if(this.bonusType[index] == "buildingFlatRate"){
+            building.income[this.objectIndex[index]] += this.bonusAmount[index];
+            display.updateShop();
+        }
+        else if(this.bonusType[index] == "globalIncomePercentBonus"){
+            Game.globalIncomeBonus += this.bonusAmount[index];
+        }
         this.awarded[index] = true;
+        
+        
     }
 };
 
 var secret = {
     name:[
-        "Secret Tip:"
-    ],
-    description:[
-        "Good job finding me! The first time you click this button, receive 10000 in cold hard cash!"
+        "Secret Tip:",
+        "World Tour Champ:",
+        "What Up Homie?"
     ],
     activated:[
+        false,
+        false,
         false
+    ],
+    achievementIndex:[
+        2,
+        3,
+        4
     ],
 
     activate: function(index){
         this.activated[index] = true;
+        achievement.earn(this.achievementIndex[index]);
     }
 };
 
@@ -509,6 +679,7 @@ var prestige = {
         building.resetBuildings();
         upgrade.resetUpgrades();
         display.updateShop();
+        achievement.prestigeAchievements();
         saveGame();
     }
 };
@@ -545,7 +716,7 @@ var display = {
         let goldPerSecond = Game.getScorePerSecond();
         commaSeparatedNumber = goldPerSecond.toLocaleString('en-US');
         document.getElementById("goldPerSecond").innerHTML = "Gold per second: " +commaSeparatedNumber;
-        document.getElementById("clickPower").innerHTML = "Gold per click: " +Game.clickValue;
+        document.getElementById("clickPower").innerHTML = "Gold per click: " +Game.getClickValue();
         
     },
     createShop:function(){
@@ -574,32 +745,7 @@ var display = {
         // has changed and must be created again
         //refreshTooltips();
     },
-    updateUpgrades: function() {
-        document.querySelector('.upgradeContainer').innerHTML = "";
-        document.querySelector('.upgrade-sidebar').innerHTML = '';
-        for(i=0; i< upgrade.name.length; i++){
-            
-            // Create a section for already purchased upgrades to be reviewed
-            if(upgrade.purchased[i]){
-                
-                document.querySelector('.upgradeContainer').innerHTML += '<tr><td id="'+upgrade.id[i]+'"><img style="padding: 5px; object-fit: center; opacity: 0.5;" src="./Resources/Images/'+upgrade.image[i]+'"</td><td><h3>'+upgrade.name[i]+'</h3><h5>'+upgrade.effect[i]+'</h5><h5 class="emphasized">'+upgrade.description[i]+'</h5></td></tr>';
-            }
-            else {
-                upgrade.spawned[i] = true;
-                if(upgrade.type[i] == "building" && building.count[upgrade.buildingIndex[i]] >= upgrade.requirement[i]){
-                    document.querySelector('.upgrade-sidebar').innerHTML += '<img id="'+upgrade.id[i]+'" src="./Resources/Images/'+upgrade.image[i]+'" onclick="upgrade.purchase('+i+')" >';
-                }
-                else if (upgrade.type[i] == "click" && Game.clicksThisRun >= upgrade.requirement[i]){
-                    document.querySelector('.upgrade-sidebar').innerHTML += '<img id="'+upgrade.id[i]+'" src="./Resources/Images/'+upgrade.image[i]+'" onclick="upgrade.purchase('+i+')" >';
-                }
-                
-            }
-            
-        }
-        // When shop items get purchased, the content of the tooltip
-        // has changed and must be created again
-        //refreshTooltips();
-    },
+    
     updateAchievements: function(){
         document.querySelector('.achievementContainer').innerHTML = "";
         for (let index = 0; index < achievement.name.length; index++) {
@@ -614,6 +760,30 @@ var display = {
     }
 };
 
+function handleUpgradeTooltips(){
+    destroyUpgradeTooltips();
+    createUpgradeTooltips();
+    refreshUpgradeTooltips();
+}
+
+
+
+function createUpgradeTooltips(){
+    
+    for(let index = 0; index < upgrade.name.length; index++){
+        
+        
+        let toolTip =tippy('#'+upgrade.id[index],{
+            
+            content: upgrade.name[index] + ' $'+upgrade.cost[index]+'</br>'+upgrade.effect[index] +'\r\n' + upgrade.description[index],
+            allowHTML: true,
+            
+        });
+        
+        upgradeTooltips[index] = toolTip;
+    }
+}
+
 function createTooltips(){
     
     for (let index = 0; index < building.name.length; index++) {
@@ -621,50 +791,128 @@ function createTooltips(){
             content: building.name[index] +" $"+building.cost[index],
                
         }); 
-        console.log('creating building tooltip ');
+        
         buildingTooltips[index] = toolTip;
     }
-    for(let index = 0; index < upgrade.name.length; index++){
-        let toolTip =tippy('#'+upgrade.id[index],{
-            
-            content: upgrade.name[index] + ' $'+upgrade.cost[index]+'\r\n'+upgrade.effect[index] +'\r\n' + upgrade.description[index],
-            theme: 'tomato',
-        });
-        upgradeTooltips[index] = toolTip;
-    }
-    for(let index = 0; index < achievement.name.length; index++){
-        let toolTip = tippy('#'+achievement.id[index],{
-            content: achievement.name[index] + '\r\n' + achievement.description[index]
-        });
-        achievementTooltips[index] = toolTip;
-    }
+    createUpgradeTooltips();
+    createAchievementTooltips();
     
 }
 
-function refreshTooltips(){
-    console.log('tooltips refreshed: buildingtooltips length ='+buildingTooltips.length);
+function refreshBuildingTooltips(){
     for (let index = 0; index < buildingTooltips.length; index++) {
         
         //let toolTip = buildingTooltips[index][0];
         //toolTip.setContent('Hello');
         buildingTooltips[index][0].setContent(building.name[index] + " $" + building.cost[index]);
     }
-    /*for (let index = 0; index < building.name.length; index++) {
-        tippy('#'+building.id[index],{
-            content: building.name[index] +" $"+building.cost[index],
-               
-        }); 
-        console.log('creating building tooltip ');
+}
+
+function destroyUpgradeTooltips(){
+    for(let index = 0; index < upgradeTooltips.length; index++){ 
+        if(typeof(upgradeTooltips[index][0]) !== "undefined"){
+            upgradeTooltips[index][0].destroy();
+        }
+    }
+}
+
+function refreshUpgradeTooltips(){
+    for(let index = 0; index < upgradeTooltips.length; index++){
         
-    }*/
+        if(typeof(upgradeTooltips[index][0]) !== "undefined"){
+            
+            
+            
+            
+            upgradeTooltips[index][0].setContent(upgrade.name[index] + ' $'+upgrade.cost[index]+'</br>'+upgrade.effect[index] +'</br>' + upgrade.description[index]);
+            upgradeTooltips[index][0].setProps({
+                placement: 'top',
+                
+            });
+        }
+        //upgradeTooltips[index][0].destroy();
+    }
+}
+
+function handleAchievementTooltips(){
+    destroyAchievementTooltips();
+    createAchievementTooltips();
+    refreshAchievementTooltips();
+}
+
+function createAchievementTooltips(){
+    for(let index = 0; index < achievement.name.length; index++){
+        let toolTip = tippy('#'+achievement.id[index],{
+            appendTo: document.body,
+            
+            content: achievement.name[index] + '\r\n' + achievement.description[index]
+        });
+        achievementTooltips[index] = toolTip;
+    }
+}
+
+function destroyAchievementTooltips(){
+    for(let index = 0; index < achievementTooltips.length; index++){ 
+        if(typeof(achievementTooltips[index][0]) !== "undefined"){
+            achievementTooltips[index][0].destroy();
+        }
+    }
+}
+
+function refreshAchievementTooltips(){
+    for (let index = 0; index < achievementTooltips.length; index++) {
+        if(typeof(achievementTooltips[index][0]) !== "undefined"){
+            
+            
+            
+            
+            achievementTooltips[index][0].setContent(achievement.name[index] + '\r\n' + achievement.description[index]);
+            achievementTooltips[index][0].setProps({
+                placement: 'top',
+                
+            });
+        }
+        
+    }
+}
+
+// Shh it's a secret
+function refreshTooltips(){
+    tippy('#tippySec',{
+        content: '<strong id="strongTip" >NO!</strong>',
+        interactive: 'true',
+        placement: 'right',
+        allowHTML: true
+    });
+    tippy('#strongTip',{
+        content: '<p id="strangeTip" >MAYBE?</p>',
+        allowHTML: true,
+        placement: 'bottom',
+        interactive: 'true'
+    })
+    tippy('#strangeTip',{
+        content: '<p id="ridiculousTip" >Okay fine...</p>',
+        allowHTML: true,
+        placement: 'bottom',
+        interactive: 'true'
+    })
+    tippy('#ridiculousTip',{
+        content: '<button onclick="secretTipEnding();">Don\'t Click Me</button>',
+        placement: 'right',
+        allowHTML: true,
+        interactive: 'true'
+    })
+    
 }
 
 function secretTipEnding(){
     // 0 index is the tooltip secret
+    
     if(!secret.activated[0]){
         secret.activate(0);
         achievement.earn(2);
         Game.addToGold(10000);
+        display.updateAchievements();
     }
 }
 
@@ -707,7 +955,9 @@ function saveGame(){
         upgradePurchased: upgrade.purchased,
         achievementAwarded: achievement.awarded,
         secretsFound: secret.activated,
-        timeOfQuit: new Date()
+        timeOfQuit: new Date(),
+        multiplierClickFromIncome: Game.multiplierClickFromIncome,
+        globalIncomeBonus: Game.globalIncomeBonus
     };
     localStorage.setItem("gameSave", JSON.stringify(gameSave));
 }
@@ -724,6 +974,8 @@ function loadGame(){
         if(typeof savedGame.secondsPlayedThisRun !== "undefined") Game.secondsPlayedThisRun = savedGame.secondsPlayedThisRun;
         if(typeof savedGame.totalSecondsPlayed !== "undefined") Game.totalSecondsPlayed = savedGame.totalSecondsPlayed;
         if(typeof savedGame.totalBuildingsBuilt !== "undefined") Game.totalBuildingsBuilt = savedGame.totalBuildingsBuilt;
+        if(typeof savedGame.globalIncomeBonus !== "undefined") Game.globalIncomeBonus = savedGame.globalIncomeBonus;
+        if(typeof savedGame.multiplierClickFromIncome !== "undefined") Game.multiplierClickFromIncome = savedGame.multiplierClickFromIncome;
         if(typeof savedGame.buildingCount !== "undefined"){
             for (let index = 0; index < savedGame.buildingCount.length; index++) {
                 building.count[index] = savedGame.buildingCount[index];
@@ -770,6 +1022,18 @@ function loadGame(){
             Game.currentTimeUpdate(secondsSinceOnline);
         }
     }
+    var visitedTour = JSON.parse(localStorage.getItem("visitedTour"));
+    if(localStorage.getItem('visitedTour') !== null){
+        if(typeof visitedTour.visitedTour !== "undefined"){
+            secret.activate(1);
+        }
+    }
+    var checkedCode = JSON.parse(localStorage.getItem("checkedCode"));
+    if(localStorage.getItem('checkedCode') !== null){
+        if(typeof checkedCode.checkedCode !== "undefined"){
+            secret.activate(2);
+        }
+    }
 }
 
 setInterval(function() {
@@ -778,98 +1042,50 @@ setInterval(function() {
 
 setInterval(function() {
     for (let index = 0; index < achievement.name.length; index++) {
-        if(achievement.type[index] == "goldEarned" && Game.totalGold >= achievement.requirement[index]){
-            achievement.earn(index);
-        }
-        else if(achievement.type[index] == "click" && Game.totalClicks >= achievement.requirement[index]){
-
-            achievement.earn(index);
-        }
-        else if(achievement.type[index] == "building" && building.count[achievement.objectIndex[index]] >= achievement.requirement[index]){
-            achievement.earn(index);
-        }
-    }
-    display.updateScore();
-    display.updateUpgrades();
-    display.updateAchievements();
+        if(!achievement.awarded[index]){
+            if(achievement.type[index] == "goldEarned" && Game.totalGold >= achievement.requirement[index]){
+                achievement.earn(index);
+            }
+            else if(achievement.type[index] == "click" && Game.totalClicks >= achievement.requirement[index]){
     
+                achievement.earn(index);
+            }
+            else if(achievement.type[index] == "building" && building.count[achievement.objectIndex[index]] >= achievement.requirement[index]){
+                achievement.earn(index);
+            }
+        }
+        
+    }
+    if(!secret.activated[0]){
+        refreshTooltips();
+    }
+    
+    //display.updateScore();
+    //display.updateUpgrades();
+    //display.updateAchievements();
+    //refreshAchievementTooltips();
 },5000);
 
 document.getElementById("clicker").addEventListener("click", function(){
     Game.totalClicks++;
     Game.clicksThisRun++;
-    Game.addToGold(Game.clickValue);
+    Game.addToGold(Game.getClickValue());
 }, false);
+
+setInterval(function(){
+    Game.addToGold(Game.getScorePerSecond());
+    display.updateScore();
+    
+},1000)
 
 window.onload = function(){
     loadGame();
     display.updateScore();
-    display.updateUpgrades();
+    //display.createUpgrades();
     display.updateAchievements();
     display.createShop();
     
     createTooltips();
     createStatsPage();
     document.title = "Idle Guy";
-}
-
-setInterval(function(){
-    Game.addToGold(Game.getScorePerSecond());
-    
-    display.updateScore();
-    
-},1000)
-
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var statsbtn = document.getElementById("stats");
-
-// Get the button that opens Prestige modal
-var prestigebtn = document.getElementById("prestige");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// Get the content of the modal so I can inject HTML into it with data from our JS objects
-var modContent = document.querySelector('.modal-content');
-
-function createStatsPage(){
-    modContent.innerHTML = '<span class="close"></span><p><strong>Total Gold Earned: $'+commafyNumber(Game.totalGold)+'<p><strong>Gold Earned This Run: $'+commafyNumber(Game.goldEarnedThisRun)+' <p><strong>Total Buildings: </strong>'+Game.totalBuildingsBuilt+'</p><p><strong>Buildings Bought This Run: </strong>'+ commafyNumber(building.getTotalBuildings())+ '</p><p><strong>Total Clicks: <strong>'+commafyNumber(Game.totalClicks);
-    modContent.innerHTML += '<p><strong>Clicks This Run: '+commafyNumber(Game.clicksThisRun)+'<p><strong>';
-    // Keep adding stats line by line because the long lines of HTML are hard to read/manipulate
-    
-}
-
-function changeModalToPrestigeScreen(){
-    modContent.innerHTML = '<span class="close"><button onclick="prestige.prestige()">Prestige Now?</button></span>'
-}
-
-// When the user clicks on the button, open the modal
-statsbtn.onclick = function() {
-    createStatsPage();
-    modal.style.display = "block";
-}
-
-// Open prestige shop using same modal
-prestigebtn.onclick = function(){
-    changeModalToPrestigeScreen();
-    modal.style.display ="block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
-function commafyNumber(number){
-    return number.toLocaleString('en-US');
 }
