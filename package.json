@@ -1,5 +1,5 @@
 {
-  "name": "BernbarkProfessional.github.io",
+  "name": "bernbarkprofessional.github.io",
   "packageManager": "yarn@3.2.2",
   "dependencies": {
     "tippy.js": "^6.3.7"
