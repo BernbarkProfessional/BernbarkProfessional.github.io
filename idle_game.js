@@ -509,14 +509,19 @@ const display = {
   },
 };
 
+const buildingTooltips = [];
+const upgradeTooltips = [];
+const achievementTooltips = [];
+let tippySecTooltip, stringTipTooltip, strangeTipTooltip, ridiculousTipTooltip;
+
 function createTooltips() {
   for (let index = 0; index < building.name.length; index++) {
-    tippy("#" + building.id[index], {
+    buildingTooltips[index] = tippy("#" + building.id[index], {
       content: building.name[index] + " $" + building.cost[index],
     });
   }
   for (let index = 0; index < upgrade.name.length; index++) {
-    tippy("#" + upgrade.id[index], {
+    upgradeTooltips[index] = tippy("#" + upgrade.id[index], {
       content:
         upgrade.name[index] +
         " $" +
@@ -529,35 +534,65 @@ function createTooltips() {
     });
   }
   for (let index = 0; index < upgrade.name.length; index++) {
-    tippy("#" + achievement.id[index], {
+    achievementTooltips[index] = tippy("#" + achievement.id[index], {
       content:
         achievement.name[index] + "\r\n" + achievement.description[index],
     });
   }
-  tippy("#tippySec", {
+  tippySecTooltip = tippy("#tippySec", {
     content: '<strong id="strongTip" >NO!</strong>',
     interactive: "true",
     placement: "right",
     allowHTML: true,
   });
-  tippy("#strongTip", {
+  strongTipTooltip = tippy("#strongTip", {
     content: '<p id="strangeTip" >MAYBE?</p>',
     allowHTML: true,
     placement: "bottom",
     interactive: "true",
   });
-  tippy("#strangeTip", {
+  strangeTipTooltip = tippy("#strangeTip", {
     content: '<p id="ridiculousTip" >Okay fine...</p>',
     allowHTML: true,
     placement: "bottom",
     interactive: "true",
   });
-  tippy("#ridiculousTip", {
+  ridiculousTipTooltip = tippy("#ridiculousTip", {
     content: '<button onclick="secretTipEnding();">Don\'t Click Me</button>',
     placement: "right",
     allowHTML: true,
     interactive: "true",
   });
+}
+
+function updateTooltips() {
+  for (let index = 0; index < building.name.length; index++) {
+    buildingTooltips[index].setContent(
+      building.name[index] + " $" + building.cost[index]
+    );
+  }
+  for (let index = 0; index < upgrade.name.length; index++) {
+    upgradeTooltips[index].setContent(
+      upgrade.name[index] +
+        " $" +
+        upgrade.cost[index] +
+        "\r\n" +
+        upgrade.effect[index] +
+        "\r\n" +
+        upgrade.description[index]
+    );
+  }
+  for (let index = 0; index < upgrade.name.length; index++) {
+    achievementTooltips[index].setContent(
+      achievement.name[index] + "\r\n" + achievement.description[index]
+    );
+  }
+  tippySecTooltip.setContent('<strong id="strongTip" >NO!</strong>');
+  strongTipTooltip.setContent('<p id="strangeTip" >MAYBE?</p>');
+  strangeTipTooltip.setContent('<p id="ridiculousTip" >Okay fine...</p>');
+  ridiculousTipTooltip.setContent(
+    '<button onclick="secretTipEnding();">Don\'t Click Me</button>'
+  );
 }
 
 function secretTipEnding() {
