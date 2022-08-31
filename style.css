@@ -19,7 +19,7 @@ img {
 table{
 	position: relative;
 	border: white 3px solid;
-	
+	table-layout: fixed;
     width: 60%;
 	max-height: 40%;
 	
@@ -187,8 +187,10 @@ td img{
 #header
 {
 	width:100%;
-	height:15%;
-	background:#333;
+	height:5%;
+	position: relative;
+	
+	background:rgb(5, 112, 161);
 	align: center;
 	text-align: center;
 }
@@ -1466,4 +1468,60 @@ span {
 
   .upgradeContainer table{
 	border: 2px solid black;
+  }
+
+  #content p{
+	font-size: 1.3em;
+	text-align: center;
+	padding: 5px;
+  }
+
+  .home table{
+	border: 5px solid red;
+	position: relative;
+	left: 0%;
+	width: 90%;
+	margin: 5vh
+  }
+
+  .home td{
+	text-align: center;
+	font: 20px Verdana, bold;
+	border: 5px solid rgb(0, 0, 0);
+	box-shadow: 0 0 5px 5px rgb(235, 132, 35);
+	background-image: linear-gradient(to bottom, rgb(14, 3, 14), rgb(14, 2, 8),rgb(32, 5, 129));
+  }
+
+  .home .td-type-one{
+	background-image: linear-gradient(to bottom right, rgb(156, 6, 156), rgb(80, 2, 46),rgb(32, 5, 129));
+  }
+
+  .home .td-type-two{
+	background-image: linear-gradient(to bottom left, rgb(156, 6, 156), rgb(80, 2, 46),rgb(32, 5, 129));
+  }
+
+  .home .td-type-three{
+	background-image: linear-gradient(to top right, rgb(156, 6, 156), rgb(80, 2, 46),rgb(32, 5, 129));
+  }
+
+  .home .td-type-four{
+	background-image: linear-gradient(to top left, rgb(156, 6, 156), rgb(80, 2, 46),rgb(32, 5, 129));
+  }
+
+  .home td > p{
+	font-size: .8em;
+	
+  }
+
+  
+
+  .td-link:hover{
+	background-image: none;
+	background-color: #920357;
+  }
+
+  .home th{
+	background-color: #420f0f;
+	
+	
   }
