@@ -1539,25 +1539,19 @@ span {
     user-select: none;
 }
 
-.parent{
-	background-color: rgb(0, 0, 0);
-	width: 40%;
-	height: 30vh;
-	position: absolute;
-	top: 20%;
-	left: 20%;
-	z-index: 1;
-	
-}
 
 .dream-box{
 	
-	background-color: #AD244F;
+	background-image: linear-gradient(to right, #ff6e7f, #bfe9ff);
 	position: absolute;
 	
 	width: 100%;
 	height: 100%;
 	z-index: 1;
+	animation-name: left-to-right;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	animation-play-state: paused;  
 	
 }
 
@@ -1574,20 +1568,30 @@ span {
 
 .dream-box-2{
 	position: absolute;
-	background-color: #530d23;
+	background-color: #00DBDE;
+    background-image: linear-gradient(to left, #ff6e7f, #bfe9ff);
+
 	top:10%;
 	width: 100%;
 	height: 90%;
 	z-index: -1;
+	animation-name: left-to-bottom;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	animation-play-state: paused;  
 }
 
 .dream-box-3{
 	position: absolute;
-	background-color: #300211;
+	background-image: linear-gradient(to right, #ff6e7f, #bfe9ff);
 	top:10%;
 	width: 100%;
 	height: 90%;
 	z-index: -1;
+	animation-name: left-to-bottom-right;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	animation-play-state: paused;  
 }
 
 .dream-box-2 > p{
@@ -1608,6 +1612,18 @@ span {
 	font-size: 1.8em;
 }
 
+.parent{
+	background-image: linear-gradient(to left, #ff6e7f, #bfe9ff);
+	width: 40%;
+	height: 30vh;
+	position: absolute;
+	top: 20%;
+	left: 17%;
+	z-index: 1;
+	
+}
+
+
 .parent> p{
 	position: absolute;
 	top: 50%;
@@ -1618,19 +1634,26 @@ span {
 
 .parent:hover .dream-box {
 	
-	animation: left-to-right 1s ease-in forwards;
+	animation-fill-mode: forwards;
+  	animation-play-state: running;
 }
 
 .parent:hover .dream-box-2{
-	animation: left-to-bottom 1s ease-in forwards;
+	
+	animation-fill-mode: forwards;
+  animation-play-state: running;
 }
 
 .parent:hover .dream-box-3{
-	animation: left-to-bottom-right 1s ease-in forwards;
+	
+	animation-fill-mode: forwards;
+  animation-play-state: running;
 }
 
 .animated-rotation-slide{
-	background-color: #010807;
+	
+	
+	
 	position: relative;
 	width: 100%;
 	height: 40%;
@@ -1638,20 +1661,50 @@ span {
 	visibility: hidden;
 	font-size: 1.1em;
 	margin-bottom: -2vh;
+	background-color: black;
+	animation-name: animate-slides;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	animation-play-state: paused;  
+	
+	
 }
 
 .animated-rotation-slide p{
 	
+	background-image: linear-gradient(-45deg,white, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	transform: translateY(100%);
 	text-align: center;
-	
+	background-size: 300% 300%;
+	background-repeat: repeat;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent; 
+	-moz-background-clip: text;
+	-moz-text-fill-color: transparent;
+	animation: gradient-text 15s ease infinite;
 }
 
-.parent .dream-box-3:hover .animated-rotation-slide{
-	animation: animate-slides 2s ease forwards;
+@keyframes gradient-text {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
-.parent .dream-box-2:hover .animated-rotation-slide{
-	animation: animate-slides 2s ease forwards;
+.parent:hover .animated-rotation-slide{
+	animation-fill-mode: forwards;
+  	animation-play-state: running;
+}
+
+.parent:hover .animated-rotation-slide{
+	animation-fill-mode: forwards;
+  animation-play-state: running;
 }
 
 /* Animating the child hover in a topleft-bottomleft-bottomright-topright movement*/
