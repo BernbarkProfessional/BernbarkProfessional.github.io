@@ -106,8 +106,25 @@ function animate() {
     
 }
 
+function draw() 
+{
+  var canvas = document.getElementById('canvas');
+  if (canvas.getContext)
+  {
+    var context = canvas.getContext('2d');
+
+    context.beginPath();
+    context.moveTo(75,75);
+    context.lineTo(10,75);
+    context.lineTo(10,25);
+    context.fillStyle = "rgb(256,0,0)";
+    
+    
+  }
+}
+
 function stopAnimation(){
     window.cancelAnimationFrame(anima);
 }
-
+draw();
 animate();

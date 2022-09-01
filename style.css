@@ -1515,17 +1515,20 @@ span {
 	
 	
 	text-align: center;
-	-webkit-animation: glow 1s ease-in-out infinite alternate;
-	-moz-animation: glow 1s ease-in-out infinite alternate;
-	animation: glow 1s ease-in-out infinite alternate;
+	-webkit-animation: glow 5s ease-in-out infinite alternate;
+	-moz-animation: glow 5s ease-in-out infinite alternate;
+	animation: glow 5s ease-in-out infinite alternate;
   }
   
   @-webkit-keyframes glow {
-	from {
-	  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+	0% {
+	  text-shadow: 0 0 10px rgb(0, 0, 0), 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073a8;
 	}
-	to {
-	  text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+	50% {
+	  text-shadow: 0 0 10px rgb(0, 0, 0), 0 0 20px rgb(6, 255, 243), 0 0 30px #4400ff, 0 0 40px #00ffb3, 0 0 50px #00b7ff, 0 0 60px #35daf0, 0 0 70px #3a2cf7, 0 0 80px #2600fd73;
+	}
+	100%{
+		text-shadow: 0 0 10px rgb(0, 0, 0), 0 0 20px rgb(6, 255, 6), 0 0 30px #91ff00, 0 0 40px #00ffb3, 0 0 50px #bbff00, 0 0 60px #35daf0, 0 0 70px #00fd54, 0 0 80px #daff0b;
 	}
   }
 
@@ -1573,14 +1576,7 @@ span {
 	
 }
 
-.dream-box > p{
-	position: relative;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 2;
-	font-size: 1.8em;
-}
+
 
 
 
@@ -1610,6 +1606,15 @@ span {
 	animation-duration: 1s;
 	animation-fill-mode: forwards;
 	animation-play-state: paused;  
+}
+
+.dream-box > p{
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+	font-size: 1.8em;
 }
 
 .dream-box-2 > p{
@@ -1677,8 +1682,8 @@ span {
 	height: 40%;
 	top: 90%;
 	visibility: hidden;
-	font-size: 1.1em;
-	margin-bottom: -2vh;
+	font-size: 1.3em;
+	
 	background-color: black;
 	animation-name: animate-slides;
 	animation-duration: 1s;
@@ -1689,8 +1694,9 @@ span {
 }
 
 .animated-rotation-slide p{
-	
-	background-image: linear-gradient(-45deg,white, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	position: absolute;
+	 
+	background-image: linear-gradient(-45deg,white, white,white, white, #ecfdb0, #f87aaa, #5acdf7, #23d5ab,white, white, white, white);
 	transform: translateY(100%);
 	text-align: center;
 	background-size: 300% 300%;
