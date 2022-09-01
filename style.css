@@ -1,3 +1,9 @@
+@font-face {
+	font-family: OutRun;
+	src: url("https://jackphilippi.com.au/cdn/fonts/outrun_future.otf") format("opentype");
+  }
+
+
 body
 {
 	color:white;
@@ -158,7 +164,9 @@ td img{
 	height: 5%;
 	width: 100%;
 	z-index: 3;
-	background-color: #00ffd5;
+	background-color: #00DBDE;
+	background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+	text-align: center;
 }
 #bottombar > p{
 	font-size: 1vw;
@@ -179,7 +187,9 @@ td img{
 	width:15%;
 	height:auto;
 	min-height:95%;
-	background:#067791;
+	
+	background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+
 	z-index: 2;
 	float:left;
 	position:fixed;
