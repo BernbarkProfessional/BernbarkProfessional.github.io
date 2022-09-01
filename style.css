@@ -1518,9 +1518,9 @@ span {
     margin: auto;
     width: 100vw;
     height: 80pt;
-    top: 0;
+    top: -90%;
     bottom: 0;
-	
+	left: 5%;
     filter: url(#threshold) blur(0.6px);
 }
 
@@ -1534,7 +1534,7 @@ span {
     font-size: 50pt;
 
     text-align: center;
-
+	
 	transform: translateX(-50%);
     user-select: none;
 }
@@ -1544,7 +1544,7 @@ span {
 	width: 40%;
 	height: 30vh;
 	position: absolute;
-	top: 30%;
+	top: 20%;
 	left: 20%;
 	z-index: 1;
 	
