@@ -18,7 +18,21 @@
 			</div>
 			<div id="main" align="center">
 				<div id="dreams-content">
-					<div class="glitch" data-text="GLITCH">DREAMS</div>
+					<div id="container">
+						<span id="text1"></span>
+						<span id="text2"></span>
+					</div>
+					
+					<svg id="filters">
+						<defs>
+							<filter id="threshold">
+								<feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+									  0 1 0 0 0
+									  0 0 1 0 0
+									  0 0 0 255 -140" />
+							</filter>
+						</defs>
+					</svg>
 					<div class = "parent">
 						<p>Please explore by hovering or tapping on different parts of the dream box!</p>
 						<div class="dream-box">
@@ -75,6 +89,7 @@
 				<!-- Loaded by bottombar.html in script.js -->
 			</div>
 		</div>
+		<script async src="dreams.js" defer="defer"></script>
 		<script async src="script.js" defer="defer"></script>
 	</body>
 </html>
