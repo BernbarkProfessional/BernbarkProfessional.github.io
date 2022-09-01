@@ -71,6 +71,10 @@ function animateQuestionMark(){
     }
 }
 
+/**
+ * Adding badge for LinkedIn and any other social media here
+ */
+
 
 
 
