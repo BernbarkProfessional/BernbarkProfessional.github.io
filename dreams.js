@@ -6,7 +6,7 @@ const elts = {
 const texts = [
     "If You...",
     "",
-    /*
+    
     "Had A Dream...",
     "",
     
@@ -21,7 +21,7 @@ const texts = [
     
     "Every day of your life?",
     "",
-    */
+    
     "Dreams"
     
 ];
