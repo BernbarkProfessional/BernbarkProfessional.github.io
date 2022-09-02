@@ -6,7 +6,7 @@ const elts = {
 const texts = [
     "If You...",
     "",
-    
+    /*
     "Had A Dream...",
     "",
     
@@ -21,7 +21,7 @@ const texts = [
     
     "Every day of your life?",
     "",
-    
+    */
     "Dreams"
     
 ];
@@ -29,10 +29,13 @@ const texts = [
 const morphTime = 4.5;
 const cooldownTime = 0.15;
 
+let dreamSequenceFinish = false;
+
 let textIndex = texts.length - 1;
 let time = new Date();
 let morph = 0;
 let cooldown = cooldownTime;
+let dreamTextContainer = document.querySelector(".three-d-element");
 let slides = document.querySelectorAll(".animated-rotation-slide");
 
 elts.text1.textContent = texts[textIndex % texts.length];
@@ -81,7 +84,19 @@ function mouseOverSlides(index) {
     }, 1000);
 }
 
+function setUpDreamText(){
+    dreamTextContainer.onmouseover = function() {mouseOverDreamsText()};
+}
 
+function mouseOverDreamsText(){
+    console.log(dreamSequenceFinish);
+    if(dreamSequenceFinish){
+        dreamTextContainer.classList.add('.is-flipped');
+        dreamTextContainer.style.WebkitTransitionDuration='1s';
+        dreamTextContainer.style.webkitTransform = 'rotateY(180deg)';
+    }
+    
+}
 
 
 
@@ -142,6 +157,7 @@ function animate() {
             if(textIndex  > (texts.length * 2)-2){
                 // Add animation to DREAMS text here
                 stopAnimation();
+                endOfDreamSequence();
             }
         }
         
@@ -153,6 +169,22 @@ function animate() {
         doCooldown();
     }
     
+}
+
+function resetDreamSequence(){
+    dreamSequenceFinish = false;
+    textIndex = texts.length - 1;
+    dreamTextContainer.classList.remove('.is-flipped');
+    dreamTextContainer.style.WebkitTransitionDuration='1s';
+    dreamTextContainer.style.webkitTransform = 'rotateY(-1080deg)';
+    setTimeout(function() {
+        
+    }, 1000);
+    animate();
+}
+
+function endOfDreamSequence(){
+    dreamSequenceFinish = true;
 }
 
 function draw() 
@@ -175,6 +207,7 @@ function draw()
 function stopAnimation(){
     window.cancelAnimationFrame(anima);
 }
+setUpDreamText();
 setUpParentBox();
 draw();
 animate();

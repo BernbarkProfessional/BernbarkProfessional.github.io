@@ -1511,6 +1511,27 @@ span {
 	
   }
 
+  .small-glow {
+	
+	
+	text-align: center;
+	-webkit-animation: small-glow 5s ease-in-out infinite alternate;
+	-moz-animation: small-glow 5s ease-in-out infinite alternate;
+	animation: small-glow 5s ease-in-out infinite alternate;
+  }
+  
+  @-webkit-keyframes small-glow {
+	0% {
+	  box-shadow: 0 0 2px rgb(0, 0, 0), 0 0 4px #fff, 0 0 6px #e60073, 0 0 8px #e60073, 0 0 9px #e60073, 0 0 11px #e60073, 0 0 12px #e60073a8;
+	}
+	50% {
+		box-shadow: 0 0 2px rgb(0, 0, 0), 0 0 4px rgb(6, 255, 243), 0 0 6px #4400ff, 0 0 8px #00ffb3, 0 0 9px #00b7ff, 0 0 11px #35daf0, 0 0 12px #3a2cf7, 0 0 13px #2600fd73;
+	}
+	100%{
+		box-shadow: 0 0 2px rgb(0, 0, 0), 0 0 4px rgb(6, 255, 6), 0 0 6px #91ff00, 0 0 8px #00ffb3, 0 0 9px #bbff00, 0 0 11px #35daf0, 0 0 12px #00fd54, 0 0 13px #daff0b;
+	}
+  }
+
   .glow {
 	
 	
@@ -1555,16 +1576,48 @@ span {
 
   /** DREAMS **/
 
+  .scene {
+	width: 100vw;
+    height: 10vh;
+	background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+	perspective: 600px;
+  }
+
+  .three-d-element {
+	width: 60%;
+	height: 100%;
+	left: -10%;
+	top: 30%;
+	
+	position: relative;
+	transition: transform 1s;
+	transform-style: preserve-3d;
+  }
+
   #dream-text-container {
     position: absolute;
     margin: auto;
-    width: 100vw;
-    height: 80pt;
+    width: 100%;
+	height: 100%;
     top: -90%;
     bottom: 0;
 	left: 5%;
     filter: url(#threshold) blur(0.6px);
+	backface-visibility: hidden;
+	transform-style: preserve-3d;
 }
+
+.dream-text-back {
+	
+	background-image: linear-gradient(to right, #0f0c2971, #302b6367, #24243e4d);
+	transform: rotateY( 180deg );
+	backface-visibility: hidden;
+	transform-style: preserve-3d;
+  }
+
+  .three-d-element.is-flipped {
+	transform: rotateY(180deg);
+  }
 
 #text1,
 #text2 {
@@ -1573,7 +1626,7 @@ span {
     display: inline-block;
 
     font-family: "OutRun", sans-serif;
-    font-size: 50pt;
+    font-size: 45pt;
 
     text-align: center;
 	
@@ -1713,6 +1766,8 @@ span {
 
 	/* CSS transition creates smooth effect */
 	transition:all 1.5s;
+
+	
 	
 }
 
