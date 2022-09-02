@@ -179,7 +179,7 @@ td img{
 	height:auto;
 	min-height:100%;
 	background:#999;
-	
+	overflow-x:hidden;
 	/*margin: auto;*/
 }
 #sidebar
