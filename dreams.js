@@ -26,16 +26,65 @@ const texts = [
     
 ];
 
-const morphTime = 2.5;
+const morphTime = 4.5;
 const cooldownTime = 0.15;
 
 let textIndex = texts.length - 1;
 let time = new Date();
 let morph = 0;
 let cooldown = cooldownTime;
+let slides = document.querySelectorAll(".animated-rotation-slide");
 
 elts.text1.textContent = texts[textIndex % texts.length];
 elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+
+setupSlides();
+
+
+function setupSlides(){
+    console.log(slides.length)
+    for(let i = 0; i < slides.length; i++){
+        console.log(slides[i])
+        
+        slides[i].onmouseover = function() {mouseOverSlides(i)};
+        
+        
+    }
+}
+
+let parent = document.querySelector(".parent");
+
+function setUpParentBox(){
+    parent.onmouseover = function() {mouseOverParentBox()};
+}
+
+function mouseOverParentBox(){
+    makeSlidesVisible();
+}
+
+function makeSlidesVisible(){
+    for(let i = 0; i < slides.length; i++){
+        
+        slides[i].style.opacity = 1;
+        
+    }
+}
+
+let slideAnima;
+
+function mouseOverSlides(index) {
+    
+    slides[index].style.WebkitTransitionDuration='1s';
+    slides[index].style.webkitTransform = 'rotateX(360deg)';
+    setTimeout(function() {
+        slides[index].style.webkitTransform = 'rotateX(0deg)';
+    }, 3 * 1000);
+}
+
+
+
+
+
 
 function doMorph() {
     morph -= cooldown;
@@ -126,5 +175,6 @@ function draw()
 function stopAnimation(){
     window.cancelAnimationFrame(anima);
 }
+setUpParentBox();
 draw();
 animate();

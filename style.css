@@ -1522,13 +1522,34 @@ span {
   
   @-webkit-keyframes glow {
 	0% {
-	  text-shadow: 0 0 10px rgb(0, 0, 0), 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073a8;
+	  box-shadow: 0 0 10px rgb(0, 0, 0), 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073a8;
 	}
 	50% {
-	  text-shadow: 0 0 10px rgb(0, 0, 0), 0 0 20px rgb(6, 255, 243), 0 0 30px #4400ff, 0 0 40px #00ffb3, 0 0 50px #00b7ff, 0 0 60px #35daf0, 0 0 70px #3a2cf7, 0 0 80px #2600fd73;
+		box-shadow: 0 0 10px rgb(0, 0, 0), 0 0 20px rgb(6, 255, 243), 0 0 30px #4400ff, 0 0 40px #00ffb3, 0 0 50px #00b7ff, 0 0 60px #35daf0, 0 0 70px #3a2cf7, 0 0 80px #2600fd73;
 	}
 	100%{
-		text-shadow: 0 0 10px rgb(0, 0, 0), 0 0 20px rgb(6, 255, 6), 0 0 30px #91ff00, 0 0 40px #00ffb3, 0 0 50px #bbff00, 0 0 60px #35daf0, 0 0 70px #00fd54, 0 0 80px #daff0b;
+		box-shadow: 0 0 10px rgb(0, 0, 0), 0 0 20px rgb(6, 255, 6), 0 0 30px #91ff00, 0 0 40px #00ffb3, 0 0 50px #bbff00, 0 0 60px #35daf0, 0 0 70px #00fd54, 0 0 80px #daff0b;
+	}
+  }
+
+  .glow-text {
+	
+	
+	text-align: center;
+	-webkit-animation: glow-text 5s ease-in-out infinite alternate;
+	-moz-animation: glow-text 5s ease-in-out infinite alternate;
+	animation: glow-text 5s ease-in-out infinite alternate;
+  }
+  
+  @-webkit-keyframes glow-text {
+	0% {
+	  text-shadow: 0 0 10px rgb(0, 0, 0), 0 0 20px rgb(0, 0, 0), 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073a8;
+	}
+	50% {
+	  text-shadow: 0 0 10px rgb(0, 0, 0), 0 0 20px rgb(0, 0, 0), 0 0 30px #4400ff, 0 0 40px #00ffb3, 0 0 50px #00b7ff, 0 0 60px #35daf0, 0 0 70px #3a2cf7, 0 0 80px #2600fd73;
+	}
+	100%{
+		text-shadow: 0 0 10px rgb(0, 0, 0), 0 0 20px rgb(0, 0, 0), 0 0 30px #91ff00, 0 0 40px #00ffb3, 0 0 50px #bbff00, 0 0 60px #35daf0, 0 0 70px #00fd54, 0 0 80px #daff0b;
 	}
   }
 
@@ -1648,6 +1669,7 @@ span {
 
 
 .parent> p{
+	text-align: center;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -1681,23 +1703,25 @@ span {
 	width: 100%;
 	height: 40%;
 	top: 90%;
-	visibility: hidden;
+	opacity: 0;
 	font-size: 1.3em;
-	
+	text-align: center;
 	background-color: black;
-	animation-name: animate-slides;
-	animation-duration: 1s;
-	animation-fill-mode: forwards;
-	animation-play-state: paused;  
-	
+	  
+	/* Initial value for rotate is needed for transition to work */
+	transform:rotate(0);  
+
+	/* CSS transition creates smooth effect */
+	transition:all 1.5s;
 	
 }
 
 .animated-rotation-slide p{
 	position: absolute;
-	 
+	left: 10%;
+	max-width: 80%;
 	background-image: linear-gradient(-45deg,white, white,white, white, #ecfdb0, #f87aaa, #5acdf7, #23d5ab,white, white, white, white);
-	transform: translateY(100%);
+	
 	text-align: center;
 	background-size: 300% 300%;
 	background-repeat: repeat;
@@ -1721,29 +1745,11 @@ span {
 	}
 }
 
-.parent:hover .animated-rotation-slide{
-	animation-fill-mode: forwards;
-  	animation-play-state: running;
-}
 
-.parent:hover .animated-rotation-slide{
-	animation-fill-mode: forwards;
-  animation-play-state: running;
-}
 
-/* Animating the child hover in a topleft-bottomleft-bottomright-topright movement*/
-@keyframes animate-slides {
-	0%{
-		
-		opacity: 0;
-	}
-	
-	100%{
-		transform: rotate3d(1,0,0,360deg) skewX(-20deg);
-		visibility: visible;
-		opacity: 1;
-	}
-}
+
+
+
 @keyframes left-to-bottom{
 	0%{
 		transform: translateX(0);
