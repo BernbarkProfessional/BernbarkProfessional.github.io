@@ -11,6 +11,9 @@ body
 	margin: 0px;
 	overflow-x: hidden;
 }
+html{
+	overflow-x:hidden;
+}
 img {
 	max-width: 30%;
     margin: 10px;
