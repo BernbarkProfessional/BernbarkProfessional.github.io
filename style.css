@@ -1697,13 +1697,13 @@ span {
 
 .animated-rotation-slide{
 	
-	
+	opacity: 0;
 	
 	position: relative;
 	width: 100%;
 	height: 40%;
 	top: 90%;
-	opacity: 0;
+	
 	font-size: 1.3em;
 	text-align: center;
 	background-color: black;

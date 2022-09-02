@@ -78,7 +78,7 @@ function mouseOverSlides(index) {
     slides[index].style.webkitTransform = 'rotateX(360deg)';
     setTimeout(function() {
         slides[index].style.webkitTransform = 'rotateX(0deg)';
-    }, 3 * 1000);
+    }, 1000);
 }
 
 
