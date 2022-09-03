@@ -1644,7 +1644,9 @@ span {
 }
 
 .dream-text-back {
-	
+	position: relative;
+	max-width: 60%;
+	left: 15%;
 	background-image: linear-gradient(to right, #0f0c2971, #302b6367, #24243e4d);
 	transform: rotateY( 180deg );
 	backface-visibility: hidden;
