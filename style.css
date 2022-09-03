@@ -1614,6 +1614,7 @@ span {
 	left:-10%;
 	background-image: linear-gradient(to right, #02010f00, #302b6300, #8d257f);
 	perspective: 600px;
+	overflow: hidden;
   }
 
   .three-d-element {
@@ -1645,8 +1646,8 @@ span {
 
 .dream-text-back {
 	position: relative;
-	max-width: 60%;
-	left: 15%;
+	max-width: 40%;
+	left: 25%;
 	background-image: linear-gradient(to right, #0f0c2971, #302b6367, #24243e4d);
 	transform: rotateY( 180deg );
 	backface-visibility: hidden;
