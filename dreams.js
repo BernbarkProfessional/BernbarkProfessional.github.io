@@ -4,7 +4,7 @@ const elts = {
 };
 
 const texts = [
-    "If You...",/**
+    "If You...",
     "",
     
     "Had A Dream...",
@@ -23,7 +23,7 @@ const texts = [
     "",
     
     "Dreams"
-    */
+    
 ];
 
 const morphTime = 4.5;
