@@ -1577,6 +1577,33 @@ span {
 	}
   }
 
+  .glow-text-small {
+	
+	
+	text-align: center;
+	-webkit-animation: glow-text-small 9s ease-in-out infinite ;
+	-moz-animation: glow-text-small 9s ease-in-out infinite ;
+	animation: glow-text-small 9s ease-in-out infinite ;
+  }
+  
+  @-webkit-keyframes glow-text-small {
+	0% {
+		text-shadow: 0 0 1px rgb(0, 0, 0), 0 0 2px #fff, 0 0 3px #e60073, 0 0 4px #e60073, 0 0 5px #e60073, 0 0 6px #e60073, 8px 8px 7px #e60073a8;
+		
+	  }
+	  33% {
+		
+		text-shadow: 0 0 1px rgb(0, 0, 0), 0 0 2px rgb(6, 255, 243), 0 0 3px #4400ff, 0 0 4px #00ffb3, 0 0 5px #00b7ff, 0 0 6px #35daf0, 8px 8px 7px #3a2cf7, 10px 10px 8px #2600fd73;
+	  }
+	  66%{
+		
+		text-shadow: 0 0 1px rgb(0, 0, 0), 0 0 2px rgb(143, 6, 255), 0 0 3px #ff009d, 0 0 4px #0059ff, 0 0 5px #aa0351, 0 0 6px #35daf0, -8px 8px 7px #b500fd, -10px 8px 8px #6e023d;
+	  }
+	  100%{
+		text-shadow: 0 0 1px rgb(0, 0, 0), 0 0 2px #fff, 0 0 3px #e60073, 0 0 4px #e60073, 0 0 5px #e60073, 0 0 6px #e60073, 8px 8px 7px #e60073a8;
+	  }
+  }
+
   /** DREAMS **/
 
   .scene {
@@ -1770,7 +1797,7 @@ span {
 	/* CSS transition creates smooth effect */
 	transition:all 1.5s;
 
-	
+	backface-visibility: collapse;
 	
 }
 

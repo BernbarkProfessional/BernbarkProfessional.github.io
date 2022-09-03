@@ -77,11 +77,11 @@ let slideAnima;
 
 function mouseOverSlides(index) {
     
-    slides[index].style.WebkitTransitionDuration='1s';
-    slides[index].style.webkitTransform = 'rotateX(360deg)';
+    slides[index].style.WebkitTransitionDuration='1.5s';
+    slides[index].style.webkitTransform = 'rotateX(180deg)';
     setTimeout(function() {
         slides[index].style.webkitTransform = 'rotateX(0deg)';
-    }, 1000);
+    }, 1500);
 }
 
 function setUpDreamText(){
