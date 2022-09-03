@@ -209,5 +209,5 @@ function stopAnimation(){
 }
 setUpDreamText();
 setUpParentBox();
-draw();
+//draw();
 animate();
