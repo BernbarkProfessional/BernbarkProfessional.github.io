@@ -1880,7 +1880,163 @@ span {
 	
 }
 
+/** PROTOTYPES PAGE */
 
+#prototype-content{
+	min-height: 100vh;
+}
+
+.prototype-body{
+	cursor:none;
+	
+}
+
+#msg{
+	display:flex;
+	justify-content: center;
+  	align-content: center;
+	  align-items: center;
+	  font-size: 2em;
+	color:white;
+	position: fixed;
+	transition: all 5s;
+	z-index: 111;
+}
+
+#cursor{
+	width: 50px;
+	height: 50px;
+	background-color: whitesmoke;
+	border-radius: 50%;
+	position: fixed;
+	opacity: .6;
+}
+
+.centered-effect{
+	position: relative;
+	
+	background-color: black;
+	display: flex;
+  min-height: 10vh;
+  justify-content: center;
+  align-content: center;
+  
+}
+	
+
+
+
+
+.text-effect {
+  overflow: hidden;
+  position: fixed;
+  
+  
+  
+  filter: contrast(150%) brightness(770%);
+  
+}
+
+.neon {
+  position: relative;
+  text-align: center;
+  width:100%;
+  
+	background-color: #000;
+  background: rgb(0, 0, 0);
+  
+  
+  color: transparent;
+  
+  
+  
+  
+  
+}
+
+.neon::before,
+  ::after {
+    
+    content: attr(data-text);
+    
+    
+    color: rgb(255, 251, 251);
+    
+    
+    filter: blur(0.01em);
+    
+    position: absolute;
+    top: 0; left: 0;
+    pointer-events: none;
+  }
+
+  .neon::after {
+    mix-blend-mode: difference;
+  }
+
+.gradient,
+.spotlight {
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  pointer-events: none;
+  z-index: 10;  
+}
+
+
+.gradient {
+  background: linear-gradient(45deg, rgb(65, 158, 165), rgb(238, 187, 48));
+  
+  background-repeat: no-repeat;
+  
+  mix-blend-mode: multiply;
+}
+
+.spotlight {
+  animation: light 8s infinite linear;
+  
+  
+  background: 
+    radial-gradient(circle, rgb(67, 1, 248), transparent 75%) 0 0 / 25% 25%, 
+    radial-gradient(circle, rgb(230, 6, 174), black 25%) 50% 50% / 12.5% 12.5%;
+  top: -100%; left: -100%;
+  background-size: 200%;
+  
+  mix-blend-mode: color-dodge;
+}
+
+@keyframes light {
+	0%{
+		transform: translate3d(0,0,0);
+	}
+  40% {
+    transform: translate3d(50%, 50%, 0);
+  }
+  50%{
+	transform: translate3d(100%,-100%,0);
+}
+70%{
+	transform: translate3d(-200%,-100%,0);
+}
+80%{
+	transform: translate3d(-100%,-20%,0);
+}
+  100%{
+	transform: translate3d(0,0,0);
+}
+
+}
+
+
+.neon {
+  font: 7em 'Lato', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0px;
+  padding: 70px 0 0;
+  
+}
+
+.neon:focus { outline: none; border: 0px dotted white; }
 /** This is cool but doesn't work great
   @media all and (min-width: 50px)   {  body  { font-size:0.05em;  } }
   @media all and (min-width: 100px)  {  body  { font-size:0.1em;  } }
