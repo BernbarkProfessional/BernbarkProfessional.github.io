@@ -1953,7 +1953,12 @@ video{
 	object-fit: cover;
 }
 
-
+#prototype-intro{
+	border: wheat solid 2px;
+	width: 99%;
+	height: 60vh;
+	text-align: center;
+}
 
 
 
