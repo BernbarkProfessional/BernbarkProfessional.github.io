@@ -3,6 +3,7 @@
 
 
 $(document).ready(function(){
+    const $msg = $('.msg');
     // function getElementTopLeft(id) {
 
     //     var ele = document.querySelector(id);
@@ -24,12 +25,19 @@ $(document).ready(function(){
         max = 50;
         min = -50;
         $(this).animate({
-            top: Math.random() * (max - min) + min 
+            rotation: 0,
+            duration: 500,
+            step: function(now, fx){
+                $(this).css({"transform": "rotate("+now+"deg)"});
+            },
+            top: Math.random() * (max - min) + min,
+             
         }, 200);
         $(this).animate({
             left: Math.random() * (max - min) + min 
-        }, 100);
-    
+        }, 200);
+        rotate($(this), Math.random() * (max - min) + min);
+        $(this).toggleClass('animate-prototype');
     });
 
     
@@ -61,13 +69,13 @@ $(document).ready(function(){
             //     elem.css({top:'-'+e.clientY+'px'});
             // }
            
-                console.log("clientX = "+e.clientX);
-                console.log("width = " + width);
+                // console.log("clientX = "+e.clientX);
+                // console.log("width = " + width);
     
-                console.log("clientY = "+e.clientY);
-                console.log("height = "+height)
+                // console.log("clientY = "+e.clientY);
+                // console.log("height = "+height)
     
-                console.log("distance from left side = "+getDistanceFromLeftBorder(elem))
+                // console.log("distance from left side = "+getDistanceFromLeftBorder(elem))
             
         })
         
@@ -78,10 +86,11 @@ $(document).ready(function(){
         $(".msg").animate({
             top: 0,
             left: 0
-        },10);
+        },710);
+        rotate($('.msg'), 0);
    })
 
-   
+    
   
 //    $(document).mouseleave(function(){
 //         $("#cursor").css({opacity:0});
@@ -94,6 +103,36 @@ $(document).ready(function(){
 
   
 });
+
+function rotate(elem, degree){
+    time = 0;
+    
+    if(degree > 0){
+        while(time < degree){
+            setTimeout(function () {
+                
+        }, 50);
+            elem.css({ WebkitTransform: 'rotate(' + time + 'deg)'});  
+            elem.css({ '-moz-transform': 'rotate(' + time + 'deg)'}); 
+            time++;
+            
+        }
+    }
+    else if(degree < 0){
+        while(time > degree){
+            elem.css({ WebkitTransform: 'rotate(' + time + 'deg)'});  
+            elem.css({ '-moz-transform': 'rotate(' + time + 'deg)'}); 
+            time--;
+        }
+    }
+    else{
+        elem.css({ WebkitTransform: 'rotate(' + time + 'deg)'});  
+            elem.css({ '-moz-transform': 'rotate(' + time + 'deg)'}); 
+    }
+    
+    
+    
+}
 
 function getDistanceFromLeftBorder(elem){
     // console.log(elem.width() + " width of msg")

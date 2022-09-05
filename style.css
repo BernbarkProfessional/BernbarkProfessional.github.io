@@ -1888,16 +1888,16 @@ span {
 }
 
 .prototype-body{
-	
+	padding-bottom:5vh;
 }
 
 .gradient-title{
 	
 	font-size: 2em;
-	text-shadow: rgb(0, 0, 0);
+	text-shadow: rgb(216, 4, 4);
 	background-color: #f3ec78;
 	background-image: linear-gradient(45deg, #00d2f7, #ffffff);
-	background-size: 100%;
+	background-size: 00%;
 	text-shadow: 0 0 1px rgb(0, 0, 0), 0 0 2px #fff, 0 0 3px #e60073, 0 0 4px #e60073, 0 0 5px #e60073, 0 0 6px #e60073, 8px 8px 7px #e600c0a8;
     -webkit-background-clip: text;
     -moz-background-clip: text;
@@ -1914,12 +1914,13 @@ span {
 	color:white;
 	position: relative;
 	transition: all .1s;
-	z-index: 111;
+	z-index: 11;
 }
 
 #letter-holder{
 	
 	width: 98%;
+	height: 25vh;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -1954,15 +1955,95 @@ video{
 }
 
 #prototype-intro{
-	border: wheat solid 2px;
+	position: relative;
+	
+	
+	border: rgb(0, 0, 0) solid 2px;
 	width: 99%;
-	height: 60vh;
+	height: 59vh;
 	text-align: center;
+	background-image: linear-gradient(45deg, #017185, #ee5bce,rgb(106, 66, 151));
+	background-size: 100%;
+	box-shadow: 0 0 1px rgb(0, 0, 0), 0 0 2px #fff, 0 0 3px #e60073, 0 0 4px #e60073, 0 0 5px #e60073, 0 0 6px #e60073, 8px 8px 7px #e600c0a8;
 }
 
+.animate-prototype{
+	animation: prototype .5s ease;
+	
+}
 
+@keyframes prototype {
+	0%{
+		transform: scale(1);
+		filter: brightness(211%);
+		
+	}
+	50%{
+		
+		transform: scale(1.4) ;
+		filter: brightness(411%) invert(500%) contrast(5550%)  hue-rotate(200deg) saturate(145%)  ;
+	}
+	100%{
+		transform: scale(1);
+		filter: brightness(211%);
+	}
+}
 
-.neon:focus { outline: none; border: 0px dotted white; }
+.button-fly-in{
+	position: relative;
+	animation: button-fly-in .7s ease forwards;
+	display:inline-block;
+	padding:0.3em 1.2em;
+	margin:0 0.1em 0.1em 0;
+	
+	
+	text-decoration:none;
+	font-family:'Roboto',sans-serif;
+	font-weight:300;
+	color:#FFFFFF;
+	text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+	text-align:center;
+	background-color: #000;
+	transition: all .5s;
+	
+}
+.button-fly-in::before{
+	border-radius: 50px; 
+	border: 5px solid transparent;
+	
+}
+input.button-fly-in:hover{
+		border: rgba(255,255,255,1) 2px solid;
+	}
+@keyframes button-fly-in {
+	0%{
+		left: 300%;
+	}
+	80%{
+		left: -10%;
+	}
+	90%{
+		left: 3%;
+	}
+	95%{
+		left: -3%;
+	}
+	96%{
+		left: 2%;
+	}
+	97%{
+		left:-1%;
+	}
+	100%{
+		left: 0%;
+	}
+}
+
+#table-of-contents{
+	left:20%;
+	top:15%
+}
+
 /** This is cool but doesn't work great
   @media all and (min-width: 50px)   {  body  { font-size:0.05em;  } }
   @media all and (min-width: 100px)  {  body  { font-size:0.1em;  } }
