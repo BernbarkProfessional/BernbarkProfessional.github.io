@@ -1887,6 +1887,11 @@ span {
 	
 }
 
+.image-data img{
+	
+	min-width: 30vw;
+}
+
 .prototype-body{
 	padding-bottom:5vh;
 }
@@ -1943,9 +1948,41 @@ span {
 }
 	
 .tv-table {
-	object-fit: cover;
+	
 	left:0%;
 	width:83%;
+	table-layout: fixed;
+	
+}
+
+.tv-table td{
+	max-height: 40vh;
+	
+}
+
+.tv-table th{
+	
+	background-image: linear-gradient(to bottom, #7a4e6d, #bfe9ff, #7a4e6d);
+}
+
+.tv-table .main th {
+	background-image: linear-gradient(to bottom, #d10eb7, #bfe9ff);
+}
+
+.tv-table .th-end th{
+	height: 10vh;
+	min-height: 10vh;
+	background-image: linear-gradient(to top, #d10eb7, #bfe9ff);
+}
+
+.tv-table td img{
+	object-fit: contain;
+	min-width: 31vw;
+	min-height: 40vh;
+}
+
+.tv-table td img:hover{
+	transform: scale(2);	
 }
 
 video{
