@@ -1982,7 +1982,8 @@ span {
 }
 
 .tv-table td img:hover{
-	transform: scale(2);	
+	transform: scale(1.2);
+	object-fit: center;	
 }
 
 video{
@@ -2044,6 +2045,17 @@ video{
 	transition: all .5s;
 	
 }
+
+.hold-offscreen{
+	position: relative;
+	opacity: 0;
+}
+
+.zoom-in{
+	
+	animation: button-fly-in 1s ease forwards;
+}
+
 .button-fly-in::before{
 	border-radius: 50px; 
 	border: 5px solid transparent;
@@ -2055,6 +2067,7 @@ input.button-fly-in:hover{
 @keyframes button-fly-in {
 	0%{
 		left: 300%;
+		
 	}
 	80%{
 		left: -10%;
@@ -2072,6 +2085,7 @@ input.button-fly-in:hover{
 		left:-1%;
 	}
 	100%{
+		opacity: 1;
 		left: 0%;
 	}
 }

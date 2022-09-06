@@ -1,9 +1,29 @@
 
+var shopOne = document.getElementById("shop-1");
+var shopTwo = document.getElementById("shop-2");
+var cardOne = document.getElementById("card-battle-1");
+var cardTwo = document.getElementById("card-battle-2");
 
+function isElementInViewport (el) {
 
+    // Special bonus for those using jQuery
+    if (typeof jQuery === "function" && el instanceof jQuery) {
+        el = el[0];
+    }
+
+    var rect = el.getBoundingClientRect();
+
+return rect.bottom > 0 &&
+    rect.right > 0 &&
+    rect.left < (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */ &&
+    rect.top < (window.innerHeight || document.documentElement.clientHeight) /* or $(window).height() */;
+}
 
 $(document).ready(function(){
     const $msg = $('.msg');
+    
+    let addedShopPhotos = false;
+    let addedCardPhotos = false;
     // function getElementTopLeft(id) {
 
     //     var ele = document.querySelector(id);
@@ -20,7 +40,61 @@ $(document).ready(function(){
        
     // }
     // const topLeft = getElementTopLeft('#letter-holder');
+
+    //use window.scrollY
+    var scrollpos = function(){return window.scrollY};
     
+
+    function add_class_on_scroll(elem) {
+        elem.classList.add("zoom-in");
+    }
+
+    function remove_class_on_scroll(elem) {
+        elem.classList.remove("zoom-in");
+    }
+
+    
+
+    window.addEventListener('scroll', function(){ 
+       
+        if(isElementInViewport(cardOne) && !addedCardPhotos){
+            addedCardPhotos = true;
+            console.log('reached here')
+            setTimeout(function () {
+                add_class_on_scroll(cardOne);
+            }, 150);
+            
+            setTimeout(function () {
+                add_class_on_scroll(cardTwo);
+            }, 450);
+            
+        }
+        else if(!isElementInViewport(cardOne) && addedCardPhotos){
+            console.log('false here')
+            remove_class_on_scroll(cardOne);
+            remove_class_on_scroll(cardTwo);
+            addedCardPhotos = false;
+        }
+        if(isElementInViewport(shopOne) && !addedShopPhotos){
+            addedShopPhotos = true;
+            
+            setTimeout(function () {
+                add_class_on_scroll(shopOne);
+            }, 150);
+            setTimeout(function () {
+                add_class_on_scroll(shopTwo);
+            }, 450);
+            
+        }
+        else if(!isElementInViewport(shopOne) && addedShopPhotos){
+            
+            remove_class_on_scroll(shopOne);
+            remove_class_on_scroll(shopTwo);
+            addedShopPhotos = false;
+        }
+        
+    });
+        
     $('.msg').mouseenter(function () {
         max = 50;
         min = -50;
@@ -109,9 +183,7 @@ function rotate(elem, degree){
     
     if(degree > 0){
         while(time < degree){
-            setTimeout(function () {
-                
-        }, 50);
+            
             elem.css({ WebkitTransform: 'rotate(' + time + 'deg)'});  
             elem.css({ '-moz-transform': 'rotate(' + time + 'deg)'}); 
             time++;
