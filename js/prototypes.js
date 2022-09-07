@@ -5,6 +5,8 @@ var cardOne = document.getElementById("card-battle-1");
 var cardTwo = document.getElementById("card-battle-2");
 var killsShop = document.getElementById("custom-td-kill-shop")
 var killsShopText = document.getElementById("custom-td-kill-shop-text")
+var bloodShop = document.getElementById("custom-td-blood-shop")
+var bloodShopText = document.getElementById("custom-td-blood-shop-text")
 
 function isElementInViewport (el) {
 
@@ -27,6 +29,7 @@ $(document).ready(function(){
     let addedShopPhotos = false;
     let addedCardPhotos = false;
     let addedKillsShop = false;
+    let addedBloodShop = false;
     // function getElementTopLeft(id) {
 
     //     var ele = document.querySelector(id);
@@ -111,6 +114,23 @@ $(document).ready(function(){
             remove_class_on_scroll(killsShop);
             remove_class_on_scroll(killsShopText);
             addedKillsShop = false;
+        }
+        if(isElementInViewport(bloodShop) && !addedBloodShop){
+            addedBloodShop = true;
+            
+            setTimeout(function () {
+                add_class_on_scroll(bloodShop);
+            }, 150);
+            setTimeout(function () {
+                add_class_on_scroll(bloodShopText);
+            }, 450);
+            
+        }
+        else if(!isElementInViewport(bloodShop) && addedShopPhotos){
+            
+            remove_class_on_scroll(bloodShop);
+            remove_class_on_scroll(bloodShopText);
+            addedBloodShop = false;
         }
     });
         
