@@ -3,6 +3,8 @@ var shopOne = document.getElementById("shop-1");
 var shopTwo = document.getElementById("shop-2");
 var cardOne = document.getElementById("card-battle-1");
 var cardTwo = document.getElementById("card-battle-2");
+var killsShop = document.getElementById("custom-td-kill-shop")
+var killsShopText = document.getElementById("custom-td-kill-shop-text")
 
 function isElementInViewport (el) {
 
@@ -24,6 +26,7 @@ $(document).ready(function(){
     
     let addedShopPhotos = false;
     let addedCardPhotos = false;
+    let addedKillsShop = false;
     // function getElementTopLeft(id) {
 
     //     var ele = document.querySelector(id);
@@ -92,7 +95,23 @@ $(document).ready(function(){
             remove_class_on_scroll(shopTwo);
             addedShopPhotos = false;
         }
-        
+        if(isElementInViewport(killsShop) && !addedKillsShop){
+            addedKillsShop = true;
+            
+            setTimeout(function () {
+                add_class_on_scroll(killsShop);
+            }, 150);
+            setTimeout(function () {
+                add_class_on_scroll(killsShopText);
+            }, 450);
+            
+        }
+        else if(!isElementInViewport(killsShop) && addedShopPhotos){
+            
+            remove_class_on_scroll(killsShop);
+            remove_class_on_scroll(killsShopText);
+            addedKillsShop = false;
+        }
     });
         
     $('.msg').mouseenter(function () {

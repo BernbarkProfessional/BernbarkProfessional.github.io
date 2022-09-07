@@ -2096,6 +2096,17 @@ input.button-fly-in:hover{
 	
 }
 
+#prototype-content h2{
+	text-align: left;
+	margin: 25px;
+	padding: 35px;
+}
+
+iframe{
+	min-height: 40vh;
+	display: flex; width: 100%; height: 100%;
+}
+
 /** This is cool but doesn't work great
   @media all and (min-width: 50px)   {  body  { font-size:0.05em;  } }
   @media all and (min-width: 100px)  {  body  { font-size:0.1em;  } }
